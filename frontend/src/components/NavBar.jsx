@@ -46,32 +46,32 @@ function Navbar() {
                 Accueil
               </Link>
               <div className="relative group flex mr-4">
-                <a
-                  href="#"
+                <Link
+                  to="/profil"
                   className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Profil
-                </a>
+                </Link>
                 <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Mon Profil</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Mes Posts</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Créer un Post</a>
+                  <Link to="/mon-profil" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Mon Profil</Link>
+                  <Link to="/mes-posts" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Mes Posts</Link>
+                  <Link to="/creer-post" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Créer un Post</Link>
                 </div>
               </div>
               <div className="relative group flex">
-                <a
-                  href="#"
+                <Link
+                  to="/categories"
                   className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Catégories
-                </a>
+                </Link>
                 <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Développement Web</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Intelligence Artificielle</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Hardware</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Logiciels</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">CyberSécurité</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Carrières Technos</a>
+                  <Link to="/categorie/developpement-web" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Développement Web</Link>
+                  <Link to="/categorie/intelligence-artificielle" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Intelligence Artificielle</Link>
+                  <Link to="/categorie/hardware" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Hardware</Link>
+                  <Link to="/categorie/logiciels" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Logiciels</Link>
+                  <Link to="/categorie/cybersecurite" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">CyberSécurité</Link>
+                  <Link to="/categorie/carrieres-technos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Carrières Technos</Link>
                 </div>
               </div>
             </div>
