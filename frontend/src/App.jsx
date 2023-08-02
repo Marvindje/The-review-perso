@@ -1,12 +1,13 @@
-import Home from "./pages/Home";
-
+import React from "react";
+import Homepage from "./pages/Homepage";
+import Navbar from "./components/NavBar";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <p className="text-4xl text-red-500"> coucou</p>
+      <Navbar />
+      <Homepage />
     </div>
   );
 }
