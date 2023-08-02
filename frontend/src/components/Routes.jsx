@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Homepage from "./pages/Homepage";
-import Accueil from "./pages/Accueil";
-import Categories from "./pages/Categories";
-import CreerArticles from "./pages/CreerArticles";
-import MonProfil from "./pages/MonProfil";
+import Homepage from "../pages/Homepage";
+import Accueil from "../pages/Accueil";
+import Categories from "../pages/Categories";
+import CreerArticles from "../pages/CreerArticles";
+import MonProfil from "../pages/MonProfil";
 
 const AppRoutes = () => {
   return (
