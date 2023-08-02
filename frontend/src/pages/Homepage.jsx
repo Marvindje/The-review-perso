@@ -9,18 +9,28 @@ export default function Home() {
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
           <img className="h-24" src={logo} alt="logo" />
           <div className="mx-auto">
+
             <h1 className="text-2xl font-semibold">
               Bienvenue dans notre Tech Blog !
             </h1>
             <p className="mt-4 text-gray-600">
               Reste informé des dernières nouveautés technologiques 
+ </p>
+            <h1 className="text-2xl font-semibold">Welcome to Tech Blog!</h1>
+            <p className="mt-4 text-gray-600">
+              Stay updated with the latest tech news and articles.
+
             </p>
             <div className="mt-8">
               <a
                 href="/blog"
                 className="px-5 py-3 shadow-lg rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"
               >
+
                 Les derniers articles
+
+                Visite The Review
+
               </a>
             </div>
           </div>
