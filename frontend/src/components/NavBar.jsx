@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/the-review-high-resolution-logo-color-on-transparent-background.png";
 
-const Navbar = () => {
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="bg-white shadow">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -32,9 +34,46 @@ const Navbar = () => {
           </div>
           <div className={`sm:flex sm:items-center sm:ml-6 ${isOpen ? "flex" : "hidden"} flex-col sm:flex-row`}>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              <a href="#" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-              <a href="#" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+              <input
+                type="text"
+                placeholder="Search..."
+                className="px-3 py-2 rounded-md text-sm font-medium"
+              />
+              <Link
+                to="/"
+                className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Accueil
+              </Link>
+              <div className="relative group flex mr-4">
+                <a
+                  href="#"
+                  className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Profil
+                </a>
+                <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10">
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Mon Profil</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Mes Posts</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Créer un Post</a>
+                </div>
+              </div>
+              <div className="relative group flex">
+                <a
+                  href="#"
+                  className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Catégories
+                </a>
+                <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10">
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Développement Web</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Intelligence Artificielle</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Hardware</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Logiciels</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">CyberSécurité</a>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white">Carrières Technos</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

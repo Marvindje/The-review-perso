@@ -15,22 +15,13 @@ export default function Home() {
             </h1>
             <p className="mt-4 text-gray-600">
               Reste informé des dernières nouveautés technologiques 
- </p>
-            <h1 className="text-2xl font-semibold">Welcome to Tech Blog!</h1>
-            <p className="mt-4 text-gray-600">
-              Stay updated with the latest tech news and articles.
-
             </p>
             <div className="mt-8">
               <a
                 href="/blog"
                 className="px-5 py-3 shadow-lg rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"
               >
-
-                Les derniers articles
-
-                Visite The Review
-
+                lire des articles
               </a>
             </div>
           </div>
