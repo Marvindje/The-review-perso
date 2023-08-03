@@ -16,14 +16,14 @@ export default function Home() {
     <motion.div
       className="min-h-screen bg-gradient-to-r from-cyan-400 to-light-blue-500 py-6 flex flex-col justify-center sm:py-12"
       initial={{ x: '-100vw' }} // commence à gauche de l'écran
-      animate={{ x: 0 }} // se déplace vers la position initiale
-      transition={{ duration: 1 }} // durée de l'animation
+      animate={{ x: 0 }} 
+      transition={{ duration: 1 }} 
     >
       <motion.div
         className="relative py-3 sm:max-w-xl sm:mx-auto"
-        initial={{ scale: 0 }} // commence à une échelle de 0
-        animate={{ scale: 1 }} // grandit jusqu'à l'échelle normale
-        transition={{ duration: 0.5 }} // durée de l'animation
+        initial={{ scale: 0 }} 
+        animate={{ scale: 1 }} 
+        transition={{ duration: 0.5 }} 
       >
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20" style={cardStyle}>
           <div className="mx-auto">
@@ -35,8 +35,8 @@ export default function Home() {
             </p>
             <motion.div
               className="mt-8"
-              whileHover={{ scale: 1.1 }} // grandit légèrement lorsque la souris est dessus
-              whileTap={{ scale: 0.9 }} // rétrécit légèrement lorsqu'on clique dessus
+              whileHover={{ scale: 1.1 }} 
+              whileTap={{ scale: 0.9 }} 
             >
               <a
                 href="/blog"
