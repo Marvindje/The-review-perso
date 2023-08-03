@@ -1,8 +1,11 @@
-function MonProfil() {
+import React from 'react';
+
+const MonProfil = () => {
   return (
     <div>
-      <p>Accueil</p>
+      {/* Your code for the MonProfil page here */}
     </div>
   );
-}
+};
+
 export default MonProfil;
