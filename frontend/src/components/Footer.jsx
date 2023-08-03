@@ -12,23 +12,17 @@ const Footer = () => {
           <span className="ml-3 text-xl">The Review</span>
         </Link>
         <p className="text-sm text-gray-500 sm:ml-6 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 The Review —
-          <a href="https://twitter.com/knyttneve" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@TheReview</a>
+          <button onClick={() => window.open("https://twitter.com/TheReview", "_blank")} className="text-gray-600 ml-1">@TheReview</button>
         </p>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-          <a className="text-gray-500 hover:text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-            <i className="fab fa-facebook-f"></i>
-          </a>
-          <a className="ml-3 text-gray-500 hover:text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-            <i className="fab fa-twitter"></i>
-          </a>
-          <a className="ml-3 text-gray-500 hover:text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-            <i className="fab fa-instagram"></i>
-          </a>
+          <button onClick={() => window.location.href='/contact'} className="text-gray-500 hover:text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+            Contact
+          </button>
         </span>
       </div>
-      <a href="#" className="back-to-top absolute right-5 bottom-5 text-white text-2xl hover:text-gray-200">
+      <button onClick={() => window.scrollTo(0, 0)} className="back-to-top absolute right-5 bottom-5 text-white text-2xl hover:text-gray-200">
         <i className="fas fa-arrow-up"></i>
-      </a>
+      </button>
     </footer>
   );
 };
