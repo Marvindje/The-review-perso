@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaSearch } from "react-icons/fa"; // importez l'icône de recherche
+import { FaSearch } from "react-icons/fa";
 import logo from "../assets/the-review-high-resolution-logo-color-on-transparent-background.png";
 
 function Navbar() {
@@ -45,10 +45,11 @@ function Navbar() {
             <div className="flex space-x-4">
               <div className="relative">
                 <FaSearch className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-                <input
+                <motion.input
                   type="text"
                   placeholder="Search..."
                   className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
+                  whileFocus={{ scale: 1.1 }}
                 />
               </div>
               <Link
