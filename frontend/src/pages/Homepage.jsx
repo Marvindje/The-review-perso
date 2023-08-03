@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import image from "../assets/heroes.png";
 import { FaArrowRight } from "react-icons/fa";
 
-export default function HomePage() {
+function HomePage() {
   const cardStyle = {
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
@@ -39,7 +39,7 @@ export default function HomePage() {
           variants={cardVariants}
           whileHover="hover" 
           initial={{ rotate: 0 }}
-          
+          animate={{ rotate: 0 }} // Corrected line
           transition={{ duration: 0.3 }}
         >
           <div className="mx-auto">
@@ -67,3 +67,5 @@ export default function HomePage() {
     </motion.div>
   );
 }
+
+export default HomePage;
