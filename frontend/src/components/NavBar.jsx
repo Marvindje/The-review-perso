@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
-import logo from "../assets/the-review-high-resolution-logo-color-on-transparent-background.png";
+import logo from "../assets/the-review-website-favicon-color.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <motion.img 
-              className="h-20 w-auto" 
+              className="h-10 w-auto" 
               src={logo} 
               alt="Workflow" 
               initial={{ y: -250 }}
