@@ -9,21 +9,21 @@ export default function HomePage() {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    borderRadius: "20px", // Ajouter une bordure arrondie
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Ajouter une ombre
+    borderRadius: "20px", 
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
   };
 
   const cardVariants = {
     hover: {
-      scale: 1.05, // Agrandir légèrement la carte au survol
-      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)", // Ajouter une ombre plus prononcée
+      scale: 1.05, 
+      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)", 
     },
   };
 
   return (
     <motion.div
       className="min-h-screen bg-gradient-to-r from-cyan-400 to-light-blue-500 py-6 flex flex-col justify-center sm:py-12"
-      initial={{ x: "-100vw" }} // commence à gauche de l'écran
+      initial={{ x: "-100vw" }} 
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
@@ -37,7 +37,7 @@ export default function HomePage() {
           className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
           style={cardStyle}
           variants={cardVariants}
-          whileHover="hover" // Appliquer les variants au survol
+          whileHover="hover" 
           initial={{ rotate: 0 }}
           
           transition={{ duration: 0.3 }}
