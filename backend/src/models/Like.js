@@ -26,7 +26,7 @@ const Like = sequelize.define('Like', {
     defaultValue: Sequelize.NOW
   }
 }, {
-  // Other model options
+
   tableName: 'Likes',
   timestamps: false
 });

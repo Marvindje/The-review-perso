@@ -1,60 +1,59 @@
-// import some node modules for later
+// app.js
 
-const fs = require("node:fs");
-const path = require("node:path");
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
 
-// create express app
-
-const express = require("express");
+// Importation des routeurs
+const categoriesRouter = require('./routes/categories');
+const commentRoutes = require('./routes/commentRoutes');
+const likeRoutes = require('./routes/likeRoutes');
+const postRoutes = require('./routes/postRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-// use some application-level middlewares
-
+// Utilisation de middlewares
 app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+  optionsSuccessStatus: 200,
+}));
 
-const cors = require("cors");
+// Utilisation des routeurs
+app.use('/categories', categoriesRouter);
+app.use('/comments', commentRoutes);
+app.use('/likes', likeRoutes);
+app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-    optionsSuccessStatus: 200,
-  })
-);
+// Servir les ressources publiques
+app.use(express.static(path.join(__dirname, '../public')));
 
-// import and mount the API routes
-
-const router = require("./router");
-
-app.use(router);
-
-// serve the `backend/public` folder for public resources
-
-app.use(express.static(path.join(__dirname, "../public")));
-
-// serve REACT APP
-
-const reactIndexFile = path.join(
-  __dirname,
-  "..",
-  "..",
-  "frontend",
-  "dist",
-  "index.html"
-);
-
+// Servir l'application React
+const reactIndexFile = path.join(__dirname, '../../frontend/dist/index.html');
 if (fs.existsSync(reactIndexFile)) {
-  // serve REACT resources
-
-  app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
-
-  // redirect all requests to the REACT index file
-
-  app.get("*", (req, res) => {
+  app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+  app.get('*', (req, res) => {
     res.sendFile(reactIndexFile);
   });
 }
 
-// ready to export
+// Middleware pour gérer les erreurs 404 (non trouvées)
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Middleware pour gérer toutes les autres erreurs
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({
+    message: err.message,
+    error: req.app.get('env') === 'development' ? err : {}
+  });
+});
 
 module.exports = app;
