@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
-import logo from "../assets/logotheview.png";
+import logo from "../assets/the-review-low-resolution-logo-color-on-transparent-background.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ function Navbar() {
     <nav className="bg-white shadow">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
+          <div className="flex items-center align-center">
             <Link to="/">
               <motion.img 
                 className="h-10 w-auto" 
