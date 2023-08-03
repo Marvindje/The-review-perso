@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const articlesRoutes = require('./routes/articles');
 
 // Importation des routeurs
 const categoriesRouter = require('./routes/categories');
@@ -27,6 +28,7 @@ app.use('/comments', commentRoutes);
 app.use('/likes', likeRoutes);
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
+app.use('/articles', articlesRoutes);
 
 // Servir les ressources publiques
 app.use(express.static(path.join(__dirname, '../public')));
@@ -54,6 +56,10 @@ app.use((err, req, res, next) => {
     message: err.message,
     error: req.app.get('env') === 'development' ? err : {}
   });
+});
+const port = process.env.APP_PORT || 6000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 module.exports = app;
