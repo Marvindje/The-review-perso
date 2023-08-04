@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { DesktopComputerIcon, ChipIcon, DatabaseIcon, ShieldCheckIcon, CodeIcon, UserGroupIcon } from '@heroicons/react/outline'; // import the icons
+import { DesktopComputerIcon, ChipIcon, DatabaseIcon, ShieldCheckIcon, CodeIcon, UserGroupIcon } from '@heroicons/react/outline';
 import '../App.css';
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -27,7 +27,6 @@ const Sidebar = ({ isOpen, onClose }) => {
         Close
       </button>
       <ul>
-      console.log(isOpen);
         {categories.map((category, index) => (
           <motion.li
             key={index}

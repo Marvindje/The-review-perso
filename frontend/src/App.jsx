@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Navbar from "./components/NavBar";
-import Footer from "./components/Footer";
+import Layout from "./components/Layout";
 import AppRoutes from "./components/AppRoutes"; 
-import Sidebar from "./components/Sidebar"; 
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
     <Router>
       <div className="App">
-        <Navbar onLogoClick={() => setIsSidebarOpen(true)} />
-        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-        <AppRoutes />
+        <Layout>
+          <AppRoutes />
+        </Layout>
         <Footer />
       </div>
     </Router>
