@@ -1,4 +1,3 @@
-// HomePage.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import image from "../assets/IA-intelligence-artificielle.jpeg";
@@ -16,7 +15,6 @@ function HomePage() {
     padding: "16rem", 
   };
 
-  
   const cardVariants = {
     hover: {
       scale: 1.05, 
@@ -41,24 +39,31 @@ function HomePage() {
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
-      <div className="text-center mb-10 ">
-        <motion.h1
-          className="text-4xl font-semibold text-white glow-text"
-          variants={welcomeVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          Bienvenue !
-        </motion.h1>
-        <motion.p
-          className="mt-4 text-xl text-white glow-text"
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          Reste informé des dernières actualités technologiques
-        </motion.p>
-      </div>
+      <motion.div
+        className="bg-white shadow-lg rounded-3xl p-10 w-full max-w-xl mx-auto mb-10"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="text-center">
+          <motion.h1
+            className="text-4xl font-semibold text-black"
+            variants={welcomeVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            Bienvenue !
+          </motion.h1>
+          <motion.p
+            className="mt-4 text-xl text-black"
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            Reste informé des dernières actualités technologiques
+          </motion.p>
+        </div>
+      </motion.div>
       <motion.div
         className="relative py-3 sm:max-w-xl sm:mx-auto"
         initial={{ scale: 0 }}
@@ -66,7 +71,7 @@ function HomePage() {
         transition={{ duration: 0.5 }}
       >
         <motion.div
-          className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
+          className="bg-white shadow-lg rounded-3xl p-10 w-full max-w-xl"
           style={cardStyle}
           variants={cardVariants}
           whileHover="hover" 

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import logo from "../assets/the-review-low-resolution-logo-color-on-transparent-background.png";
 
-function Navbar() {
+function Navbar({ onLogoClick }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center align-center">
-            <Link to="/">
+            <Link to="/" onClick={onLogoClick}>
               <motion.img 
                 className="h-10 w-auto" 
                 src={logo} 
