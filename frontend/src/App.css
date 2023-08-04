@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply bg-white text-black;
+  }
+  
+  body.dark {
+    @apply bg-black text-white;
+  }
+  body, html, #root, .App {
+    height: 100%;
+  }

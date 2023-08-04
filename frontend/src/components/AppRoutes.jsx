@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import Categories from "../pages/Categories";
-import CreerArticles from "../pages/CreerArticles";
+import CreerArticles from "../pages/CreerPosts";
 import MonProfil from "../pages/MonProfil";
 import MesPosts from "../pages/MesPosts";
 import DeveloppementWeb from "../pages/DeveloppementWeb";

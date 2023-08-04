@@ -16,6 +16,7 @@ function HomePage() {
     padding: "16rem", 
   };
 
+  
   const cardVariants = {
     hover: {
       scale: 1.05, 
@@ -40,7 +41,7 @@ function HomePage() {
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
-      <div className="text-center mb-10">
+      <div className="text-center mb-10 ">
         <motion.h1
           className="text-4xl font-semibold text-white glow-text"
           variants={welcomeVariants}
