@@ -1,6 +1,7 @@
+// HomePage.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import image from "../assets/heroes.png";
+import image from "../assets/IA-intelligence-artificielle.jpeg";
 import { FaArrowRight } from "react-icons/fa";
 
 function HomePage() {
@@ -11,6 +12,8 @@ function HomePage() {
     backgroundPosition: "center",
     borderRadius: "20px", 
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
+    width: "100%",
+    padding: "16rem", 
   };
 
   const cardVariants = {
@@ -20,13 +23,41 @@ function HomePage() {
     },
   };
 
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
+  };
+
+  const welcomeVariants = {
+    hidden: { scale: 0 },
+    visible: { scale: 1, transition: { duration: 0.5 } },
+  };
+
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-r from-cyan-400 to-light-blue-500 py-6 flex flex-col justify-center sm:py-12"
+      className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
       initial={{ x: "-100vw" }} 
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
+      <div className="text-center mb-10">
+        <motion.h1
+          className="text-4xl font-semibold text-white glow-text"
+          variants={welcomeVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Bienvenue !
+        </motion.h1>
+        <motion.p
+          className="mt-4 text-xl text-white glow-text"
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          Reste informé des dernières actualités technologiques
+        </motion.p>
+      </div>
       <motion.div
         className="relative py-3 sm:max-w-xl sm:mx-auto"
         initial={{ scale: 0 }}
@@ -39,16 +70,10 @@ function HomePage() {
           variants={cardVariants}
           whileHover="hover" 
           initial={{ rotate: 0 }}
-          animate={{ rotate: 0 }} // Corrected line
+          animate={{ rotate: 0 }}
           transition={{ duration: 0.3 }}
         >
           <div className="mx-auto">
-            <h1 className="text-2xl font-semibold text-white">
-              Bienvenue dans notre Tech Blog !
-            </h1>
-            <p className="mt-4 text-white">
-              Reste informé des dernières nouveautés technologiques
-            </p>
             <motion.div
               className="mt-8 flex items-center"
               whileHover={{ scale: 1.1 }}
