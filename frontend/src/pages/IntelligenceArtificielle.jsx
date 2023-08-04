@@ -1,10 +1,10 @@
 // IntelligenceArtificielle.jsx
 import React from 'react';
 import ArticleSection from '../components/ArticleSection';
-import intellImage from '../assets/intell-image.jpeg';
+import aiImage from '../assets/maxresdefault.jpeg';
 
 const IntelligenceArtificielle = () => {
-  return <ArticleSection title="Bienvenue dans la section Intelligence Artificielle" image={intellImage} />;
+  return <ArticleSection title="Bienvenue dans la section Intelligence Artificielle" image={aiImage} />;
 };
 
 export default IntelligenceArtificielle;
