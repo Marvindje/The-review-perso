@@ -35,7 +35,7 @@ const ArticleSection = ({ title, image }) => {
               initial="hidden"
               animate="visible"
             >
-              <h3 className="text-2xl font-header mb-2">Titre de l'article {i+1}</h3>
+              <h3 className="text-2xl font-header mb-2">article {i+1}</h3>
               <p className="text-white text-sm">Description de l'article...</p>
               <Link to={`/article${i+1}`} className="text-white text-sm mt-4 block hover:text-white">Lire l'article</Link>
             </motion.div>
