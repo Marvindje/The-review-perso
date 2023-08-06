@@ -56,14 +56,16 @@ function CreerPosts() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.h1
-        className="text-4xl font-semibold text-gray-700 mb-10"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        Créer un post
-      </motion.h1>
+     <motion.h1
+  className="text-4xl font-semibold text-gray-700 mb-10 bg-gray-100 p-5 rounded-lg shadow-lg"
+  initial={{ x: "-100vw" }} 
+  animate={{ x: 0 }}
+  transition={{ duration: 1 }}
+>
+  Créer un post
+</motion.h1>
+
+
       <motion.div
         className="bg-white shadow-lg rounded-3xl p-10 w-full max-w-xl m-4 relative"
         initial={{ scale: 0 }}

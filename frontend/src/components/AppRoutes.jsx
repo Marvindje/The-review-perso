@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage";
-import Categories from "../pages/Categories";
+import Contact from "../pages/Contact";
 import CreerArticles from "../pages/CreerPosts";
 import MonProfil from "../pages/MonProfil";
 import MesPosts from "../pages/MesPosts";
@@ -16,9 +16,9 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} /> 
-      <Route path="/categories" element={<Categories />} />
       <Route path="/creer-article" element={<CreerArticles />} />
       <Route path="/mon-profil" element={<MonProfil />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/profil" element={<MonProfil />} />
       <Route path="/mes-posts" element={<MesPosts />} />
       <Route path="/creer-post" element={<CreerArticles />} />

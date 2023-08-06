@@ -5,7 +5,7 @@ import ArticleSection from '../components/ArticleSection';
 import cyberSecuriteImage from '../assets/cyber-secu.jpeg';
 
 const CyberSecurite = () => {
-  return <ArticleSection title="Bienvenue dans la section Cyber Sécurité" image={cyberSecuriteImage} />;
+  return <ArticleSection title="Cyber Sécurité" image={cyberSecuriteImage} />;
 };
 
 export default CyberSecurite;

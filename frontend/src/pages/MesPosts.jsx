@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaThumbsUp, FaTrash, FaSync } from 'react-icons/fa'; // Import thumbs up, trash, and sync icons
+import Navbar from '../components/NavBar';
 
 function MesPosts() {
   const [posts, setPosts] = useState([]);

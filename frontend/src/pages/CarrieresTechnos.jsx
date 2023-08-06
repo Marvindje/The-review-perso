@@ -4,7 +4,7 @@ import ArticleSection from '../components/ArticleSection';
 import carrieresTechImage from '../assets/carrieres-tech.jpeg';
 
 const CarrieresTechnos = () => {
-  return <ArticleSection title="Bienvenue dans la section Carrières et Technologies" image={carrieresTechImage} />;
+  return <ArticleSection title=" Carrières et Technologies" image={carrieresTechImage} />;
 };
 
 export default CarrieresTechnos;
