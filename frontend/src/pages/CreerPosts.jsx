@@ -51,23 +51,22 @@ function CreerPosts() {
 
   return (
     <motion.div
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-5"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
+      initial={{ x: "-100vw" }} 
+      animate={{ x: 0 }}
+      transition={{ duration: 1 }}
     >
-     <motion.h1
-  className="text-4xl font-semibold text-gray-700 mb-10 bg-gray-100 p-5 rounded-lg shadow-lg"
-  initial={{ x: "-100vw" }} 
-  animate={{ x: 0 }}
-  transition={{ duration: 1 }}
->
-  Créer un post
-</motion.h1>
-
+      <motion.h1
+        className="text-4xl font-semibold text-gray-700 mb-10 bg-gray-100 p-5 rounded-lg shadow-lg"
+        initial={{ x: "-100vw" }} 
+        animate={{ x: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Créer un post
+      </motion.h1>
 
       <motion.div
-        className="bg-white shadow-lg rounded-3xl p-10 w-full max-w-xl m-4 relative"
+        className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 border border-gray-300 p-12 mt-8 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
