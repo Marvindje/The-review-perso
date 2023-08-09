@@ -1,34 +1,68 @@
 const Post = require('../models/Post');
 
 exports.getAllPosts = async (req, res) => {
-  const posts = await Post.findAll();
-  res.json(posts);
+    try {
+        const posts = await Post.findAll();
+        res.json(posts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 };
 
 exports.getPostById = async (req, res) => {
-  const post = await Post.findByPk(req.params.id);
-  res.json(post);
+    try {
+        const post = await Post.findByPk(req.params.id);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        res.json(post);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 };
 
 exports.createPost = async (req, res) => {
-  const newPost = await Post.create(req.body);
-  res.json(newPost);
+    try {
+        const newPost = await Post.create(req.body);
+        res.status(201).json(newPost);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 };
 
 exports.updatePost = async (req, res) => {
-  await Post.update(req.body, {
-    where: {
-      id: req.params.id
+    try {
+        const result = await Post.update(req.body, {
+            where: {
+                id: req.params.id
+            }
+        });
+        if (result[0] === 0) { // No rows updated
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        res.json({ message: 'Post updated' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
     }
-  });
-  res.json({ message: 'Post updated' });
 };
 
 exports.deletePost = async (req, res) => {
-  await Post.destroy({
-    where: {
-      id: req.params.id
+    try {
+        const result = await Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        if (result === 0) { // No rows deleted
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        res.json({ message: 'Post deleted' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
     }
-  });
-  res.json({ message: 'Post deleted' });
 };

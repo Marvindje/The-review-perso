@@ -1,10 +1,8 @@
-// models/Like.js
-
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize('mysql://user:pass@localhost:3306/the-review');
+const AbstractManager = require('./AbstractManager');
 
 const Like = sequelize.define('Like', {
-  // Model attributes
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -26,9 +24,40 @@ const Like = sequelize.define('Like', {
     defaultValue: Sequelize.NOW
   }
 }, {
-
   tableName: 'Likes',
   timestamps: false
 });
 
-module.exports = Like;
+class LikeManager extends AbstractManager {
+    
+    // Compter le nombre de "likes" pour un post spécifique
+    async countLikesForPost(postId) {
+        return await Like.count({
+            where: {
+                post_id: postId
+            }
+        });
+    }
+
+    // Vérifier si un utilisateur a déjà "liké" un post
+    async userHasLikedPost(userId, postId) {
+        const like = await Like.findOne({
+            where: {
+                user_id: userId,
+                post_id: postId
+            }
+        });
+        return like !== null;
+    }
+
+    // Récupérer tous les "likes" d'un utilisateur
+    async getLikesByUser(userId) {
+        return await Like.findAll({
+            where: {
+                user_id: userId
+            }
+        });
+    }
+}
+
+module.exports = new LikeManager(Like);
