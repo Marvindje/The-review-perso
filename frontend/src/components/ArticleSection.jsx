@@ -22,8 +22,8 @@ const ArticleSection = ({ title, image }) => {
         initial="rest"
         whileHover="hover"
       >
-        <h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200 bg-black bg-opacity-50" style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de' }}>
-          {title}
+        
+<h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200 " style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de' }}>          {title}
         </h1>
       </motion.div>
 
