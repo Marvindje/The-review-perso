@@ -11,10 +11,10 @@ Post.belongsTo(Category, { foreignKey: 'category_id' });
 User.hasMany(Post, { foreignKey: 'user_id' });
 Post.belongsTo(User, { foreignKey: 'user_id' });
 
-// Définir la relation entre User et Like (si nécessaire)
+// Définir la relation entre User et Like 
 User.hasMany(Like, { foreignKey: 'user_id' });
 Like.belongsTo(User, { foreignKey: 'user_id' });
 
-// Définir la relation entre Post et Like (si nécessaire)
+// Définir la relation entre Post et Like 
 Post.hasMany(Like, { foreignKey: 'post_id' });
 Like.belongsTo(Post, { foreignKey: 'post_id' });
