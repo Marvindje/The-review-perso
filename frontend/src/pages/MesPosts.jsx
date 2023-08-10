@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { FaThumbsUp, FaTrash, FaSync } from 'react-icons/fa';
 
 function MesPosts() {
   const [posts, setPosts] = useState([]);
+  const [currentComments, setCurrentComments] = useState({});
+  const controls = useAnimation();
 
   useEffect(() => {
     const savedPosts = JSON.parse(localStorage.getItem('posts'));
@@ -36,12 +38,20 @@ function MesPosts() {
     localStorage.setItem('posts', JSON.stringify(newPosts));
   };
 
-  const handleComment = (index, comment) => {
-    const newPosts = [...posts];
-    newPosts[index].comments.push(comment);
-    setPosts(newPosts);
-    localStorage.setItem('posts', JSON.stringify(newPosts));
-    document.getElementById(`comment-${index}`).value = '';
+  const handleComment = async (index) => {
+    const comment = currentComments[index];
+    if (comment && comment.trim() !== '') {
+        const newPosts = [...posts];
+        if (!newPosts[index].comments) {
+            newPosts[index].comments = [];
+        }
+        newPosts[index].comments.push(comment);
+        setPosts(newPosts);
+        localStorage.setItem('posts', JSON.stringify(newPosts));
+        setCurrentComments({ ...currentComments, [index]: '' });
+        await controls.start({ scale: 1.1 });
+        controls.start({ scale: 1 });
+    }
   };
 
   return (
@@ -79,10 +89,10 @@ function MesPosts() {
                     transition={{ duration: 0.5 }}
                 >
                     <button onClick={() => deletePost(index)} className="absolute top-2 right-2 focus:outline-none">
-                        <FaTrash className="text-red-500" /> {/* Trash icon */}
+                        <FaTrash className="text-red-500" />
                     </button>
                     <button onClick={() => resetPost(index)} className="absolute top-2 left-2 focus:outline-none">
-                        <FaSync className="text-gray-500" /> {/* Sync icon */}
+                        <FaSync className="text-gray-500" />
                     </button>
                     <h2 className="text-2xl font-bold mb-2">{post.post}</h2>
                     {post.files && post.files.map((file, fileIndex) => (
@@ -90,35 +100,42 @@ function MesPosts() {
                     ))}
                     <div className="flex items-center mb-4">
                         <button onClick={() => handleLike(index)} className="focus:outline-none">
-                            <FaThumbsUp className={`mr-2 ${post.liked ? 'text-blue-500' : ''}`} /> {/* Thumbs up icon */}
+                            <FaThumbsUp className={`mr-2 ${post.liked ? 'text-blue-500' : ''}`} />
                         </button>
                         <p className="text-gray-500">{post.likes} likes</p>
                     </div>
                     <div className="mb-4">
-                        <h3 className="text-lg font-semibold mb-2">Last comments:</h3>
-                        {post.comments.map((comment, commentIndex) => (
-                            <div key={commentIndex} className="bg-gray-100 p-2 rounded-md mb-2">
-                                <p className="text-gray-700">{comment}</p>
-                            </div>
-                        ))}
-                    </div>
+        <h3 className="text-lg font-semibold mb-2">Last comments:</h3>
+        {post.comments && Array.isArray(post.comments) ? post.comments.map((comment, commentIndex) => (
+            <div key={commentIndex} className="bg-gray-100 p-2 rounded-md mb-2">
+                <p className="text-gray-700">{comment}</p>
+            </div>
+        )) : null}
+    </div>
                     <div className="mt-4 bg-gray-50 p-4 rounded-md">
                         <h3 className="text-lg font-semibold mb-2">Add a comment:</h3>
-                        <textarea id={`comment-${index}`} className="w-full p-2 border rounded-md mb-2" placeholder="Write a comment..."></textarea>
-                        <button onClick={() => handleComment(index, document.getElementById(`comment-${index}`).value)} className="px-4 py-2 bg-blue-500 text-white rounded-md">Submit</button>
+                        <textarea 
+                            id={`comment-${index}`} 
+                            className="w-full p-2 border rounded-md mb-2" 
+                            placeholder="Write a comment..."
+                            value={currentComments[index] || ''}
+                            onChange={(e) => setCurrentComments({ ...currentComments, [index]: e.target.value })}
+                        />
+                        <motion.button 
+                            onClick={() => handleComment(index)} 
+                            className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                            whileHover={{ backgroundColor: "#2563EB" }}
+                            whileTap={{ backgroundColor: "#1E40AF" }}
+                            animate={controls}
+                        >
+                            Submit
+                        </motion.button>
                     </div>
                 </motion.div>
             ))
         )}
     </motion.div>
-);
-
-
-
-
-
-
-
+  );
 }
 
 export default MesPosts;
