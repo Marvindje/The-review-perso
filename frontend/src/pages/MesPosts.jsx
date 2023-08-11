@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaThumbsUp, FaTrash, FaSync } from 'react-icons/fa';
+import noResultsImage from '../assets/noresults.png'; // Importation de l'image
 
 function MesPosts() {
   const [posts, setPosts] = useState([]);
@@ -81,12 +82,13 @@ function MesPosts() {
 
         {posts.length === 0 ? (
             <motion.div
-                className="text-2xl font-bold text-gray-700 mb-10"
+            className="text-2xl font-bold text-gray-700 mb-10 m-4" // Ajout de m-4 ici
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 Aucun post à afficher
+                <img src={noResultsImage} alt="No Results" className="mt-4 w-1/2 mx-auto" /> {/* Ajout de l'image */}
             </motion.div>
         ) : (
             posts.map((post, index) => (
