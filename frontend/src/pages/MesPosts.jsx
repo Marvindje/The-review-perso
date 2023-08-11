@@ -54,6 +54,15 @@ function MesPosts() {
     }
   };
 
+  const renderYoutubeEmbed = (link) => {
+    const youtubeId = link.split('v=')[1];
+    const ampersandPosition = youtubeId && youtubeId.indexOf('&');
+    if (ampersandPosition !== -1) {
+      return youtubeId.substring(0, ampersandPosition);
+    }
+    return youtubeId;
+  };
+
   return (
     <motion.div
         className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
@@ -95,6 +104,19 @@ function MesPosts() {
                         <FaSync className="text-gray-500" />
                     </button>
                     <h2 className="text-2xl font-bold mb-2">{post.post}</h2>
+                    {post.youtubeLink && (
+                        <div className="mb-4">
+                            <iframe 
+                                width="560" 
+                                height="315" 
+                                src={`https://www.youtube.com/embed/${renderYoutubeEmbed(post.youtubeLink)}`} 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    )}
                     {post.files && post.files.map((file, fileIndex) => (
                         <img key={fileIndex} src={file.dataUrl} alt={file.name} className="mt-2 h-32 w-auto object-cover rounded-md shadow-md" />
                     ))}
@@ -105,13 +127,13 @@ function MesPosts() {
                         <p className="text-gray-500">{post.likes} likes</p>
                     </div>
                     <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-2">Last comments:</h3>
-        {post.comments && Array.isArray(post.comments) ? post.comments.map((comment, commentIndex) => (
-            <div key={commentIndex} className="bg-gray-100 p-2 rounded-md mb-2">
-                <p className="text-gray-700">{comment}</p>
-            </div>
-        )) : null}
-    </div>
+                        <h3 className="text-lg font-semibold mb-2">Last comments:</h3>
+                        {post.comments && Array.isArray(post.comments) ? post.comments.map((comment, commentIndex) => (
+                            <div key={commentIndex} className="bg-gray-100 p-2 rounded-md mb-2">
+                                <p className="text-gray-700">{comment}</p>
+                            </div>
+                        )) : null}
+                    </div>
                     <div className="mt-4 bg-gray-50 p-4 rounded-md">
                         <h3 className="text-lg font-semibold mb-2">Add a comment:</h3>
                         <textarea 

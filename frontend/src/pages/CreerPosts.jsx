@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
-import { FaThumbsUp } from 'react-icons/fa'; // Import thumbs up icon
+import { FaThumbsUp } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,6 +10,8 @@ function CreerPosts() {
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
     const [youtubeLink, setYoutubeLink] = useState('');
+    const [hashtags, setHashtags] = useState('');
+    const [mention, setMention] = useState('');
     const [files, setFiles] = useState([]);
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -20,7 +22,7 @@ function CreerPosts() {
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, accept: 'image/*'});
 
     const handlePostSubmit = () => {
-        const newPost = { post, likes, liked, youtubeLink, files };
+        const newPost = { post, likes, liked, youtubeLink, hashtags, mention, files };
         const posts = JSON.parse(localStorage.getItem('posts')) || [];
         posts.push(newPost);
         localStorage.setItem('posts', JSON.stringify(posts));
@@ -28,6 +30,8 @@ function CreerPosts() {
         setLikes(0);
         setLiked(false);
         setYoutubeLink('');
+        setHashtags('');
+        setMention('');
         setFiles([]);
     };
 
@@ -35,7 +39,7 @@ function CreerPosts() {
         setLiked(!liked);
         setLikes(liked ? likes - 1 : likes + 1);
     };
-  
+
     const handlePostClick = () => {
         if (post.trim() !== '') {
             handlePostSubmit();
@@ -61,8 +65,16 @@ function CreerPosts() {
         }
     };
 
-    // Clean up object URLs
-    useEffect(() => () => {
+    const renderYoutubePreview = () => {
+        const youtubeId = youtubeLink.split('v=')[1];
+        const ampersandPosition = youtubeId && youtubeId.indexOf('&');
+        if (ampersandPosition !== -1) {
+            return youtubeId.substring(0, ampersandPosition);
+        }
+        return youtubeId;
+    };
+
+    useEffect(() => {
         files.forEach(file => URL.revokeObjectURL(file.preview));
     }, [files]);
 
@@ -115,15 +127,42 @@ function CreerPosts() {
                     placeholder="Paste your YouTube link here"
                     className="w-full p-2 border rounded-md mb-4"
                 />
+                {youtubeLink && (
+                    <div className="mb-4">
+                        <iframe 
+                            width="560" 
+                            height="315" 
+                            src={`https://www.youtube.com/embed/${renderYoutubePreview()}`} 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                )}
                 <textarea
                     className="w-full p-2 border rounded-md mb-4"
                     value={post}
                     onChange={(event) => setPost(event.target.value)}
                     placeholder="Write your post..."
                 />
+                <input
+                    type="text"
+                    value={hashtags}
+                    onChange={(e) => setHashtags(e.target.value)}
+                    placeholder="Add hashtags (e.g. #React #JavaScript)"
+                    className="w-full p-2 border rounded-md mb-4"
+                />
+                <input
+                    type="text"
+                    value={mention}
+                    onChange={(e) => setMention(e.target.value)}
+                    placeholder="Mention someone (e.g. @JohnDoe)"
+                    className="w-full p-2 border rounded-md mb-4"
+                />
                 <div className="flex items-center mb-4">
                     <button onClick={handleLike} className="focus:outline-none">
-                        <FaThumbsUp className={`mr-2 ${liked ? 'text-blue-500' : ''}`} /> {/* Thumbs up icon */}
+                        <FaThumbsUp className={`mr-2 ${liked ? 'text-blue-500' : ''}`} />
                     </button>
                     <p className="text-gray-500">{likes} likes</p>
                 </div>
