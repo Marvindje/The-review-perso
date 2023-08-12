@@ -87,13 +87,13 @@ function CreerPosts() {
         >
             <ToastContainer />
             <motion.h1
-                className="w-3/4 mx-auto text-4xl font-semibold text-gray-700 mb-6 p-5 rounded-lg shadow-md bg-gray-100 border border-gray-300 hover:shadow-lg transition-shadow duration-300 ease-in-out"
-                initial={{ x: "-100vw" }} 
-                animate={{ x: 0 }}
-                transition={{ duration: 1 }}
-            >
-                Créer un post
-            </motion.h1>
+    className="custom-h1 w-3/4 mx-auto text-4xl font-semibold mb-6 p-5 rounded-lg shadow-md bg-gray-100 border border-gray-300 hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer relative"
+    initial={{ x: "-100vw" }} 
+    animate={{ x: 0 }}
+    transition={{ duration: 1 }}
+>
+    Créer un post
+</motion.h1>
 
             <motion.div
                 className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 border border-gray-300 p-12 mt-4 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
