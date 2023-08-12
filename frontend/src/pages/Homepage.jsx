@@ -19,7 +19,7 @@ function HomePage() {
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
-      {/* Image en haut de l'écran, juste en dessous de la navbar */}
+
       <div className="bg-cover bg-center h-64" style={{ backgroundImage: `url(${heroImage})` }}></div>
 
       <motion.div
