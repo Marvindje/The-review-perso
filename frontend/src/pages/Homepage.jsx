@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimate } from 'framer-motion';
 import heroImage from '../assets/IA-intelligence-artificielle.jpeg';
 import { FaArrowRight } from 'react-icons/fa';
+import { Link } from "react-router-dom"
 
 function HomePage() {
   const [scope, animate] = useAnimate();
@@ -56,14 +57,12 @@ function HomePage() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <a
-                href="/mesposts"
-                className="inline-block px-5 py-3 shadow-lg rounded-lg text-sm font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transform hover:scale-110 hover:-rotate-3 transition-all duration-500 ease-in-out flex items-center"
-              >
-                <div className="p-3">
-                  Tes Posts <FaArrowRight className="ml-2" />
-                </div>
-              </a>
+            <Link
+    to="/mes-posts"
+    className="inline-block px-5 py-3 shadow-lg rounded-lg text-sm font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transform hover:scale-110 hover:-rotate-3 transition-all duration-500 ease-in-out flex items-center"
+>
+    Mes posts <FaArrowRight className="ml-2" />
+</Link> 
             </motion.div>
           </div>
         </motion.div>
