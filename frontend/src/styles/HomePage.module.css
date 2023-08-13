@@ -1,0 +1,28 @@
+/* src/styles/HomePage.css */
+
+.hero {
+    /* ... (rest of the styles) ... */
+    color: #2c3e50; /* Bleu foncé moderne */
+}
+
+/* Ajustements pour le texte pour une meilleure visibilité */
+.hero h1 {
+    color: #34495e; /* Une nuance légèrement plus foncée pour les titres */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    color: #7f8c8d; /* Gris foncé moderne */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero a {
+    /* ... (rest of the styles) ... */
+    color: #ecf0f1; /* Blanc cassé pour les liens */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+.searchbar-inner-shadow {
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+}

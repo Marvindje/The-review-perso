@@ -3,6 +3,8 @@ import { motion, useAnimate } from 'framer-motion';
 import heroImage from '../assets/IA-intelligence-artificielle.jpeg';
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from "react-router-dom"
+import galaxyBackground from '../assets/thepage.jpeg';
+
 
 function HomePage() {
   const [scope, animate] = useAnimate();
@@ -13,30 +15,33 @@ function HomePage() {
 
   return (
     <motion.div
-      ref={scope}
-      className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
-      initial={{ x: "-100vw" }} 
-      animate={{ x: 0 }}
-      transition={{ duration: 1 }}
-    >
+   ref={scope}
+   className="min-h-screen bg-center bg-no-repeat bg-cover py-6 flex flex-col justify-center sm:py-12"
+   style={{ backgroundImage: `url(${galaxyBackground})` }}
+   initial={{ x: "-100vw" }} 
+   animate={{ x: 0 }}
+   transition={{ duration: 1 }}
+>
+
 
       <div className="bg-cover bg-center h-64" style={{ backgroundImage: `url(${heroImage})` }}></div>
 
       <motion.div
-        className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 border border-gray-300 p-12 mt-8 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="font-bold text-3xl text-gray-700 mb-4">Bienvenue !</h1>
-        <p className="text-lg text-gray-500 mb-6">Reste informé des dernières actualités technologiques</p>
-        <a
-          href="/blog"
-          className="self-stretch mt-16 px-5 py-3 shadow-lg rounded-lg text-sm font-medium text-white bg-gradient-to-r from-blue-500-opacity-50 to-indigo-500-opacity-50 hover:from-purple-500-opacity-50 hover:to-indigo-600-opacity-50 transform hover:scale-105 transition-transform duration-500 ease-in-out hover:shadow-2xl active:scale-90 flex items-center"
-        >
-          Lire des articles <FaArrowRight className="ml-2" />
-        </a>
-      </motion.div>
+    className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 border border-gray-300 p-12 mt-8 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
+    initial={{ scale: 0 }}
+    animate={{ scale: 1 }}
+    transition={{ duration: 0.5 }}
+>
+    <h1 className="font-bold text-3xl text-white mb-4">Bienvenue !</h1> {/* Utilisation de text-white pour le titre */}
+    <p className="text-lg text-gray-300 mb-6">Reste informé des dernières actualités technologiques</p> {/* Utilisation de text-gray-300 pour le paragraphe */}
+    <a
+      href="/blog"
+      className="self-stretch mt-16 px-5 py-3 shadow-lg rounded-lg text-sm font-medium text-white bg-gradient-to-r from-blue-500-opacity-50 to-indigo-500-opacity-50 hover:from-purple-500-opacity-50 hover:to-indigo-600-opacity-50 transform hover:scale-105 transition-transform duration-500 ease-in-out hover:shadow-2xl active:scale-90 flex items-center"
+    >
+      Lire des articles <FaArrowRight className="ml-2" />
+    </a>
+</motion.div>
+
       <motion.div
         className="relative py-3 sm:max-w-xl sm:mx-auto mt-10 w-full"
         initial={{ scale: 0 }}
