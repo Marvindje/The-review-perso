@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaThumbsUp, FaTrash, FaSync } from 'react-icons/fa';
-import noResultsImage from '../assets/noresults.png'; // Importation de l'image
+import noResultsImage from '../assets/noresults.png'; 
+// Importation de l'image
 
 function MesPosts() {
   const [posts, setPosts] = useState([]);
