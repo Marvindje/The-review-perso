@@ -1,7 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
 const { API_KEY } = process.env;
 
-exports.getArticlesByCategory = async (req, res) => {
+const getArticlesByCategory = async (req, res) => {
     try {
         const category = req.params.category;
         const response = await axios.get(`https://newsapi.org/v2/everything?q=${category}&apiKey=${API_KEY}`);
@@ -12,3 +12,7 @@ exports.getArticlesByCategory = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+export {
+    getArticlesByCategory
+}

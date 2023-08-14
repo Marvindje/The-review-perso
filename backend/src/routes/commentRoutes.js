@@ -1,13 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const commentController = require('./controllers/commentController');
-const { createCommentValidator } = require('../validators/commentValidator');
-const { validationResult } = require('express-validator');
+import express from "express"
+import commentController from '../controllers/commentController';
+import { createCommentValidator } from'../validators/commentValidator';
+import handleValidationErrors from '../middlewares/handleValidationErrors';  // Importez le middleware
 
-router.get('/', commentController.getAllComments);
-router.get('/:id', commentController.getCommentById);
-router.post('/', createCommentValidator, commentController.createComment);
-router.put('/:id', createCommentValidator, commentController.updateComment);
-router.delete('/:id', commentController.deleteComment);
+const commentRoutes = express.Router();
 
-module.exports = router;
+// Utilisez le middleware après le validateur et avant le contrôleur
+commentRoutes.get('/', commentController.getAllComments);
+commentRoutes.get('/:id', commentController.getCommentById);
+commentRoutes.post('/', createCommentValidator, handleValidationErrors, commentController.createComment);
+commentRoutes.put('/:id', createCommentValidator, handleValidationErrors, commentController.updateComment);
+commentRoutes.delete('/:id', commentController.deleteComment);
+
+export { commentRoutes };

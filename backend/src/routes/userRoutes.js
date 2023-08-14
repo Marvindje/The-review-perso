@@ -1,13 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const usersController = require('../controllers/usersController');
-const { createUserValidator } = require('../validators/userValidator');
-const { validationResult } = require('express-validator');
+import express from "express"
+import { userControllers } from '../controllers/usersController'
+import { createUserValidator }  from '../validators/userValidator';
 
-router.get('/', usersController.getAllUsers);
-router.get('/:id', usersController.getUserById);
-router.post('/', createUserValidator, usersController.createUser);
-router.put('/:id', createUserValidator, usersController.updateUser);
-router.delete('/:id', usersController.deleteUser);
+const userRoutes = express.Router();
 
-module.exports = router;
+userRoutes.get('/', userControllers.getAllUsers);
+userRoutes.get('/:id', userControllers.getUserById);
+userRoutes.post('/', createUserValidator, userControllers.createUser);
+userRoutes.put('/:id', createUserValidator, userControllers.updateUser);
+userRoutes.delete('/:id', userControllers.deleteUser);
+
+export {
+    userRoutes
+}

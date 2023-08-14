@@ -1,6 +1,6 @@
-const Post = require('../models/Post');
+import Post from '../models/Post';
 
-exports.getAllPosts = async (req, res) => {
+const getAllPosts = async (req, res) => {
     try {
         const posts = await Post.findAll();
         res.json(posts);
@@ -10,7 +10,7 @@ exports.getAllPosts = async (req, res) => {
     }
 };
 
-exports.getPostById = async (req, res) => {
+const getPostById = async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id);
         if (!post) {
@@ -23,7 +23,7 @@ exports.getPostById = async (req, res) => {
     }
 };
 
-exports.createPost = async (req, res) => {
+const createPost = async (req, res) => {
     try {
         const newPost = await Post.create(req.body);
         res.status(201).json(newPost);
@@ -33,7 +33,7 @@ exports.createPost = async (req, res) => {
     }
 };
 
-exports.updatePost = async (req, res) => {
+const updatePost = async (req, res) => {
     try {
         const result = await Post.update(req.body, {
             where: {
@@ -50,7 +50,7 @@ exports.updatePost = async (req, res) => {
     }
 };
 
-exports.deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
     try {
         const result = await Post.destroy({
             where: {
@@ -66,3 +66,10 @@ exports.deletePost = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+export {
+    getAllPosts,
+    getPostById,
+    createPost,
+    updatePost
+}

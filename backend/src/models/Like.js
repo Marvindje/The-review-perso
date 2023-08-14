@@ -1,6 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('mysql://user:pass@localhost:3306/the-review');
-const AbstractManager = require('./AbstractManager');
+import { DataTypes, Sequelize } from 'sequelize';
+import { sequelize } from '../database/initDb';
+import AbstractManager from './AbstractManager';
 
 const Like = sequelize.define('Like', {
   user_id: {
@@ -60,4 +60,4 @@ class LikeManager extends AbstractManager {
     }
 }
 
-module.exports = new LikeManager(Like);
+export default new LikeManager(Like);

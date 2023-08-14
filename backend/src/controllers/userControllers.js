@@ -1,6 +1,6 @@
-const User = require('../models/User');
+import User from '../models/User';
 
-exports.getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
     try {
         const users = await User.findAll();
         res.json(users);
@@ -10,7 +10,7 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
-exports.getUserById = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
         if (!user) {
@@ -23,7 +23,7 @@ exports.getUserById = async (req, res) => {
     }
 };
 
-exports.createUser = async (req, res) => {
+const createUser = async (req, res) => {
     try {
         const newUser = await User.create(req.body);
         res.status(201).json(newUser);
@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
     }
 };
 
-exports.updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
     try {
         const result = await User.update(req.body, {
             where: {
@@ -50,7 +50,7 @@ exports.updateUser = async (req, res) => {
     }
 };
 
-exports.deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     try {
         const result = await User.destroy({
             where: {
@@ -66,3 +66,10 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+export {
+    getAllUsers,
+    getUserById,
+    createUser,
+    deleteUser
+}

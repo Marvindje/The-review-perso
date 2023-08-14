@@ -1,6 +1,6 @@
-const Comment = require('../models/Comment');
+import Comment from '../models/Comment';
 
-exports.getAllComments = async (req, res) => {
+const getAllComments = async (req, res) => {
     try {
         const comments = await Comment.findAll();
         res.json(comments);
@@ -10,7 +10,7 @@ exports.getAllComments = async (req, res) => {
     }
 };
 
-exports.getCommentById = async (req, res) => {
+const getCommentById = async (req, res) => {
     try {
         const comment = await Comment.findByPk(req.params.id);
         if (!comment) {
@@ -23,7 +23,7 @@ exports.getCommentById = async (req, res) => {
     }
 };
 
-exports.createComment = async (req, res) => {
+const createComment = async (req, res) => {
     try {
         const newComment = await Comment.create(req.body);
         res.status(201).json(newComment);
@@ -33,7 +33,7 @@ exports.createComment = async (req, res) => {
     }
 };
 
-exports.updateComment = async (req, res) => {
+const updateComment = async (req, res) => {
     try {
         const result = await Comment.update(req.body, {
             where: {
@@ -50,7 +50,7 @@ exports.updateComment = async (req, res) => {
     }
 };
 
-exports.deleteComment = async (req, res) => {
+const deleteComment = async (req, res) => {
     try {
         const result = await Comment.destroy({
             where: {
@@ -66,3 +66,11 @@ exports.deleteComment = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+export {
+    getAllComments,
+    getCommentById,
+    createComment,
+    updateComment,
+    deleteComment
+}

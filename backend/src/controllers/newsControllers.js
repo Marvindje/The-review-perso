@@ -1,8 +1,8 @@
-const axios = require('axios');
-const Post = require('../models/Post');
-const Category = require('../models/Category');
+import axios from 'axios';
+import Post from '../models/Post';
+import Category from '../models/Category';
 
-exports.fetchNews = async (req, res) => {
+const fetchNews = async (req, res) => {
     try {
         const categories = await Category.findAll();
 
@@ -27,6 +27,6 @@ exports.fetchNews = async (req, res) => {
     }
 };
 
-module.exports = {
+export {
     fetchNews,
 };

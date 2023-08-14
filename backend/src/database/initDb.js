@@ -1,5 +1,9 @@
-const sequelize = require('./db');
-const Category = require('./models/Category');
+import Category from './models/Category';
+
+import { Sequelize } from 'sequelize';
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+
+export const sequelize = new Sequelize(`mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`);
 
 const categories = [
   'Développement Web',

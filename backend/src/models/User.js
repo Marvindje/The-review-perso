@@ -1,5 +1,5 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('mysql://user:pass@localhost:3306/the-review');
+import { DataTypes, Sequelize } from 'sequelize';
+import { sequelize } from '../database/initDb';
 
 const User = sequelize.define('User', {
   // définition des attributs des modèles
@@ -32,4 +32,4 @@ const User = sequelize.define('User', {
   timestamps: false
 });
 
-module.exports = User;
+export default User;

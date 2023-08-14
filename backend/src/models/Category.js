@@ -1,6 +1,6 @@
-const { DataTypes, Sequelize } = require('sequelize');
-const sequelize = require('../db');
-const AbstractManager = require('./AbstractManager');
+import { DataTypes, Sequelize } from 'sequelize';
+import { sequelize } from '../database/initDb';
+import AbstractManager from './AbstractManager';
 
 const Category = sequelize.define('Category', {
   name: {
@@ -48,4 +48,4 @@ class CategoryManager extends AbstractManager {
     }
 }
 
-module.exports = new CategoryManager(Category);
+export default new CategoryManager(Category);

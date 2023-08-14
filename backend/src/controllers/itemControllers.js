@@ -1,6 +1,6 @@
-const models = require("../models");
+import models from "../models";
 
-exports.browse = async (req, res) => {
+const browse = async (req, res) => {
     try {
         const items = await models.item.findAll();
         res.json(items);
@@ -10,7 +10,7 @@ exports.browse = async (req, res) => {
     }
 };
 
-exports.read = async (req, res) => {
+const read = async (req, res) => {
     try {
         const item = await models.item.find(req.params.id);
         if (!item) {
@@ -23,7 +23,7 @@ exports.read = async (req, res) => {
     }
 };
 
-exports.edit = async (req, res) => {
+const edit = async (req, res) => {
     try {
         const item = req.body;
         item.id = parseInt(req.params.id, 10);
@@ -41,7 +41,7 @@ exports.edit = async (req, res) => {
     }
 };
 
-exports.add = async (req, res) => {
+const add = async (req, res) => {
     try {
         const item = req.body;
 
@@ -55,7 +55,7 @@ exports.add = async (req, res) => {
     }
 };
 
-exports.destroy = async (req, res) => {
+const destroy = async (req, res) => {
     try {
         const result = await models.item.delete(req.params.id);
         if (result.affectedRows === 0) {
@@ -68,7 +68,7 @@ exports.destroy = async (req, res) => {
     }
 };
 
-module.exports = {
+export {
     browse,
     read,
     edit,

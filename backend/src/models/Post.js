@@ -1,7 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('mysql://user:pass@localhost:3306/the-review');
+import { DataTypes, Sequelize } from 'sequelize';
+import { sequelize } from '../database/initDb';
 
-const Post = sequelize.define('Post', {
+export const Post = sequelize.define('Post', {
   title: {
     type: DataTypes.STRING,
     allowNull: false
@@ -36,5 +36,3 @@ const Post = sequelize.define('Post', {
   tableName: 'BlogPosts',
   timestamps: false
 });
-
-module.exports = Post;
