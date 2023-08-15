@@ -1,6 +1,6 @@
-import Like from '../models/Like';
+import like from ('../models/Like');
 
-const getAllLikes = async (req, res) => {
+exports.getAllLikes = async (req, res) => {
     try {
         const likes = await Like.findAll();
         res.json(likes);
@@ -10,7 +10,7 @@ const getAllLikes = async (req, res) => {
     }
 };
 
-const getLikeById = async (req, res) => {
+exports.getLikeById = async (req, res) => {
     try {
         const like = await Like.findByPk(req.params.id);
         if (!like) {
@@ -23,7 +23,7 @@ const getLikeById = async (req, res) => {
     }
 };
 
-const createLike = async (req, res) => {
+exports.createLike = async (req, res) => {
     try {
         const newLike = await Like.create(req.body);
         res.status(201).json(newLike);
@@ -33,7 +33,7 @@ const createLike = async (req, res) => {
     }
 };
 
-const deleteLike = async (req, res) => {
+exports.deleteLike = async (req, res) => {
     try {
         const result = await Like.destroy({
             where: {
@@ -50,7 +50,7 @@ const deleteLike = async (req, res) => {
     }
 };
 
-export {
+export  {
     getAllLikes,
     getLikeById,
     createLike,

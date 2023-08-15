@@ -15,3 +15,6 @@ export const handleValidationErrors = (req, res, next) => {
     // Si tout va bien, passez au middleware ou au contrôleur suivant
     next();
 };
+
+
+// voir cours middlewares 
