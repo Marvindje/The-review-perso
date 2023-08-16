@@ -12,7 +12,7 @@ const Footer = () => {
           <span className="ml-3 text-xl">The Review</span>
         </Link>
         <p className="text-sm text-gray-500 sm:ml-6 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 The Review —
-          <button onClick={() => window.open("https://twitter.com/TheReview", "_blank")} className="text-gray-600 ml-1">@TheReview</button>
+          <button onClick={() => window.open("https://www.wildcodeschool.com/fr-fr/")} className="text-gray-600 ml-1">@TheReview</button>
         </p>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
           <button onClick={() => window.location.href='/contact'} className="text-gray-500 hover:text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">

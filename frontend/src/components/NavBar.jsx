@@ -102,3 +102,4 @@ function Navbar({ onLogoClick }) {
 }
 
 export default Navbar;
+
