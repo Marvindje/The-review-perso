@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaBriefcase, FaUniversity } from 'react-icons/fa';
 
 function MonProfil() {
   const [formData, setFormData] = useState({
@@ -8,81 +7,129 @@ function MonProfil() {
     email: '',
     password: '',
     photo: null,
+    bio: localStorage.getItem('userBio') || '',
   });
-  const [profilePhoto, setProfilePhoto] = useState(null);
-  const [logoVisible, setLogoVisible] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState(localStorage.getItem('profilePhoto') || null);
+
+  useEffect(() => {
+    localStorage.setItem('profilePhoto', profilePhoto);
+    localStorage.setItem('userBio', formData.bio);
+  }, [profilePhoto, formData.bio]);
 
   const handleInputChange = (event) => {
     const { name, value, type } = event.target;
     if (type === 'file') {
       const file = event.target.files[0];
-      const imageURL = URL.createObjectURL(file);
-      setProfilePhoto(imageURL);
-      setFormData((prevData) => ({ ...prevData, [name]: file }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePhoto(reader.result);
+        setFormData((prevData) => ({ ...prevData, [name]: reader.result }));
+      };
+      reader.readAsDataURL(file);
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: Handle form submission, validation, and API calls
+  const handleSaveChanges = () => {
+    alert("Modifications enregistrées !");
+  };
 
-    // Set logoVisible to true after successful submission
-    setLogoVisible(true);
+  const handleDeleteAccount = () => {
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ?");
+    if (confirmation) {
+      alert("Compte supprimé !");
+      localStorage.removeItem('profilePhoto');
+      localStorage.removeItem('userBio');
+      setProfilePhoto(null);
+      setFormData({ ...formData, bio: '' });
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6">
-      <motion.div
-        className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 mt-8 flex flex-col items-start justify-center"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
+    {/* Profile Content */}
+    <motion.div
+      className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 mt-8 flex flex-col items-center justify-center border border-gray-200 bg-gradient-to-br from-gray-100 to-gray-200 transition-all duration-300 ease-in-out hover:shadow-xl"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.5 }}
       >
         <motion.h1
-          className="text-4xl font-semibold text-gray-700 mb-10 bg-blue-200 p-3 rounded-lg"
+          className="text-4xl font-semibold text-gray-700 mb-10"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         >
           Mon Profil
         </motion.h1>
-        <form className="w-full" onSubmit={handleSubmit}>
-          {/* ... (other input fields) */}
-          {/* Photo */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photo">
-              Photo de profil
-            </label>
+
+        <div className="mb-4">
+  {profilePhoto ? (
+    <img 
+      src={profilePhoto} 
+      alt="Profile Preview" 
+      className="w-48 h-48 rounded-full mb-4"
+      style={{ objectFit: 'cover', objectPosition: 'center' }}  // Ajoutez ces styles ici
+    />
+  ) : (
+    <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-4">
+      Aucune photo
+    </div>
+  )}
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Changer la photo de profil
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="hidden"
               id="photo"
               type="file"
               name="photo"
               onChange={handleInputChange}
             />
-          </div>
-          {logoVisible && (
-            <motion.div
-              className="flex items-center justify-center w-full h-20 bg-gray-200 fixed top-0 left-0 z-50"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <img src={profilePhoto} alt="Profile Logo" className="w-10 h-10 mr-2" />
-              <span className="text-gray-700 font-semibold">Votre logo ici</span>
-            </motion.div>
-          )}
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Enregistrer
-            </button>
-          </div>
-        </form>
+          </label>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
+            onClick={() => document.getElementById('photo').click()}
+          >
+            Sélectionner une photo
+          </button>
+        </div>
+
+        <div className="w-full mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bio">
+            Bio
+          </label>
+          <textarea
+            id="bio"
+            name="bio"
+            rows="4"
+            className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+            placeholder="Écrivez quelque chose sur vous..."
+            value={formData.bio}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+
+        <div className="flex space-x-4 mt-4">
+          <button
+            className="bg-transparent border border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded focus:outline-none hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
+            onClick={handleSaveChanges}
+          >
+            Enregistrer les modifications
+          </button>
+          <button
+             className="bg-transparent border border-gray-500 text-gray-500 font-semibold py-2 px-4 rounded focus:outline-none hover:bg-gray-500 hover:text-white transition-all duration-300 ease-in-out"
+             onClick={() => window.location.reload()}
+          >
+            Annuler
+          </button>
+          <button
+             className="bg-transparent border border-purple-500 text-purple-500 font-semibold py-2 px-4 rounded focus:outline-none hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
+             onClick={handleDeleteAccount} 
+          >
+            Supprimer le compte
+          </button>
+        </div>
       </motion.div>
     </div>
   );

@@ -1,17 +1,15 @@
-// Navbar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa"; // Import de l'icône utilisateur
 import logo from "../assets/the-review-low-resolution-logo-color-on-transparent-background.png";
 
 function Navbar({ onLogoClick }) {
   const [isOpen, setIsOpen] = useState(false);
+  const profilePhoto = localStorage.getItem('profilePhoto');
 
   return (
     <nav className="bg-gradient-to-r from-blue-500 via-purple-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg">
-
-
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center align-center">
@@ -54,7 +52,11 @@ function Navbar({ onLogoClick }) {
           </div>
           <div className={`sm:flex sm:items-center sm:ml-6 ${isOpen ? "flex" : "hidden"} flex-col sm:flex-row`}>
             <div className="flex space-x-4">
-            
+              {profilePhoto ? (
+                <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
+              ) : (
+                <FaUser className="w-10 h-10 mr-4 text-gray-700" />
+              )}
               <Link
                 to="/"
                 className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
