@@ -1,0 +1,27 @@
+const { DataTypes } = require("sequelize");
+const { sequelize } = require('../../config/db');
+
+const Comment = sequelize.define('comment', {
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  user_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'users', // Notez le nom de la table au pluriel
+      key: 'id',
+    },
+  },
+  post_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'blogPosts', // Notez le nom de la table au pluriel
+      key: 'id',
+    },
+  }
+}, {
+  timestamps: true
+});
+
+
