@@ -1,7 +1,7 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import { sequelize } from '../database/initDb';
+const { DataTypes } = require("sequelize");
+const { sequelize } = require('../../config/db');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('user', {
   // définition des attributs des modèles
   username: {
     type: DataTypes.STRING,
@@ -17,19 +17,10 @@ const User = sequelize.define('User', {
   },
   profile_image: {
     type: DataTypes.STRING
-  },
-  created_at: {
-    type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW
-  },
-  updated_at: {
-    type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW
   }
 }, {
   //  d'autres options de modèles
-  tableName: 'Users',
-  timestamps: false
+  timestamps: true
 });
 
-export default User;
+
