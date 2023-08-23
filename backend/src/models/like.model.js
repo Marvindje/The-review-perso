@@ -6,7 +6,7 @@ const Like = sequelize.define('like', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'users', // Notez le nom de la table au pluriel
+      model: 'users', 
       key: 'id'
     }
   },
@@ -14,7 +14,7 @@ const Like = sequelize.define('like', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'blogPosts', // Notez le nom de la table au pluriel
+      model: 'blogPosts', 
       key: 'id'
     }
   }

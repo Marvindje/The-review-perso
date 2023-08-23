@@ -13,14 +13,14 @@ const BlogPost = sequelize.define('blogPost', {
   user_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'users', // Notez le nom de la table au pluriel
+      model: 'users', 
       key: 'id'
     }
   },
   category_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'categories', // Notez le nom de la table au pluriel
+      model: 'categories', 
       key: 'id'
     }
   }

@@ -9,14 +9,14 @@ const Comment = sequelize.define('comment', {
   user_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'users', // Notez le nom de la table au pluriel
+      model: 'users',
       key: 'id',
     },
   },
   post_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'blogPosts', // Notez le nom de la table au pluriel
+      model: 'blogPosts', 
       key: 'id',
     },
   }

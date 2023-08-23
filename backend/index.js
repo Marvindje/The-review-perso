@@ -8,6 +8,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+app.use('/users', userRoutes);
+
 const PORT = process.env.DB_PORT || 5000;
 
 app.listen(PORT, () => {
