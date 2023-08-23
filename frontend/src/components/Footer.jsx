@@ -20,9 +20,6 @@ const Footer = () => {
           </button>
         </span>
       </div>
-      <button onClick={() => window.scrollTo(0, 0)} className="back-to-top absolute right-5 bottom-5 text-white text-2xl hover:text-gray-200">
-        <i className="fas fa-arrow-up"></i>
-      </button>
     </footer>
   );
 };

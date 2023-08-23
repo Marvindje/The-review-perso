@@ -9,13 +9,13 @@ function Navbar({ onLogoClick }) {
   const profilePhoto = localStorage.getItem('profilePhoto');
 
   return (
-    <nav className="bg-gradient-to-r from-blue-500 via-purple-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg">
+    <nav className="bg-gradient-to-r from-blue-500 via-purple-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center align-center">
+          <div className="flex items-center align-center max-w-full">
             <Link to="/" onClick={onLogoClick}>
               <motion.img 
-                className="h-10 w-auto" 
+                className="h-10 w-auto max-w-full"
                 src={logo} 
                 alt="Workflow" 
                 initial={{ y: -250 }}
@@ -50,7 +50,9 @@ function Navbar({ onLogoClick }) {
               </svg>
             </button>
           </div>
-          <div className={`sm:flex sm:items-center sm:ml-6 ${isOpen ? "flex" : "hidden"} flex-col sm:flex-row`}>
+          <div className={`${isOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row sm:items-center sm:ml-6`}>
+
+
             <div className="flex space-x-4">
               {profilePhoto ? (
                 <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
