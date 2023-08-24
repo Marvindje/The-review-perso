@@ -65,6 +65,7 @@ function MonProfil() {
         </motion.h1>
 
         <div className="mb-4">
+          
   {profilePhoto ? (
     <img 
       src={profilePhoto} 
