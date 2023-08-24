@@ -62,7 +62,7 @@ function HomePage() {
             transition={{ duration: 0.5 }}
         >
             <motion.div
-                className="bg-gradient-to-r from-purple-400 to-blue-400 border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl"
+               className="bg-transparent border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl"
                 whileHover={{ scale: 1.02, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 0 }}
@@ -93,7 +93,9 @@ function HomePage() {
     transition={{ duration: 0.5 }}
 >
     <motion.div
-        className="bg-gradient-to-r from-gray-400 to-gray-600 border-4 border-gray-800 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl"
+      className="bg-gradient-to-r from-gray-400 via-gray-300 to-gray-500 border border-gray-400 shadow-sm rounded-lg p-8 mx-2 w-full transition-all duration-300 ease-in-out hover:shadow-lg hover:border-gray-500"
+
+
         whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
         initial={{ rotate: 0 }}
         animate={{ rotate: 0 }}
