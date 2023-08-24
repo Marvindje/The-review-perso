@@ -61,9 +61,10 @@ function Navbar({ onLogoClick }) {
   <div className="relative group flex">
     <Link to="/profil" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Profil</Link>
     <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
-      <Link to="/mon-profil" className={linkClasses}>Mon Profil</Link>
-      <Link to="/mes-posts" className={linkClasses}>Mes Posts</Link>
-      <Link to="/creer-post" className={linkClasses}>Créer un Post</Link>
+        <Link to="/" className={linkClasses}>Accueil</Link>
+      <Link to="/mon-profil" className={linkClasses}>Profil</Link>
+      <Link to="/mes-posts" className={linkClasses}>Posts</Link>
+
     </div>
   </div>
   <div className="relative group flex">
