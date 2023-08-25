@@ -4,6 +4,8 @@ import { useDropzone } from 'react-dropzone';
 import { FaThumbsUp } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import galaxyBackground from '../assets/thepage.jpeg';
+
 
 function CreerPosts() {
     const [post, setPost] = useState('');
@@ -81,7 +83,8 @@ function CreerPosts() {
 
     return (
         <motion.div
-            className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
+            className="min-h-screen py-6 flex flex-col justify-center sm:py-12"
+            style={{ backgroundImage: `url(${galaxyBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             initial={{ x: "-100vw" }} 
             animate={{ x: 0 }}
             transition={{ duration: 1 }}
@@ -97,7 +100,7 @@ function CreerPosts() {
             </motion.h1>
 
             <motion.div
-                className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-500 via-purple-500 to-transparent border border-gray-300 p-12 mt-4 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
+                className="w-full max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-12 mt-4 flex flex-col items-start justify-center border-2 border-blue-500 rounded-md bg-opacity-50 backdrop-blur" // Ajout de l'effet de flou et suppression du gradient de fond
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5 }}

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import contactImage from '../assets/Contact-technology-futuristic.jpeg';
 import { FaUser, FaEnvelope, FaPen } from 'react-icons/fa';
+import galaxyBackground from '../assets/thepage.jpeg';
 
 function Contact() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -13,11 +13,10 @@ function Contact() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6">
+    <div className="flex flex-col items-center justify-center min-h-screen py-6" style={{ backgroundImage: `url(${galaxyBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Section de Contact */}
       <motion.div
-        className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 mt-8 flex flex-col items-start justify-center border-2 border-blue-500 rounded-md" // Bordure ajoutée ici
-        style={{ backgroundImage: `url(${contactImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 mt-8 flex flex-col items-start justify-center border-2 border-blue-500 rounded-md bg-opacity-50 backdrop-blur" // Ajout de l'effet de flou et suppression de l'image de fond
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -67,7 +66,6 @@ function Contact() {
           </div>
         </form>
       </motion.div>
-      {/* Le reste de la page reste inchangé */}
     </div>
   );
 }

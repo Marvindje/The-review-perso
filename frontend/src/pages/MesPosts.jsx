@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaThumbsUp, FaTrash, FaSync } from 'react-icons/fa';
 import noResultsImage from '../assets/noresults.png'; 
-// Importation de l'image
+import galaxyBackground from '../assets/thepage.jpeg';
 
 function MesPosts() {
   const [posts, setPosts] = useState([]);
@@ -66,12 +66,19 @@ function MesPosts() {
   };
 
   return (
-    <motion.div
-        className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
-        initial={{ x: "-100vw" }} 
-        animate={{ x: 0 }}
-        transition={{ duration: 1 }}
-    >
+<motion.div
+    style={{
+        backgroundImage: `url(${galaxyBackground})`,
+        backgroundSize: 'cover', // Couvre toute la zone
+        backgroundPosition: 'center', // Centre l'image
+        backgroundRepeat: 'no-repeat' // Empêche la répétition
+    }}
+    className="min-h-screen py-6 flex flex-col justify-center sm:py-12"
+    initial={{ x: "-100vw" }} 
+    animate={{ x: 0 }}
+    transition={{ duration: 1 }}
+>
+
         <motion.h1
             className="w-3/4 mx-auto text-4xl font-semibold text-gray-700 mb-6 p-5 rounded-lg shadow-md bg-gray-100 border border-gray-300 hover:shadow-lg transition-shadow duration-300 ease-in-out"
             initial={{ x: "-100vw" }} 
