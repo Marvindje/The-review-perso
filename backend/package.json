@@ -1,6 +1,8 @@
-{  "scripts": {
+{  
+  "scripts": {
     "dev": "nodemon index.js",
     "migrate": "node migrate.js",
+    "create:sequelize": "node src/models/index.js",
     "start": "node index.js",
     "lint": "echo '----- Checking Backend...' && npx prettier --debug-check . && eslint --ext .js . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .js ."

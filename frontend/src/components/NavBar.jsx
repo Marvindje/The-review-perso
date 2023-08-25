@@ -53,19 +53,21 @@ function Navbar({ onLogoClick }) {
           </div>
           <div className={`${isOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row sm:items-center sm:ml-6`}>
             <div className="flex space-x-4">
-              {profilePhoto ? (
-                <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
-              ) : (
-                <FaUser className="w-10 h-10 mr-4 text-gray-700" />
-              )}
-              <div className="relative group flex">
-                <Link to="/profil" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Profil</Link>
-                <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
-                  <Link to="/" className={linkClasses}>Accueil</Link>
-                  <Link to="/mon-profil" className={linkClasses}>Profil</Link>
-                  <Link to="/mes-posts" className={linkClasses}>Posts</Link>
-                </div>
-              </div>
+            {profilePhoto ? (
+  <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
+) : (
+  <FaUser className="w-10 h-10 mr-4 text-gray-700" />
+)}
+    {/* TODO: change here */}
+            <div className="relative group flex">
+  <Link to="/profil" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Profil</Link>
+  <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
+    <Link to="/" className={linkClasses}>Accueil</Link>
+    <Link to="/mon-profil" className={linkClasses}>Profil</Link>
+    <Link to="/mes-posts" className={linkClasses}>Posts</Link>
+    <Link to="/creer-post" className={linkClasses}>Créer un Post</Link> 
+  </div>
+</div>
               <div className="relative group flex">
                 <Link to="/login" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Se connecter</Link>
               </div>

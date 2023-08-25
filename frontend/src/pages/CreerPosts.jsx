@@ -78,6 +78,7 @@ function CreerPosts() {
         files.forEach(file => URL.revokeObjectURL(file.preview));
     }, [files]);
 
+
     return (
         <motion.div
             className="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6 flex flex-col justify-center sm:py-12"
@@ -87,16 +88,16 @@ function CreerPosts() {
         >
             <ToastContainer />
             <motion.h1
-   className="custom-h1 w-3/4 mx-auto text-5xl font-bold mb-6 p-5 rounded-lg shadow-md bg-gradient-to-r from-blue-400 to-purple-500 text-white border border-indigo-400 hover:shadow-lg transform hover:scale-105 hover:rotate-3 transition-transform duration-300 ease-in-out cursor-pointer relative"
-   initial={{ x: "-100vw" }} 
-   animate={{ x: 0 }}
-   transition={{ duration: 1 }}
->
-   Partagez vos pensées avec le monde !
-</motion.h1>
+                className="custom-h1 w-3/4 mx-auto text-5xl font-bold mb-6 p-5 rounded-lg shadow-md bg-gradient-to-r from-blue-500 via-purple-500 to-transparent text-white border border-indigo-400 hover:shadow-lg transform hover:scale-105 hover:rotate-3 transition-transform duration-300 ease-in-out cursor-pointer relative"
+                initial={{ x: "-100vw" }} 
+                animate={{ x: 0 }}
+                transition={{ duration: 1 }}
+            >
+                Partagez vos pensées avec le monde !
+            </motion.h1>
 
             <motion.div
-                className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 border border-gray-300 p-12 mt-4 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
+                className="w-full max-w-6xl mx-auto bg-gradient-to-r from-blue-500 via-purple-500 to-transparent border border-gray-300 p-12 mt-4 flex flex-col items-start justify-center transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5 }}
