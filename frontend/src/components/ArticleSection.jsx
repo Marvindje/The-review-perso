@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import galaxyBackground from '../assets/thepage.jpeg'; // Importez l'image ici
 
 const ArticleSection = ({ title, image }) => {
   const articleVariants = {
@@ -10,24 +11,24 @@ const ArticleSection = ({ title, image }) => {
   };
 
   const heroVariants = {
-    rest: { scale: 1 },
-    hover: { scale: 1.05, transition: { duration: 0.5 } },
+    rest: { scale: 1, boxShadow: "0 0 0px 0px rgba(255, 255, 255, 0)" },
+    hover: { scale: 1.05, boxShadow: "0 0 20px 5px rgba(255, 255, 255, 0.6)", transition: { duration: 0.5 } },
   };
 
   return (
-    <div className="font-body">
+    <div className="font-body" style={{ backgroundImage: `url(${galaxyBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <motion.div className="relative h-auto md:h-96 flex items-center justify-center bg-no-repeat bg-center bg-cover shadow-2xl" 
         style={{ backgroundImage: `url(${image})` }}
         variants={heroVariants}
         initial="rest"
         whileHover="hover"
       >
-        
-<h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200 " style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de' }}>          {title}
+        <h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200 " style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de' }}>
+          {title}
         </h1>
       </motion.div>
 
-      <div className="flex justify-center items-center mt-64 mb-20">
+      <div className="flex justify-center items-center mt-64 mb-0">
         <div className="grid grid-cols-2 gap-6">
           {[...Array(4)].map((_, i) => (
             <motion.div key={i} className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg overflow-hidden shadow-lg p-6 hover:bg-blue-500 hover:text-white transition-colors duration-200"

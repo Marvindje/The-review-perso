@@ -4,7 +4,7 @@ import heroImage from '../assets/IA-intelligence-artificielle.jpeg';
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import galaxyBackground from '../assets/thepage.jpeg';
-import '../styles/Light.css';
+
 
 function HomePage() {
   const controls = useAnimation();

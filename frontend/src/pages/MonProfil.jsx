@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import thepageBackground from '../assets/thepage.jpeg';
 
 function MonProfil() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ function MonProfil() {
     bio: localStorage.getItem('userBio') || '',
   });
   const [profilePhoto, setProfilePhoto] = useState(localStorage.getItem('profilePhoto') || null);
+  const [showAlert, setShowAlert] = useState(false); // Ajout de l'état pour l'alerte
 
   useEffect(() => {
     localStorage.setItem('profilePhoto', profilePhoto);
@@ -32,7 +34,8 @@ function MonProfil() {
   };
 
   const handleSaveChanges = () => {
-    alert("Modifications enregistrées !");
+    setShowAlert(true); // Afficher l'alerte
+    setTimeout(() => setShowAlert(false), 3000); // Masquer l'alerte après 3 secondes
   };
 
   const handleDeleteAccount = () => {
@@ -47,38 +50,40 @@ function MonProfil() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-transparent py-6">
-    {/* Profile Content */}
-    <motion.div
-      className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 mt-8 flex flex-col items-center justify-center border border-gray-200 bg-gradient-to-br from-gray-100 to-gray-200 transition-all duration-300 ease-in-out hover:shadow-xl"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.5 }}
+    <div className="flex flex-col items-center justify-center min-h-screen py-6" style={{ backgroundImage: `url(${thepageBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {showAlert && (
+        <div className="fixed top-0 right-0 bg-green-500 text-white py-2 px-4 rounded-bl-lg z-50">
+          Modifications enregistrées !
+        </div>
+      )}
+      <motion.div
+        className="bg-transparent border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl backdrop-blur-md text-white"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
       >
         <motion.h1
-          className="text-4xl font-semibold text-gray-700 mb-10"
+          className="text-4xl font-semibold mb-10"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         >
           Mon Profil
         </motion.h1>
-
         <div className="mb-4">
-          
-  {profilePhoto ? (
-    <img 
-      src={profilePhoto} 
-      alt="Profile Preview" 
-      className="w-48 h-48 rounded-full mb-4"
-      style={{ objectFit: 'cover', objectPosition: 'center' }}  // Ajoutez ces styles ici
-    />
-  ) : (
-    <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-4">
-      Aucune photo
-    </div>
-  )}
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          {profilePhoto ? (
+            <img 
+              src={profilePhoto} 
+              alt="Profile Preview" 
+              className="w-48 h-48 rounded-full mb-4 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
+          ) : (
+            <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-4">
+              Aucune photo
+            </div>
+          )}
+          <label className="block text-sm font-bold mb-2">
             Changer la photo de profil
             <input
               className="hidden"
@@ -89,13 +94,12 @@ function MonProfil() {
             />
           </label>
           <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
             onClick={() => document.getElementById('photo').click()}
           >
             Sélectionner une photo
           </button>
         </div>
-
         <div className="w-full mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bio">
             Bio
@@ -110,7 +114,6 @@ function MonProfil() {
             onChange={handleInputChange}
           ></textarea>
         </div>
-
         <div className="flex space-x-4 mt-4">
           <button
             className="bg-transparent border border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded focus:outline-none hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
