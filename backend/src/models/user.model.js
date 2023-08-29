@@ -20,8 +20,8 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING
   }
 }, {
-  //  d'autres options de modèles
+
   timestamps: true
 });
 
-
+module.exports = { User }

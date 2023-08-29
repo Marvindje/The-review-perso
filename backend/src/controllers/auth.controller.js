@@ -1,16 +1,72 @@
-const User =  require('../models/user.model');
+const { User } =  require('../models/user.model');
 const bcrypt = require("bcryptjs");
-//TODO: creer le unique dans users
+const jwt = require("jsonwebtoken");
+
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if(!email || !password) {
+            return res.status(500).send({ error: "username or email is not defined !" })
+        }
+
+        const user = await User.findOne({
+            where: {
+                email
+            }
+        })
+
+        if(!user) {
+            return res.status(404).send({ error: "username or email are incorrect !" })
+        }
+
+        const isCorrectPassword = bcrypt.compareSync(password, user.password);
+
+        if(!isCorrectPassword){
+            return res.status(404).send({ error: "username or email are incorrect !" })
+        }
+
+        const jwtSecret = process.env.JWT_SECRET;
+
+        if(!jwtSecret){
+            res.status(500).send("Failed login !")
+        }
+
+        const token = jwt.sign({
+            userId: user.id,
+            email: user.email
+        }, jwtSecret, {
+            expiresIn: "1d"
+        });
+
+        res.status(200).send(token)
+    } catch(err) {
+        console.error(err);
+        res.status(500).send({ error: err.message })
+    }
+}
+
 const register = async (req, res) => {
     try {
         const { username, email, password, profile_image } = req.body;
 
+        if(!username || !email || !password) {
+            return res.status(500).send({ error: "username, email or password is not defined !" })
+        }
+
         const salt = bcrypt.genSaltSync(10);
         const hashPassword = bcrypt.hashSync(password, salt)
 
-        console.log({ password, hashPassword, salt });
+        const user = await User.create({
+            username, 
+            email, 
+            password: hashPassword,
+            profile_image: profile_image || null
+        })
 
-        res.send(200)
+        console.log(user)
+
+        res.status(200).send(user);
     } catch (err) {
         console.error(err);
         res.status(500).send({ error: err.message })
@@ -18,5 +74,6 @@ const register = async (req, res) => {
 }
 
 module.exports = {
-    register
+    register,
+    login
 }
