@@ -66,28 +66,26 @@ function MesPosts() {
   };
 
   return (
-<motion.div
-    style={{
-        backgroundImage: `url(${galaxyBackground})`,
-        backgroundSize: 'cover', // Couvre toute la zone
-        backgroundPosition: 'center', // Centre l'image
-        backgroundRepeat: 'no-repeat' // Empêche la répétition
-    }}
-    className="min-h-screen py-6 flex flex-col justify-center sm:py-12"
-    initial={{ x: "-100vw" }} 
-    animate={{ x: 0 }}
-    transition={{ duration: 1 }}
->
-
-<motion.h1
-    className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
-    initial={{ x: "-100vw" }} 
-    animate={{ x: 0 }}
-    transition={{ duration: 1 }}
->
-    My Posts
-</motion.h1>
-
+    <motion.div
+        style={{
+            backgroundImage: `url(${galaxyBackground})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+        }}
+        className="min-h-screen py-6 flex flex-col justify-center sm:py-12"
+        initial={{ x: "-100vw" }} 
+        animate={{ x: 0 }}
+        transition={{ duration: 1 }}
+    >
+      <motion.h1
+          className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
+          initial={{ x: "-100vw" }} 
+          animate={{ x: 0 }}
+          transition={{ duration: 1 }}
+      >
+          My Posts
+      </motion.h1>
 
         {posts.length === 0 ? (
             <motion.div
@@ -102,20 +100,27 @@ function MesPosts() {
         ) : (
             posts.map((post, index) => (
                 <motion.div 
-                    key={index} 
-                    className="w-3/4 mx-auto bg-white shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out"
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <button onClick={() => deletePost(index)} className="absolute top-2 right-2 focus:outline-none">
-                        <FaTrash className="text-red-500" />
-                    </button>
-                    <button onClick={() => resetPost(index)} className="absolute top-2 left-2 focus:outline-none">
-                        <FaSync className="text-gray-500" />
-                    </button>
-                    <h2 className="text-2xl font-bold mb-2">{post.post}</h2>
-                    {post.youtubeLink && (
+                key={index} 
+                className="w-3/4 mx-auto bg-white shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-2xl font-bold">{post.post}</h2>
+                    <div className="flex space-x-2">
+                        <button onClick={() => resetPost(index)} className="text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <FaSync className="text-xl" />
+                        </button>
+                        <button onClick={() => deletePost(index)} className="text-red-500 hover:text-red-700 focus:outline-none">
+                            <FaTrash className="text-xl" />
+                        </button>
+                    </div>
+                </div>
+                <div className="rounded-md bg-gray-100 p-4 mb-4">
+                    <p className="text-gray-700">{post.postContent}</p>
+                </div>
+                {post.youtubeLink && (
                         <div className="mb-4">
                             <iframe 
                                 width="560" 
