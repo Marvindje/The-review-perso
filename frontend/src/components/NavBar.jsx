@@ -63,7 +63,7 @@ function Navbar({ onLogoClick }) {
   <Link to="/user" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">User</Link>
   <div className="absolute left-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
     <Link to="/" className={linkClasses}>Home</Link>
-    <Link to="/mon-profil" className={linkClasses}>My Profile</Link>
+    <Link to="/mon-profil" className={linkClasses}> Profile</Link>
     <Link to="/mes-posts" className={linkClasses}>My Posts</Link>
     <Link to="/creer-post" className={linkClasses}>Create Posts</Link>
   </div>
