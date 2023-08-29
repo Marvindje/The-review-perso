@@ -57,29 +57,30 @@ function Navbar({ onLogoClick }) {
   <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
 ) : (
   <FaUser className="w-10 h-10 mr-4 text-gray-700" />
-)}
-    {/* TODO: change here */}
-            <div className="relative group flex">
-  <Link to="/profil" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Profil</Link>
-  <div className="absolute left-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
-    <Link to="/" className={linkClasses}>Accueil</Link>
-    <Link to="/mon-profil" className={linkClasses}>Profil</Link>
-    <Link to="/mes-posts" className={linkClasses}>Posts</Link>
-    <Link to="/creer-post" className={linkClasses}>Créer un Post</Link> 
+)}   
+   
+   <div className="relative group flex">
+  <Link to="/user" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">User</Link>
+  <div className="absolute left-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
+    <Link to="/" className={linkClasses}>Home</Link>
+    <Link to="/mon-profil" className={linkClasses}>My Profile</Link>
+    <Link to="/mes-posts" className={linkClasses}>My Posts</Link>
+    <Link to="/creer-post" className={linkClasses}>Create Posts</Link>
   </div>
 </div>
+
               <div className="relative group flex">
-                <Link to="/login" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Se connecter</Link>
+                <Link to="/login" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Login</Link>
               </div>
               <div className="relative group flex">
-                <Link to="/categories" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Catégories</Link>
+                <Link to="/categories" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Categories</Link>
                 <div className="absolute right-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
-                  <Link to="/categorie/developpement-web" className={linkClasses}>Dev Web</Link>
-                  <Link to="/categorie/intelligence-artificielle" className={linkClasses}>IA</Link>
+                  <Link to="/categorie/developpement-web" className={linkClasses}>Web Dev</Link>
+                  <Link to="/categorie/intelligence-artificielle" className={linkClasses}>AI</Link>
                   <Link to="/categorie/hardware" className={linkClasses}>Hardware</Link>
-                  <Link to="/categorie/logiciels" className={linkClasses}>Logiciels</Link>
+                  <Link to="/categorie/logiciels" className={linkClasses}>Software</Link>
                   <Link to="/categorie/cybersecurite" className={linkClasses}>CyberSec</Link>
-                  <Link to="/categorie/carrieres-technos" className={linkClasses}>Carrières Tech</Link>
+                  <Link to="/categorie/carrieres-technos" className={linkClasses}>Careers</Link>
                 </div>
               </div>
             </div>

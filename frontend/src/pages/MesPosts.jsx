@@ -79,14 +79,15 @@ function MesPosts() {
     transition={{ duration: 1 }}
 >
 
-        <motion.h1
-            className="w-3/4 mx-auto text-4xl font-semibold text-gray-700 mb-6 p-5 rounded-lg shadow-md bg-gray-100 border border-gray-300 hover:shadow-lg transition-shadow duration-300 ease-in-out"
-            initial={{ x: "-100vw" }} 
-            animate={{ x: 0 }}
-            transition={{ duration: 1 }}
-        >
-            Mes Posts
-        </motion.h1>
+<motion.h1
+    className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
+    initial={{ x: "-100vw" }} 
+    animate={{ x: 0 }}
+    transition={{ duration: 1 }}
+>
+    My Posts
+</motion.h1>
+
 
         {posts.length === 0 ? (
             <motion.div
@@ -95,7 +96,7 @@ function MesPosts() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                Aucun post à afficher
+                
                 <img src={noResultsImage} alt="No Results" className="mt-4 w-1/2 mx-auto" /> {/* Ajout de l'image */}
             </motion.div>
         ) : (

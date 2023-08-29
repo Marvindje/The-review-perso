@@ -27,7 +27,7 @@ function Contact() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Contactez-nous
+          Contact us
         </motion.h1>
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4 flex items-center">
@@ -36,9 +36,9 @@ function Contact() {
               {...register('name', { required: true })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
-              placeholder="Votre nom"
+              placeholder="Your name"
             />
-            {errors.name && <p>Ce champ est requis</p>}
+            {errors.name && <p>This field is required</p>}
           </div>
           <div className="mb-4 flex items-center">
             <FaEnvelope className="text-blue-500 mr-2" />
@@ -46,22 +46,22 @@ function Contact() {
               {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="email"
-              placeholder="Votre email"
+              placeholder="Your email"
             />
-            {errors.email && <p>Email invalide</p>}
+            {errors.email && <p>Please enter a valid email adress</p>}
           </div>
           <div className="mb-4 flex items-start">
             <FaPen className="text-blue-500 mr-2 mt-2" />
             <textarea
               {...register('message', { required: true })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Votre message"
+              placeholder="Your message"
             />
-            {errors.message && <p>Ce champ est requis</p>}
+            {errors.message && <p>This field is required</p>}
           </div>
           <div className="flex items-center justify-between">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Envoyer
+              Send
             </button>
           </div>
         </form>

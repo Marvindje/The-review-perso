@@ -32,8 +32,8 @@ function HomePage() {
                 boxShadow: "0 0 20px 5px rgba(255, 255, 255, 0.6)",
             }}
         >
-            <h1 className="font-bold text-4xl text-white mb-4">Bienvenue !</h1>
-            <p className="text-lg text-white mb-6 opacity-80">Dernières actualités tech</p>
+            <h1 className="font-bold text-4xl text-white mb-4">Welcome !</h1>
+            <p className="text-lg text-white mb-6 opacity-100">Here you will find the latest news regarding technology.</p>
             <a
                 href="/blog"
                 className="self-stretch mt-16 px-5 py-3 shadow-lg rounded-lg text-white bg-gradient-to-r from-blue-500-opacity-50 to-indigo-500-opacity-150 transform transition-transform duration-500 ease-in-out hover:shadow-2xl active:scale-90 flex items-center opacity-90"
@@ -51,7 +51,7 @@ function HomePage() {
                     border: '2px solid rgba(43, 108, 176, 1)'
                 }}
             >
-                Lire des articles <FaArrowRight className="ml-2" />
+                Start Reading <FaArrowRight className="ml-2" />
             </a>
         </motion.div>
 
@@ -63,14 +63,14 @@ function HomePage() {
         >
             <motion.div
                 className="bg-transparent border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl backdrop-blur-md"
-                whileHover={{ scale: 1.02, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
+                whileHover={{ boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 0 }}
                 transition={{ duration: 0.3 }}
             >
                 <div className="mx-auto text-center">
-                    <h2 className="font-bold text-3xl text-white mb-4">Envie de partager ?</h2>
-                    <p className="text-lg text-white mb-6 opacity-80">Rejoignez notre communauté et créez votre propre post dès maintenant !</p>
+                    <h2 className="font-bold text-3xl text-white mb-4">Feeling like Sharing ?</h2>
+                    <p className="text-lg text-white mb-6 opacity-80">Join our community and start sharing posts !</p>
                     <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -79,7 +79,7 @@ function HomePage() {
                             to="/creer-post"
                             className="inline-flex items-center px-6 py-4 shadow-lg rounded-lg font-semibold text-lg bg-gradient-to-r from-green-500 to-teal-500 hover:from-teal-500 hover:to-green-500 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:-rotate-2"
                         >
-                            Créer un post 
+                            Create posts 
                             <FaArrowRight className="ml-3 text-2xl" />
                         </Link>
                     </motion.div>
@@ -95,15 +95,15 @@ function HomePage() {
         >
             <motion.div
                  className="bg-transparent border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl backdrop-blur-md"
-                whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
+                whileHover={{  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5 }}
             >
                 <div className="mx-auto text-center">
-                    <h2 className="font-bold text-3xl text-white mb-4">À propos de notre blog</h2>
+                    <h2 className="font-bold text-3xl text-white mb-4">About The Review</h2>
                     <p className="text-lg text-white mb-6 opacity-80">
-                        Notre blog est dédié à la technologie et à l'innovation. Nous explorons les dernières tendances, les découvertes et les idées qui façonnent l'avenir de l'industrie technologique. Que vous soyez un professionnel chevronné ou un débutant curieux, notre contenu est conçu pour vous inspirer et vous informer. Nous couvrons une gamme de sujets, y compris le développement web, l'intelligence artificielle, le matériel, les logiciels, la cybersécurité, et bien plus encore. Rejoignez notre communauté et découvrez le monde passionnant de la technologie avec nous !
+                    Our blog is dedicated to technology and innovation. We explore the latest trends, discoveries, and ideas that shape the future of the tech industry. Whether you're a seasoned professional or a curious beginner, our content is designed to inspire and inform you. We cover a range of topics, including web development, artificial intelligence, hardware, software, cybersecurity, and much more. Join our community and explore the exciting world of technology with us !
                     </p>
                 </div>
             </motion.div>
