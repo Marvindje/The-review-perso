@@ -92,6 +92,7 @@ function CreerPosts() {
             <ToastContainer />
             <motion.h1
                   className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
+                  style={{ fontFamily: 'Georgia, serif', color: '#FFFFFF' }}
                 initial={{ x: "-100vw" }} 
                 animate={{ x: 0 }}
                 transition={{ duration: 1 }}
