@@ -69,7 +69,7 @@ function HomePage() {
                 transition={{ duration: 0.3 }}
             >
                 <div className="mx-auto text-center">
-                    <h2 className="font-bold text-3xl text-white mb-4">Feeling like Sharing ?</h2>
+                    <h2 className="font-bold text-3xl text-white mb-6">Feel like Sharing something ?</h2>
                     <p className="text-lg text-white mb-6 opacity-80">Join our community and start sharing posts !</p>
                     <motion.div
                         whileHover={{ scale: 1.1 }}
