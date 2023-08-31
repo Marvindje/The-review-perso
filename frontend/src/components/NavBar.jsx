@@ -53,11 +53,15 @@ function Navbar({ onLogoClick }) {
           </div>
           <div className={`${isOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row sm:items-center sm:ml-6`}>
             <div className="flex space-x-4">
-            {profilePhoto ? (
-  <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
-) : (
-  <FaUser className="w-10 h-10 mr-4 text-gray-700" />
-)}   
+              {profilePhoto ? (
+                <Link to="/mon-profil">
+                  <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
+                </Link>
+              ) : (
+                <Link to="/mon-profil">
+                  <FaUser className="w-10 h-10 mr-4 text-gray-700" />
+                </Link>
+              )}
    
    <div className="relative group flex">
   <Link to="/user" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">User</Link>

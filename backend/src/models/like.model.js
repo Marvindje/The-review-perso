@@ -23,3 +23,4 @@ const Like = sequelize.define('like', {
 });
 
 
+module.exports = { Like }

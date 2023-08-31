@@ -10,3 +10,4 @@ const Category = sequelize.define('category', {
     timestamps: true
 });
 
+module.exports = { Category }

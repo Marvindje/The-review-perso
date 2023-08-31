@@ -24,4 +24,4 @@ const Comment = sequelize.define('comment', {
   timestamps: true
 });
 
-
+module.exports = { Comment }

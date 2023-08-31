@@ -22,4 +22,4 @@ const CommentLike = sequelize.define('commentLike', {
   timestamps: true
 });
 
-module.exports = CommentLike;
+module.exports = { CommentLike };

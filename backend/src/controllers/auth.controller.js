@@ -29,7 +29,7 @@ const login = async (req, res) => {
         const jwtSecret = process.env.JWT_SECRET;
 
         if(!jwtSecret){
-            res.status(500).send("Failed login !")
+            returres.status(500).send("Failed login !")
         }
 
         const token = jwt.sign({
@@ -39,7 +39,19 @@ const login = async (req, res) => {
             expiresIn: "1d"
         });
 
-        res.status(200).send(token)
+        res.cookie("token", token, {
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: true
+        })
+
+        res.status(200).send({
+            userId: user.id,
+            email: user.email,
+            username: user.username,
+            profile_image: user.profile_image,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt
+        })
     } catch(err) {
         console.error(err);
         res.status(500).send({ error: err.message })
@@ -64,7 +76,7 @@ const register = async (req, res) => {
             profile_image: profile_image || null
         })
 
-        console.log(user)
+        await login(req, res)
 
         res.status(200).send(user);
     } catch (err) {

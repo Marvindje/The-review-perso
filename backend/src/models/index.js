@@ -1,6 +1,6 @@
 require("./user.model");
 require("./category.model");
-require("./blogPost.model");
+require("./post.model");
 require("./like.model");
 require("./comment.model");
 require("./commentLike.model");
