@@ -11,9 +11,9 @@ const createCategory = async (req, res) => {
   }
 };
 
-// Ajoutez d'autres méthodes pour gérer les catégories (get, update, delete, etc.)
+
 
 module.exports = {
   createCategory,
-  // autres méthodes exportées ici
+ 
 };

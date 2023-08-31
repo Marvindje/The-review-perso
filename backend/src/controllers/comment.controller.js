@@ -11,9 +11,8 @@ const createComment = async (req, res) => {
   }
 };
 
-// Ajoutez d'autres méthodes pour gérer les commentaires (get, update, delete, etc.)
+
 
 module.exports = {
   createComment,
-  // autres méthodes exportées ici
 };
