@@ -10,31 +10,32 @@ function Navbar({ onLogoClick }) {
   const linkClasses = "block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white transition-all duration-300 ease-in-out transform hover:translate-x-2";
 
   return (
-    <nav className="bg-gradient-to-r from-blue-500 via-purple-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center align-center max-w-full">
-            <Link to="/" onClick={onLogoClick} className="hidden sm:block">
-              <motion.img 
-                className="h-10 w-auto max-w-full"
-                src={logo} 
-                alt="Workflow" 
-                initial={{ y: -250 }}
-                animate={{ y: -10 }}
-                transition={{ type: 'spring', stiffness: 120 }}
-              />
-            </Link>
-          </div>
+    <nav className="bg-gradient-to-r from-purple-500 via-blue-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full">
+  <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16"> {/* Ajout de justify-between */}
+      <div className="flex items-center align-center max-w-full">
+        <Link to="/" onClick={onLogoClick} className="hidden sm:block">
+          <motion.img 
+            className="h-10 w-auto max-w-full"
+            src={logo} 
+            alt="Workflow" 
+            initial={{ y: -250 }}
+            animate={{ y: -10 }}
+            transition={{ type: 'spring', stiffness: 120 }}
+          />
+        </Link>
+      </div>
+
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-center">
-            <div className="relative">
-              <FaSearch className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-              <motion.input
-                type="text"
-                placeholder="Search..."
-                className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
-                whileFocus={{ scale: 1.1 }}
-              />
-            </div>
+        <div className="relative">
+          <FaSearch className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
+          <motion.input
+            type="text"
+            placeholder="Search..."
+            className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
+            whileFocus={{ scale: 1.1 }}
+          />
+        </div>   
           </div>
           <div className="flex sm:hidden">
             <button type="button" onClick={() => setIsOpen(!isOpen)}>
