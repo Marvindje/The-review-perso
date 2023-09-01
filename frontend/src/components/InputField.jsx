@@ -28,20 +28,21 @@ function Contact() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-6 bg-cover bg-center" style={{ backgroundImage: `url(${galaxyBackground})` }}>
+      <motion.h1
+        className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
+        style={{ fontFamily: 'Georgia, serif' }}
+        initial={{ x: "-100vw" }}
+        animate={{ x: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Contact Us
+      </motion.h1>
       <motion.div
         className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8 mt-8 flex flex-col items-start justify-center border-2 border-blue-500 rounded-md bg-opacity-50 backdrop-blur"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.h1
-          className="text-4xl font-semibold text-gray-700 mb-10 bg-blue-200 p-3 rounded-lg"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          Contact us
-        </motion.h1>
         {submitted ? (
           <p className="text-green-500">Your message has been sent!</p>
         ) : (

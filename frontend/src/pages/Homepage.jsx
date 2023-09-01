@@ -22,17 +22,20 @@ function HomePage() {
         animate={{ x: 0 }}
         transition={{ duration: 1 }}
     >
-        <motion.div
-            className="w-full max-w-full mx-auto p-12 flex flex-col items-center justify-end transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
-            style={{ backgroundImage: `url(${heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{
-                boxShadow: "0 0 20px 5px rgba(255, 255, 255, 0.6)",
-            }}
-        >
-            <h1 className="font-bold text-4xl text-white mb-4">Welcome !</h1>
+     <motion.div
+    className="w-full max-w-full mx-auto p-12 flex flex-col items-center justify-end transition-all duration-500 ease-in-out hover:shadow-2xl hover:border-transparent"
+    style={{ backgroundImage: `url(${heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    initial={{ scale: 0 }}
+    animate={{ scale: 1 }}
+    transition={{ duration: 0.5 }}
+    whileHover={{
+        boxShadow: "0 0 20px 5px rgba(255, 255, 255, 0.6)",
+    }}
+>
+    <h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200 " style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de' }}>
+      Welcome to our Tech Blog!
+    </h1>
+  
             <p className="text-lg text-white mb-6 opacity-100">Here you will find the latest news regarding technology.</p>
             <a
                 href="/blog"
