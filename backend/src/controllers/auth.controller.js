@@ -29,7 +29,7 @@ const login = async (req, res) => {
         const jwtSecret = process.env.JWT_SECRET;
 
         if(!jwtSecret){
-            returres.status(500).send("Failed login !")
+            return res.status(500).send("Failed login !")
         }
 
         const token = jwt.sign({
