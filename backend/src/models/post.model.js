@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require('../../config/db');
 
-const Post = sequelize.define('post', {
+const PostModel  = sequelize.define('post', {
   title: {
     type: DataTypes.STRING,
     allowNull: false
@@ -28,5 +28,5 @@ const Post = sequelize.define('post', {
   timestamps: true
 });
 
-module.exports = { Post }
+module.exports = { PostModel }
 
