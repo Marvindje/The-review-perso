@@ -1,10 +1,10 @@
-// const express = require('express');
-// const { commentController } = require('../controllers/comment.controller');
+// routes/comment.routes.js
 
-// const commentRoutes = express.Router();
+const express = require('express');
+const commentController = require('../controllers/comment.controller');
 
-// commentRoutes
-//   .post('/', commentController.createComment);
-  
+const commentRoutes = express.Router();
 
-// module.exports = commentRoutes;
+commentRoutes.post('/', commentController.createComment);
+
+module.exports = { commentRoutes };

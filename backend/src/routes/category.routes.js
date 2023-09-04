@@ -1,9 +1,15 @@
-// const express = require('express');
-// const { categoryController } = require('../controllers/category.controller');
+// category.routes.js
 
-// const categoryRoutes = express.Router();
+const express = require('express');
+const CategoryController = require('../controllers/category.controller'); // Assurez-vous que le chemin est correct
 
-// categoryRoutes
-//   .post('/', categoryController.createCategory);
-  
-// module.exports = categoryRoutes;
+const categoryRoutes = express.Router();
+
+categoryRoutes
+.get('/:categoryId', CategoryController.findOneById)
+.get('/', CategoryController.findAll)
+.post('/', CategoryController.create)
+.patch('/:categoryId', CategoryController.updateById)
+.delete('/:categoryId', CategoryController.deleteById);
+
+module.exports = { categoryRoutes };

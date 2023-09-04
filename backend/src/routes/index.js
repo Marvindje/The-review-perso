@@ -6,8 +6,8 @@ const { commentRoutes } = require('./comment.routes')
 const router = (app) => {
     app.use('/auth', authRoutes);
     app.use('/posts', postRoutes)
-    // app.use('/category', categoryRoutes)
-    // app.use('/comment', commentRoutes)
+    app.use('/categories', categoryRoutes)
+    app.use('/comments', commentRoutes)
 }
 
 module.exports = router;
