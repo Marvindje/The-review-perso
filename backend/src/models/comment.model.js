@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require('../../config/db');
 
-const Comment = sequelize.define('comment', {
+const CommentModel = sequelize.define('comment', {
   content: {
     type: DataTypes.TEXT,
     allowNull: false
@@ -24,4 +24,5 @@ const Comment = sequelize.define('comment', {
   timestamps: true
 });
 
-module.exports = { Comment }
+module.exports = { CommentModel };
+
