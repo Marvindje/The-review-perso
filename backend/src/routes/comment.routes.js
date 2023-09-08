@@ -1,12 +1,13 @@
 const express = require('express');
-const CommentController = require('../controllers/comment.controller');  // Assurez-vous que votre contrôleur exporte un objet avec des méthodes statiques
+const CommentController = require('../controllers/comment.controller');
+const IsConnectedMiddleware = require('../middlewares/isConnected.middleware');
 
 const commentRoutes = express.Router();
 
 commentRoutes
-  .post('/', CommentController.create)  // Créer un nouveau commentaire
-  .get('/', CommentController.findAll)  // Récupérer tous les commentaires
-  .get('/:commentId', CommentController.findOneById)  // Récupérer un commentaire par son ID
-  .delete('/:commentId', CommentController.deleteById);  // Supprimer un commentaire par son ID
+  .post('/', IsConnectedMiddleware.execute, CommentController.create)
+  .get('/', IsConnectedMiddleware.execute, CommentController.findAll)
+  .get('/:commentId', IsConnectedMiddleware.execute, CommentController.findOneById)
+  .delete('/:commentId', IsConnectedMiddleware.execute, CommentController.deleteById);
 
 module.exports = { commentRoutes };

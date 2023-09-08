@@ -30,8 +30,8 @@ class PostController {
 
   static async create(req, res){
     try {
-      const { title, content, user_id, category_id } = req.body;
-      const post = await PostModel.create({ title, content, user_id, category_id });  
+      const { title, content, userId, categoryId } = req.body;
+      const post = await PostModel.create({ title, content, userId, categoryId });  
       res.status(200).send(post);
     } catch (err) {
       console.error(err);
@@ -42,13 +42,13 @@ class PostController {
   static async updateById(req, res) {
     try {
       const { postId } = req.params;
-      const { title, content, user_id, category_id } = req.body;
+      const { title, content, userId, categoryId } = req.body;
 
       const isUpdated = await PostModel.update({  
         ...(title ? { title } : {}),
         ...(content ? { content } : {}),
-        ...(user_id ? { user_id } : {}),
-        ...(category_id ? { category_id } : {})
+        ...(userId ? { userId } : {}),
+        ...(categoryId ? { categoryId } : {})
       }, {
         where: {
           id: postId

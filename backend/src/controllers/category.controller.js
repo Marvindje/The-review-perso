@@ -79,7 +79,7 @@ class CategoryController {
           id: categoryId
         }
       })
-      console.log(isDestroy)
+
       if(!isDestroy) {
         return res.status(404).send(`Category (${categoryId}) not found !`);
       }

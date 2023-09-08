@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require('../../config/db');
-
-const User = sequelize.define('user', {
+// TODO : rendre le mail unique
+const UserModel = sequelize.define('user', {
   // définition des attributs des modèles
   username: {
     type: DataTypes.STRING,
@@ -24,4 +24,4 @@ const User = sequelize.define('user', {
   timestamps: true
 });
 
-module.exports = { User }
+module.exports = { UserModel }

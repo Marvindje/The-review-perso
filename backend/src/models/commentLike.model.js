@@ -1,25 +1,13 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require('../../config/db');
+const { CommentModel } = require('./comment.model')
+const { UserModel } = require('./user.model')
 
-const CommentLike = sequelize.define('commentLike', {
-  user_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'users', 
-      key: 'id'
-    }
-  },
-  comment_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'comments', 
-      key: 'id'
-    }
-  }
-}, {
+const CommentLikeModel = sequelize.define('commentLike', {}, {
   timestamps: true
 });
 
-module.exports = { CommentLike };
+CommentModel.hasMany(CommentLikeModel, { onDelete: 'cascade', hooks: true })
+UserModel.hasMany(CommentLikeModel, { onDelete: 'cascade', hooks: true })
+
+module.exports = { CommentLikeModel };

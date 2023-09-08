@@ -1,5 +1,8 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require('../../config/db');
+const { CategoryModel } = require('./category.model')
+const { UserModel } = require('./user.model')
+
 
 const PostModel  = sequelize.define('post', {
   title: {
@@ -10,23 +13,12 @@ const PostModel  = sequelize.define('post', {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  user_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'users', 
-      key: 'id'
-    }
-  },
-  category_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'categories', 
-      key: 'id'
-    }
-  }
 }, {
   timestamps: true
 });
+
+CategoryModel.hasMany(PostModel, { onDelete: 'cascade', hooks: true });
+UserModel.hasMany(PostModel, { onDelete: 'cascade', hooks: true })
 
 module.exports = { PostModel }
 

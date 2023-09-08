@@ -1,4 +1,4 @@
-const { User } =  require('../models/user.model');
+const { UserModel } =  require('../models/user.model');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -11,7 +11,7 @@ class AuthController {
                 return res.status(500).send({ error: "username or email is not defined !" })
             }
     
-            const user = await User.findOne({
+            const user = await UserModel.findOne({
                 where: {
                     email
                 }
@@ -70,7 +70,7 @@ class AuthController {
             const salt = bcrypt.genSaltSync(10);
             const hashPassword = bcrypt.hashSync(password, salt)
     
-            const user = await User.create({
+            const user = await UserModel.create({
                 username, 
                 email, 
                 password: hashPassword,

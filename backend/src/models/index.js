@@ -7,7 +7,7 @@ require("./commentLike.model");
 
 const { sequelize } = require('../../config/db');
 
-sequelize.sync().then(() => {
+sequelize.sync({ force: true }).then(() => {
   console.log("Tables created successfully!");
 }).catch((error) => {
   console.error("Unable to create tables:", error);
