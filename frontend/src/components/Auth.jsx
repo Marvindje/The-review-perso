@@ -8,8 +8,18 @@ const Auth = ({ onAuthSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation des champs
+    if (!username || !password) {
+      setErrorMessage('Les identifiants sont incomplets.');
+      return;
+    }
+
     try {
-      const response = await axios.post('/api/auth', { username, password });
+      console.log("Données envoyées:", { username, password }); // Debugging
+      const response = await axios.post('http://localhost:5000/auth/register', { username, password });
+      console.log("Statut de la réponse:", response.status); // Debugging
+
       if (response.status === 200) {
         onAuthSuccess();
       }
@@ -24,7 +34,7 @@ const Auth = ({ onAuthSuccess }) => {
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-600">Nom d'utilisateur</label>
-        <input className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <textarea className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50" value={username} onChange={(e) => setUsername(e.target.value)}></textarea>
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-600">Mot de passe</label>

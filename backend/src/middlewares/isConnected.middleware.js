@@ -22,9 +22,9 @@ class IsConnectedMiddleware {
             req.user = jwt.verify(token, jwtSecret);
 
             next();
-        } catch(err){
-            console.error(error);
-            res.status(401).send({ error: error.message });
+        } catch(err){  // a noter que c'est "err" ici
+            console.error(err);  // Et aussi ici
+            res.status(401).send({ error: err.message });
         }
     }
     
