@@ -9,6 +9,11 @@ function Navbar({ onLogoClick }) {
   const profilePhoto = localStorage.getItem('profilePhoto');
   const linkClasses = "block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white transition-all duration-300 ease-in-out transform hover:translate-x-2";
 
+  const handleLogout = () => {
+    localStorage.removeItem('profilePhoto');
+    window.location.href = "/login";
+  };
+
   return (
     <nav className="bg-gradient-to-r from-purple-500 via-blue-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -26,15 +31,15 @@ function Navbar({ onLogoClick }) {
             </Link>
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-center">
-        <div className="relative">
-          <FaSearch className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-          <motion.input
-            type="text"
-            placeholder="Search..."
-            className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
-            whileFocus={{ scale: 1.1 }}
-          />
-        </div>   
+            <div className="relative">
+              <FaSearch className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
+              <motion.input
+                type="text"
+                placeholder="Search..."
+                className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
+                whileFocus={{ scale: 1.1 }}
+              />
+            </div>   
           </div>
           <div className="flex sm:hidden">
             <button type="button" onClick={() => setIsOpen(!isOpen)}>
@@ -62,19 +67,20 @@ function Navbar({ onLogoClick }) {
                   <FaUser className="w-10 h-10 mr-4 text-gray-700" />
                 </Link>
               )}
-   
-   <div className="relative group flex">
-  <Link to="/user" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">User</Link>
-  <div className="absolute left-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
-    <Link to="/" className={linkClasses}>Home</Link>
-    <Link to="/mon-profil" className={linkClasses}> Profile</Link>
-    <Link to="/mes-posts" className={linkClasses}>My Posts</Link>
-    <Link to="/creer-post" className={linkClasses}>Create Posts</Link>
-  </div>
-</div>
-
+              <div className="relative group flex">
+                <Link to="/user" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">User</Link>
+                <div className="absolute left-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
+                  <Link to="/" className={linkClasses}>Home</Link>
+                  <Link to="/mon-profil" className={linkClasses}>Profile</Link>
+                  <Link to="/mes-posts" className={linkClasses}>My Posts</Link>
+                  <Link to="/creer-post" className={linkClasses}>Create Posts</Link>
+                </div>
+              </div>
               <div className="relative group flex">
                 <Link to="/login" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Login</Link>
+                <div className="absolute right-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
+                  <button onClick={handleLogout} className={linkClasses}>Logout</button>
+                </div>
               </div>
               <div className="relative group flex">
                 <Link to="/categories" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Categories</Link>

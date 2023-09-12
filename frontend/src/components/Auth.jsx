@@ -24,8 +24,10 @@ const Auth = ({ onAuthSuccess }) => {
       console.log("Statut de la réponse:", response.status);
 
       if (response.status === 200) {
+        localStorage.setItem('loggedInUsername', username);
         onAuthSuccess();
       }
+      
     } catch (error) {
       console.error('Erreur d\'authentification:', error);
       setErrorMessage('Les identifiants sont incorrects.');
