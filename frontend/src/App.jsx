@@ -13,13 +13,13 @@ function App() {
 
   const handleAuthSuccess = () => {
     setShowSpinner(true);
-    setIsAuthenticated(true);
   };
 
   useEffect(() => {
     if (showSpinner) {
       setTimeout(() => {
         setShowSpinner(false);
+        setIsAuthenticated(true);  // Déplacez cette ligne ici
       }, 3000);
     }
   }, [showSpinner]);
@@ -27,10 +27,14 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {showSpinner && (
+          <div className="spinner-container">
+            <div className="spinner"></div>
+          </div>
+        )}
         {isAuthenticated && <Navbar />}
         <Routes>
           <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
-     
           <Route path="/login" element={!isAuthenticated ? <Login onAuthSuccess={handleAuthSuccess} /> : <Navigate to="/" />} />
         </Routes>
         {isAuthenticated && <AppRoutes />}
