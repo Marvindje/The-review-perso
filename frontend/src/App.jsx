@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import AppRoutes from "./components/AppRoutes"; 
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import AppRoutes from "./components/AppRoutes";
 import Footer from "./components/Footer";
-import Navbar from "./components/NavBar"; 
+import Navbar from "./components/NavBar";
 import Login from "./pages/Login";
+import HomePage from "./pages/Homepage";
 import "./App.css";
 
 function App() {
@@ -19,30 +20,21 @@ function App() {
     if (showSpinner) {
       setTimeout(() => {
         setShowSpinner(false);
-      }, 3000); // Affiche le spinner pendant 3 secondes
+      }, 3000);
     }
   }, [showSpinner]);
 
   return (
     <Router>
       <div className="App">
-        {isAuthenticated ? (
-          <>
-            {showSpinner ? (
-              <div className="spinner">
-                <div className="spinner1"></div>
-              </div>
-            ) : (
-              <>
-                <Navbar /> 
-                <AppRoutes />
-                <Footer />
-              </>
-            )}
-          </>
-        ) : (
-          <Login onAuthSuccess={handleAuthSuccess} />
-        )}
+        {isAuthenticated && <Navbar />}
+        <Routes>
+          <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
+     
+          <Route path="/login" element={!isAuthenticated ? <Login onAuthSuccess={handleAuthSuccess} /> : <Navigate to="/" />} />
+        </Routes>
+        {isAuthenticated && <AppRoutes />}
+        {isAuthenticated && <Footer />}
       </div>
     </Router>
   );

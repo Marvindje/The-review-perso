@@ -11,25 +11,23 @@ import Hardware from "../pages/Hardware";
 import Logiciels from "../pages/Logiciels";
 import CyberSecurite from "../pages/CyberSecurite";
 import CarrieresTechnos from "../pages/CarrieresTechnos";
-import Auth from "../components/Auth";  // Import du composant Auth depuis le dossier components
 
 const AppRoutes = ({ isAuthenticated, onAuthSuccess }) => {
   return (
     <Routes>
-      <Route path="/auth" element={isAuthenticated ? <Navigate to="/" /> : <Auth onAuthSuccess={onAuthSuccess} />} />
-      <Route path="/" element={isAuthenticated ? <Homepage /> : <Navigate to="/auth" />} />
-      <Route path="/creer-article" element={isAuthenticated ? <CreerArticles /> : <Navigate to="/auth" />} />
-      <Route path="/mon-profil" element={isAuthenticated ? <MonProfil /> : <Navigate to="/auth" />} />
-      <Route path="/contact" element={isAuthenticated ? <Contact /> : <Navigate to="/auth" />} />
-      <Route path="/mes-posts" element={isAuthenticated ? <MesPosts /> : <Navigate to="/auth" />} />
-      <Route path="/categorie/developpement-web" element={isAuthenticated ? <DeveloppementWeb /> : <Navigate to="/auth" />} />
-      <Route path="/categorie/intelligence-artificielle" element={isAuthenticated ? <IntelligenceArtificielle /> : <Navigate to="/auth" />} />
-      <Route path="/categorie/hardware" element={isAuthenticated ? <Hardware /> : <Navigate to="/auth" />} />
-      <Route path="/categorie/logiciels" element={isAuthenticated ? <Logiciels /> : <Navigate to="/auth" />} />
-      <Route path="/categorie/cybersecurite" element={isAuthenticated ? <CyberSecurite /> : <Navigate to="/auth" />} />
-      <Route path="/categorie/carrieres-technos" element={isAuthenticated ? <CarrieresTechnos /> : <Navigate to="/auth" />} />
+      <Route path="/creer-post" element={<CreerArticles />} />
+      <Route path="/mon-profil" element={<MonProfil />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/mes-posts" element={<MesPosts />} />
+      <Route path="/categorie/developpement-web" element={<DeveloppementWeb />} />
+      <Route path="/categorie/intelligence-artificielle" element={<IntelligenceArtificielle />} />
+      <Route path="/categorie/hardware" element={<Hardware />} />
+      <Route path="/categorie/logiciels" element={<Logiciels />} />
+      <Route path="/categorie/cybersecurite" element={<CyberSecurite />} />
+      <Route path="/categorie/carrieres-technos" element={<CarrieresTechnos />} />
     </Routes>
   );
 };
+
 
 export default AppRoutes;
