@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import Contact from "../pages/Contact";
 import CreerArticles from "../pages/CreerPosts";
@@ -15,10 +15,13 @@ import CarrieresTechnos from "../pages/CarrieresTechnos";
 const AppRoutes = ({ isAuthenticated, onAuthSuccess }) => {
   return (
     <Routes>
-      <Route path="/creer-post" element={<CreerArticles />} />
+      {/* Routes liées au profil utilisateur */}
       <Route path="/mon-profil" element={<MonProfil />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/creer-post" element={<CreerArticles />} />
       <Route path="/mes-posts" element={<MesPosts />} />
+      <Route path="/contact" element={<Contact />} />
+      
+      {/* Routes de catégories */}
       <Route path="/categorie/developpement-web" element={<DeveloppementWeb />} />
       <Route path="/categorie/intelligence-artificielle" element={<IntelligenceArtificielle />} />
       <Route path="/categorie/hardware" element={<Hardware />} />
@@ -28,6 +31,5 @@ const AppRoutes = ({ isAuthenticated, onAuthSuccess }) => {
     </Routes>
   );
 };
-
 
 export default AppRoutes;

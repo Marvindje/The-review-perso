@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import HomePage from "./pages/Homepage";
 import "./App.css";
 
-function App() {
+const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
 
@@ -19,29 +19,37 @@ function App() {
     if (showSpinner) {
       setTimeout(() => {
         setShowSpinner(false);
-        setIsAuthenticated(true);  // Déplacez cette ligne ici
+        setIsAuthenticated(true);
       }, 3000);
     }
   }, [showSpinner]);
 
+  const renderSpinner = showSpinner && (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  );
+
+  const renderNavbarAndFooter = isAuthenticated && (
+    <>
+      <Navbar />
+      <Footer />
+    </>
+  );
+
   return (
     <Router>
       <div className="App">
-        {showSpinner && (
-          <div className="spinner-container">
-            <div className="spinner"></div>
-          </div>
-        )}
-        {isAuthenticated && <Navbar />}
+        {renderSpinner}
+        {renderNavbarAndFooter}
         <Routes>
           <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
           <Route path="/login" element={!isAuthenticated ? <Login onAuthSuccess={handleAuthSuccess} /> : <Navigate to="/" />} />
+          {isAuthenticated && <AppRoutes />}
         </Routes>
-        {isAuthenticated && <AppRoutes />}
-        {isAuthenticated && <Footer />}
       </div>
     </Router>
   );
-}
+};
 
 export default App;
