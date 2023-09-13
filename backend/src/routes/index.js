@@ -7,8 +7,7 @@ const { likeRoutes } = require("./like.routes");
 const { commentLikeRoutes } = require('./commentLike.routes');  // Nouvelle ligne pour importer les routes de CommentLike
 
 const router = (app) => {
-    // Ajout d'un console.log pour vérifier la valeur de commentLikeRoutes
-    console.log("Valeur de commentLikeRoutes:", commentLikeRoutes);
+   
 
     // J'ajoute mes routes à mon application
     app.use('/auth', authRoutes);
