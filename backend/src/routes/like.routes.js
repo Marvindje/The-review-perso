@@ -8,4 +8,4 @@ likeRoutes
     .post('/', IsConnectedMiddleware.execute, LikeController.create)
     .delete('/:likeId', IsConnectedMiddleware.execute, LikeController.deleteById)
 
-module.exports = {likeRoutes}
+module.exports = { likeRoutes };

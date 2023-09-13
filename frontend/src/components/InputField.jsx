@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 import { FaUser, FaEnvelope, FaPen } from 'react-icons/fa';
 import galaxyBackground from '../assets/thepage.jpeg';
 
+// Composant pour les champs de formulaire
 const InputField = ({ register, name, type, placeholder, icon: Icon, errors }) => (
-  <div className="mb-4 flex items-center input-field-container">
-    <Icon className="text-blue-500 mr-2 icon-style" />
+  <div className="mb-4 flex items-center">
+    <Icon className="text-blue-500 mr-2" />
     <input
       {...register(name, { required: true })}
-      className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input-style ${errors[name] ? 'border-red-500' : ''}`}
+      className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors[name] ? 'border-red-500' : ''}`}
       type={type}
       placeholder={placeholder}
     />
@@ -17,7 +18,7 @@ const InputField = ({ register, name, type, placeholder, icon: Icon, errors }) =
   </div>
 );
 
-function Contact() {
+const Contact = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [submitted, setSubmitted] = useState(false);
 
@@ -58,11 +59,9 @@ function Contact() {
               />
               {errors.message && <p className="text-red-500">This field is required</p>}
             </div>
-            <div className="flex items-center justify-between">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Send
-              </button>
-            </div>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Send
+            </button>
           </form>
         )}
       </motion.div>

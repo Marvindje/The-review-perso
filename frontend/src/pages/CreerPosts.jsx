@@ -1,3 +1,4 @@
+// Importation des bibliothèques et modules nécessaires
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
@@ -6,8 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import galaxyBackground from '../assets/thepage.jpeg';
 
-
+// Définition du composant CreerPosts
 function CreerPosts() {
+    // Initialisation des états pour le post, les likes, etc.
     const [post, setPost] = useState('');
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
@@ -16,18 +18,26 @@ function CreerPosts() {
     const [mention, setMention] = useState('');
     const [files, setFiles] = useState([]);
 
+    // Callback pour gérer le glisser-déposer des fichiers
     const onDrop = useCallback((acceptedFiles) => {
+        // Crée des objets de fichiers avec des URL de prévisualisation
         setFiles(acceptedFiles.map(file => Object.assign(file, {
             preview: URL.createObjectURL(file)
         })));
     }, []);
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, accept: 'image/*'});
 
+    // Configuration de la zone de glisser-déposer
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: 'image/*' });
+
+    // Fonction pour soumettre le post
     const handlePostSubmit = () => {
+        // Crée un nouvel objet post et l'ajoute au stockage local
         const newPost = { post, likes, liked, youtubeLink, hashtags, mention, files };
         const posts = JSON.parse(localStorage.getItem('posts')) || [];
         posts.push(newPost);
         localStorage.setItem('posts', JSON.stringify(posts));
+
+        // Réinitialise les états
         setPost('');
         setLikes(0);
         setLiked(false);
@@ -37,36 +47,29 @@ function CreerPosts() {
         setFiles([]);
     };
 
+    // Fonction pour gérer les likes
     const handleLike = () => {
+        // Inverse l'état du "like" et ajuste le compteur de likes
         setLiked(!liked);
         setLikes(liked ? likes - 1 : likes + 1);
     };
 
+    // Fonction pour gérer le clic sur le bouton "Post"
     const handlePostClick = () => {
+        // Vérifie si le post est vide avant de le soumettre
         if (post.trim() !== '') {
             handlePostSubmit();
             toast.success('Votre post a été soumis !', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                // Configuration de la notification
             });
         } else {
             toast.error('Veuillez écrire quelque chose avant de soumettre.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                // Configuration de la notification
             });
         }
     };
 
+    // Fonction pour extraire l'ID de la vidéo YouTube
     const renderYoutubePreview = () => {
         const youtubeId = youtubeLink.split('v=')[1];
         const ampersandPosition = youtubeId && youtubeId.indexOf('&');
@@ -76,10 +79,10 @@ function CreerPosts() {
         return youtubeId;
     };
 
+    // Effet pour libérer les ressources des fichiers
     useEffect(() => {
         files.forEach(file => URL.revokeObjectURL(file.preview));
     }, [files]);
-
 
     return (
         <motion.div

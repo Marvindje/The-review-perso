@@ -1,8 +1,11 @@
+// Importation des bibliothèques et modules nécessaires
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import thepageBackground from '../assets/thepage.jpeg';
 
+// Définition du composant MonProfil
 function MonProfil() {
+  // Initialisation des états pour le formulaire et la photo de profil
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,16 +14,19 @@ function MonProfil() {
     bio: localStorage.getItem('userBio') || '',
   });
   const [profilePhoto, setProfilePhoto] = useState(localStorage.getItem('profilePhoto') || null);
-  const [showAlert, setShowAlert] = useState(false); // Ajout de l'état pour l'alerte
+  const [showAlert, setShowAlert] = useState(false); // État pour gérer l'affichage de l'alerte
 
+  // Effet pour mettre à jour le stockage local lorsque la photo de profil ou la bio changent
   useEffect(() => {
     localStorage.setItem('profilePhoto', profilePhoto);
     localStorage.setItem('userBio', formData.bio);
   }, [profilePhoto, formData.bio]);
 
+  // Fonction pour gérer les changements dans les champs du formulaire
   const handleInputChange = (event) => {
     const { name, value, type } = event.target;
     if (type === 'file') {
+      // Si l'utilisateur a choisi un fichier, lire ce fichier et mettre à jour l'état
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -29,18 +35,23 @@ function MonProfil() {
       };
       reader.readAsDataURL(file);
     } else {
+      // Sinon, mettre à jour l'état avec la nouvelle valeur du champ
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
 
+  // Fonction pour sauvegarder les changements
   const handleSaveChanges = () => {
-    setShowAlert(true); // Afficher l'alerte
+    setShowAlert(true); // Afficher l'alerte pour indiquer que les changements ont été sauvegardés
     setTimeout(() => setShowAlert(false), 3000); // Masquer l'alerte après 3 secondes
   };
 
+  // Fonction pour supprimer le compte
   const handleDeleteAccount = () => {
+    // Demander une confirmation à l'utilisateur
     const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ?");
     if (confirmation) {
+      // Si confirmé, supprimer les données du stockage local et réinitialiser les états
       alert("Compte supprimé !");
       localStorage.removeItem('profilePhoto');
       localStorage.removeItem('userBio');
