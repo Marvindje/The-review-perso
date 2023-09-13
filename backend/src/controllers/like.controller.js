@@ -3,11 +3,12 @@ const { LikeModel } = require('../models/like.model');
 class LikeController {
   static async create(req, res) {
     try {
-      const { userId, postId } = req.body;
+      const { postId } = req.body;
+      const { userId } = req.user;
 
       // Validation des données
-      if (!userId || !postId) {
-        return res.status(400).send({ error: "userId or postId is missing" });
+      if (!postId) {
+        return res.status(400).send({ error: "postId is missing" });
       }
 
       const like = await LikeModel.create({ userId, postId });

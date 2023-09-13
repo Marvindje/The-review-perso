@@ -1,24 +1,6 @@
 const { CommentModel } = require('../models/comment.model');
 const { CommentLikeModel } = require('../models/commentLike.model');
 class CommentController {
-  static async create(req, res) {
-    try {
-      const { content, userId, postId } = req.body;
-
-      // Validation des données
-      if (!content || !userId || !postId) {
-        return res.status(400).send({ error: "content, userId, or postId is missing" });
-      }
-
-      const comment = await CommentModel.create({ content, userId, postId });
-
-      res.status(200).send(comment);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send({ error: err.message });
-    }
-  }
-
   static async findAll(req, res) {
     try {
       const comments = await CommentModel.findAll();
@@ -41,6 +23,45 @@ class CommentController {
 
       res.status(200).send(comment);
     } catch (err) {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    }
+  }
+
+  static async create(req, res) {
+    try {
+      const { content, postId } = req.body;
+      const { userId } = req.user;
+
+      // Validation des données
+      if (!content || !postId) {
+        return res.status(400).send({ error: "content or postId is missing" });
+      }
+
+      const comment = await CommentModel.create({ content, userId, postId });
+
+      res.status(200).send(comment);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      const { commentId } = req.params;
+      const { content } = req.body;
+
+      const commentUpdated = await CommentModel.update({ 
+        ...(content ? { content } : {})
+       }, {
+        where: {
+          id: commentId
+        },
+      });
+
+      res.status(200).send(commentUpdated);
+    } catch(err) {
       console.error(err);
       res.status(500).send({ error: err.message });
     }

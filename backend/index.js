@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());  // Activation de CORS pour toutes les routes
+
 router(app);
 
 const PORT = process.env.DB_PORT || 5000;

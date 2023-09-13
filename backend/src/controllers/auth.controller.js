@@ -3,6 +3,27 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 class AuthController {
+    static setCookie(user, res){
+        const jwtSecret = process.env.JWT_SECRET;
+    
+        if(!jwtSecret){
+            throw new Error("Failed login !")
+        }
+
+        const token = jwt.sign({
+            userId: user.id,
+            email: user.email
+        }, jwtSecret, {
+            expiresIn: "1d"
+        });
+
+        res.cookie("token", token, {
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: true
+        })
+
+    }
+
     static async login(req, res){
         try {
             console.log("Requête reçue pour login:", req.body);  // Ajout du console.log ici
@@ -29,24 +50,8 @@ class AuthController {
                 return res.status(404).send({ error: "username or email are incorrect !" })
             }
     
-            const jwtSecret = process.env.JWT_SECRET;
-    
-            if(!jwtSecret){
-                return res.status(500).send("Failed login !")
-            }
-    
-            const token = jwt.sign({
-                userId: user.id,
-                email: user.email
-            }, jwtSecret, {
-                expiresIn: "1d"
-            });
-    
-            res.cookie("token", token, {
-                maxAge: 1000 * 60 * 60 * 24,
-                httpOnly: true
-            })
-    
+            AuthController.setCookie(user, res)
+
             res.status(200).send({
                 userId: user.id,
                 email: user.email,
@@ -81,7 +86,7 @@ class AuthController {
                 profile_image: profile_image || null
             })
     
-            await AuthController.login(req, res)
+            AuthController.setCookie(user, res)
     
             res.status(200).send(user);
         } catch (err) {

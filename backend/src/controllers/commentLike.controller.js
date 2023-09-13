@@ -3,11 +3,12 @@ const { CommentLikeModel } = require('../models/commentLike.model');
 class CommentLikeController {
   static async create(req, res) {
     try {
-      const { userId, commentId } = req.body;
+      const { commentId } = req.body;
+      const { userId } = req.user;
 
       // Validation des données
-      if (!userId || !commentId) {
-        return res.status(400).send({ error: "userId or commentId is missing" });
+      if (!commentId) {
+        return res.status(400).send({ error: "commentId is missing" });
       }
 
       const commentLike = await CommentLikeModel.create({ userId, commentId });
