@@ -30,23 +30,17 @@ const App = () => {
     </div>
   );
 
-  const renderNavbarAndFooter = isAuthenticated && (
-    <>
-      <Navbar />
-      <Footer />
-    </>
-  );
-
   return (
     <Router>
       <div className="App">
         {renderSpinner}
-        {renderNavbarAndFooter}
+        {isAuthenticated && <Navbar />}
         <Routes>
           <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
           <Route path="/login" element={!isAuthenticated ? <Login onAuthSuccess={handleAuthSuccess} /> : <Navigate to="/" />} />
-          {isAuthenticated && <AppRoutes />}
+          <Route path="/*" element={<AppRoutes />} />
         </Routes>
+        {isAuthenticated && <Footer />}
       </div>
     </Router>
   );
