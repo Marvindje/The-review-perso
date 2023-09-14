@@ -71,7 +71,7 @@ function MonProfil() {
     >
       {showAlert && (
         <div className="fixed top-0 right-0 p-2 text-white bg-green-500 rounded-bl-lg z-50">
-          Modifications enregistrées !
+          Saved changes !
         </div>
       )}
       <motion.div
@@ -87,7 +87,7 @@ function MonProfil() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Mon Profil
+          My Profile
         </motion.h1>
         <div className="mb-4">
           {profilePhoto ? (
@@ -99,14 +99,14 @@ function MonProfil() {
             />
           ) : (
             <div className="w-48 h-48 mb-4 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
-              Aucune photo
+              No photo
             </div>
           )}
           <label
             className="block mb-2 text-2xl font-bold"
             style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
           >
-            Changer la photo de profil
+            Change Profile 
             <input
               className="hidden"
               id="photo"
@@ -119,7 +119,7 @@ function MonProfil() {
             className="px-4 py-2 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded focus:outline-none focus:shadow-outline hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
             onClick={() => document.getElementById("photo").click()}
           >
-            Sélectionner une photo
+            Select file
           </button>
         </div>
         <div className="w-full mb-4">
@@ -144,19 +144,19 @@ function MonProfil() {
             className="px-4 py-2 font-semibold text-blue-500 bg-transparent border border-blue-500 rounded focus:outline-none hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
             onClick={handleSaveChanges}
           >
-            Enregistrer les modifications
+            Save changes
           </button>
           <button
             className="px-4 py-2 font-semibold text-gray-500 bg-transparent border border-gray-500 rounded focus:outline-none hover:bg-gray-500 hover:text-white transition-all duration-300 ease-in-out"
             onClick={() => window.location.reload()}
           >
-            Annuler
+            Cancel
           </button>
           <button
             className="px-4 py-2 font-semibold text-purple-500 bg-transparent border border-purple-500 rounded focus:outline-none hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
             onClick={handleDeleteAccount}
           >
-            Supprimer le compte
+            Delete Account 
           </button>
         </div>
       </motion.div>
