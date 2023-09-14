@@ -33,14 +33,15 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        {isAuthenticated && <Navbar />} {/* Affiché seulement si l'utilisateur est authentifié */}
+        {isAuthenticated && <Navbar />}
         {renderSpinner}
         <Routes>
-          <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
-          <Route path="/login" element={!isAuthenticated ? <Login onAuthSuccess={handleAuthSuccess} /> : <Navigate to="/" />} />
+          <Route path="/" element={<Navigate to="/homepage" />} />
+          <Route path="/homepage" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
+          <Route path="/login" element={!isAuthenticated ? <Login onAuthSuccess={handleAuthSuccess} /> : <Navigate to="/homepage" />} />
           <Route path="/*" element={<AppRoutes />} />
         </Routes>
-        {isAuthenticated && <Footer />} {/* Affiché seulement si l'utilisateur est authentifié */}
+        {isAuthenticated && <Footer />}
       </div>
     </Router>
   );

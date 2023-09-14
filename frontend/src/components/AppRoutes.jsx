@@ -15,13 +15,11 @@ import CarrieresTechnos from "../pages/CarrieresTechnos";
 const AppRoutes = ({ isAuthenticated, onAuthSuccess }) => {
   return (
     <Routes>
-      {/* Routes liées au profil utilisateur */}
+      <Route path="/homepage" element={<Homepage />} />
       <Route path="/mon-profil" element={<MonProfil />} />
       <Route path="/creer-post" element={<CreerArticles />} />
       <Route path="/mes-posts" element={<MesPosts />} />
       <Route path="/contact" element={<Contact />} />
-      
-      {/* Routes de catégories */}
       <Route path="/categorie/developpement-web" element={<DeveloppementWeb />} />
       <Route path="/categorie/intelligence-artificielle" element={<IntelligenceArtificielle />} />
       <Route path="/categorie/hardware" element={<Hardware />} />
