@@ -6,11 +6,12 @@ import logo from "../assets/the-review-low-resolution-logo-color-on-transparent-
 
 function Navbar({ onLogoClick }) {
   const [isOpen, setIsOpen] = useState(false);
-  const profilePhoto = localStorage.getItem('profilePhoto');
-  const linkClasses = "block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white transition-all duration-300 ease-in-out transform hover:translate-x-2";
+  const profilePhoto = localStorage.getItem("profilePhoto");
+  const linkClasses =
+    "block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white transition-all duration-300 ease-in-out transform hover:translate-x-2";
 
   const handleLogout = () => {
-    localStorage.removeItem('profilePhoto');
+    localStorage.removeItem("profilePhoto");
     window.location.href = "/login";
   };
 
@@ -19,14 +20,18 @@ function Navbar({ onLogoClick }) {
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center align-center max-w-full">
-            <Link to="/homepage" onClick={onLogoClick} className="hidden sm:block">
-              <motion.img 
+            <Link
+              to="/homepage"
+              onClick={onLogoClick}
+              className="hidden sm:block"
+            >
+              <motion.img
                 className="h-10 w-auto max-w-full"
-                src={logo} 
-                alt="Workflow" 
+                src={logo}
+                alt="Workflow"
                 initial={{ y: -250 }}
                 animate={{ y: -10 }}
-                transition={{ type: 'spring', stiffness: 120 }}
+                transition={{ type: "spring", stiffness: 120 }}
               />
             </Link>
           </div>
@@ -39,7 +44,7 @@ function Navbar({ onLogoClick }) {
                 className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
                 whileFocus={{ scale: 1.1 }}
               />
-            </div>   
+            </div>
           </div>
           <div className="flex sm:hidden">
             <button type="button" onClick={() => setIsOpen(!isOpen)}>
@@ -56,11 +61,19 @@ function Navbar({ onLogoClick }) {
               </svg>
             </button>
           </div>
-          <div className={`${isOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row sm:items-center sm:ml-6`}>
+          <div
+            className={`${
+              isOpen ? "flex" : "hidden"
+            } sm:flex flex-col sm:flex-row sm:items-center sm:ml-6`}
+          >
             <div className="flex space-x-4">
               {profilePhoto ? (
                 <Link to="/mon-profil">
-                  <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
+                  <img
+                    src={profilePhoto}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full mr-4"
+                  />
                 </Link>
               ) : (
                 <Link to="/mon-profil">
@@ -68,29 +81,75 @@ function Navbar({ onLogoClick }) {
                 </Link>
               )}
               <div className="relative group flex">
-                <Link to="/user" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">User</Link>
+                <Link
+                  to="/user"
+                  className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  User
+                </Link>
                 <div className="absolute left-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
-                  <Link to="/" className={linkClasses}>Home</Link>
-                  <Link to="/mon-profil" className={linkClasses}>Profile</Link>
-                  <Link to="/mes-posts" className={linkClasses}>My Posts</Link>
-                  <Link to="/creer-post" className={linkClasses}>Create Posts</Link>
+                  <Link to="/" className={linkClasses}>
+                    Home
+                  </Link>
+                  <Link to="/mon-profil" className={linkClasses}>
+                    Profile
+                  </Link>
+                  <Link to="/mes-posts" className={linkClasses}>
+                    My Posts
+                  </Link>
+                  <Link to="/creer-post" className={linkClasses}>
+                    Create Posts
+                  </Link>
                 </div>
               </div>
               <div className="relative group flex">
-                <Link to="/login" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Login</Link>
+                <Link
+                  to="/login"
+                  className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105"
+                >
+                  Login
+                </Link>
                 <div className="absolute right-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
-                  <button onClick={handleLogout} className={linkClasses}>Logout</button>
+                  <button onClick={handleLogout} className={linkClasses}>
+                    Logout
+                  </button>
                 </div>
               </div>
               <div className="relative group flex">
-                <Link to="/categories" className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105">Categories</Link>
+                <Link
+                  to="/categories"
+                  className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105"
+                >
+                  Categories
+                </Link>
                 <div className="absolute right-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
-                  <Link to="/categorie/developpement-web" className={linkClasses}>Web Dev</Link>
-                  <Link to="/categorie/intelligence-artificielle" className={linkClasses}>AI</Link>
-                  <Link to="/categorie/hardware" className={linkClasses}>Hardware</Link>
-                  <Link to="/categorie/logiciels" className={linkClasses}>Software</Link>
-                  <Link to="/categorie/cybersecurite" className={linkClasses}>CyberSec</Link>
-                  <Link to="/categorie/carrieres-technos" className={linkClasses}>Careers</Link>
+                  <Link
+                    to="/categorie/developpement-web"
+                    className={linkClasses}
+                  >
+                    Web Dev
+                  </Link>
+                  <Link
+                    to="/categorie/intelligence-artificielle"
+                    className={linkClasses}
+                  >
+                    AI
+                  </Link>
+                  <Link to="/categorie/hardware" className={linkClasses}>
+                    Hardware
+                  </Link>
+                  <Link to="/categorie/logiciels" className={linkClasses}>
+                    Software
+                  </Link>
+                  <Link to="/categorie/cybersecurite" className={linkClasses}>
+                    CyberSec
+                  </Link>
+                  <Link
+                    to="/categorie/carrieres-technos"
+                    className={linkClasses}
+                  >
+                    Careers
+                  </Link>
                 </div>
               </div>
             </div>

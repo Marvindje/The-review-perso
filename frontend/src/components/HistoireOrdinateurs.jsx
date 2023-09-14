@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 function HistoryOfComputing() {
   return (
@@ -9,8 +9,13 @@ function HistoryOfComputing() {
       animate={{ scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="font-bold text-3xl mb-4 text-indigo-600">L'Histoire de l'Informatique</h2>
-      <p className="text-lg mb-6">L'informatique a une histoire riche et fascinante. Voici quelques jalons clés :</p>
+      <h2 className="font-bold text-3xl mb-4 text-indigo-600">
+        L'Histoire de l'Informatique
+      </h2>
+      <p className="text-lg mb-6">
+        L'informatique a une histoire riche et fascinante. Voici quelques jalons
+        clés :
+      </p>
       <div className="space-y-4">
         <Milestone
           year="Fin du 19e siècle"
@@ -29,7 +34,12 @@ function HistoryOfComputing() {
         />
         {/* Continuez à ajouter des jalons ici */}
       </div>
-      <a href="/histoire" className="text-indigo-600 hover:underline mt-4 inline-block">En savoir plus sur l'histoire de l'informatique</a>
+      <a
+        href="/histoire"
+        className="text-indigo-600 hover:underline mt-4 inline-block"
+      >
+        En savoir plus sur l'histoire de l'informatique
+      </a>
     </motion.div>
   );
 }
@@ -37,9 +47,11 @@ function HistoryOfComputing() {
 function Milestone({ year, title, description }) {
   return (
     <div className="flex items-center">
-      <div className="w-10 h-10 bg-indigo-500 rounded-full flex-shrink-0"></div>
+      <div className="w-10 h-10 bg-indigo-500 rounded-full flex-shrink-0" />
       <div className="ml-4">
-        <h3 className="font-semibold">{year}: {title}</h3>
+        <h3 className="font-semibold">
+          {year}: {title}
+        </h3>
         <p className="text-sm text-gray-600">{description}</p>
       </div>
     </div>

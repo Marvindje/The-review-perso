@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function CommentSection({ comments, onSubmit }) {
   return (
@@ -6,16 +6,25 @@ function CommentSection({ comments, onSubmit }) {
       <form onSubmit={onSubmit} className="flex flex-col">
         <label className="text-lg">
           New Comment:
-          <input name="comment" type="text" className="block w-full p-2 mt-1 border rounded" />
+          <input
+            name="comment"
+            type="text"
+            className="block w-full p-2 mt-1 border rounded"
+          />
         </label>
-        <button type="submit" className="self-end px-4 py-2 mt-2 text-lg bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors rounded shadow-md">
+        <button
+          type="submit"
+          className="self-end px-4 py-2 mt-2 text-lg bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors rounded shadow-md"
+        >
           Submit
         </button>
       </form>
 
       <ul className="space-y-2">
         {comments.map((comment, index) => (
-          <li key={index} className="p-2 border rounded ">{comment}</li>
+          <li key={index} className="p-2 border rounded ">
+            {comment}
+          </li>
         ))}
       </ul>
     </div>

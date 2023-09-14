@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import Contact from "../pages/Contact";
@@ -12,7 +13,8 @@ import Logiciels from "../pages/Logiciels";
 import CyberSecurite from "../pages/CyberSecurite";
 import CarrieresTechnos from "../pages/CarrieresTechnos";
 
-const AppRoutes = ({ isAuthenticated, onAuthSuccess }) => {
+function AppRoutes({ isAuthenticated, onAuthSuccess }) {
+  // Vous pouvez utiliser isAuthenticated et onAuthSuccess ici si nécessaire
   return (
     <Routes>
       <Route path="/homepage" element={<Homepage />} />
@@ -20,14 +22,28 @@ const AppRoutes = ({ isAuthenticated, onAuthSuccess }) => {
       <Route path="/creer-post" element={<CreerArticles />} />
       <Route path="/mes-posts" element={<MesPosts />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/categorie/developpement-web" element={<DeveloppementWeb />} />
-      <Route path="/categorie/intelligence-artificielle" element={<IntelligenceArtificielle />} />
+      <Route
+        path="/categorie/developpement-web"
+        element={<DeveloppementWeb />}
+      />
+      <Route
+        path="/categorie/intelligence-artificielle"
+        element={<IntelligenceArtificielle />}
+      />
       <Route path="/categorie/hardware" element={<Hardware />} />
       <Route path="/categorie/logiciels" element={<Logiciels />} />
       <Route path="/categorie/cybersecurite" element={<CyberSecurite />} />
-      <Route path="/categorie/carrieres-technos" element={<CarrieresTechnos />} />
+      <Route
+        path="/categorie/carrieres-technos"
+        element={<CarrieresTechnos />}
+      />
     </Routes>
   );
+}
+
+AppRoutes.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  onAuthSuccess: PropTypes.func.isRequired,
 };
 
 export default AppRoutes;

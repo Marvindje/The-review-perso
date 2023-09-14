@@ -1,7 +1,7 @@
-import React from 'react';
-import Auth from '../components/Auth';
+import React from "react";
+import Auth from "../components/Auth";
 
-const Login = ({ onAuthSuccess }) => {
+function Login({ onAuthSuccess }) {
   return (
     <div className="bg-gradient-to-r from-purple-500 via-blue-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full h-screen flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
@@ -10,6 +10,6 @@ const Login = ({ onAuthSuccess }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

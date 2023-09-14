@@ -1,7 +1,7 @@
-import React from 'react';
-import InputField from '../components/InputField';
-import Navbar from '../components/Navbar'; // Import du composant Navbar
-import Footer from '../components/Footer'; // Import du composant Footer
+import React from "react";
+import InputField from "../components/InputField";
+import Navbar from "../components/Navbar"; // Import du composant Navbar
+import Footer from "../components/Footer"; // Import du composant Footer
 
 function Contact() {
   return (

@@ -1,9 +1,9 @@
-import React from 'react';
-import ArticleSection from '../components/ArticleSection';
-import softwareImage from '../assets/logiciel.jpeg';
+import React from "react";
+import ArticleSection from "../components/ArticleSection";
+import softwareImage from "../assets/logiciel.jpeg";
 
-const Logiciels = () => {
+function Logiciels() {
   return <ArticleSection title="Software" image={softwareImage} />;
-};
+}
 
 export default Logiciels;
