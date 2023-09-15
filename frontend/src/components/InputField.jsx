@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaPen } from "react-icons/fa";
@@ -21,6 +22,15 @@ function InputField({ register, name, type, placeholder, icon: Icon, errors }) {
     </div>
   );
 }
+
+InputField.propTypes = {
+  register: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  icon: PropTypes.elementType.isRequired,
+  errors: PropTypes.object.isRequired,
+};
 
 function Contact() {
   const {
@@ -100,5 +110,11 @@ function Contact() {
     </div>
   );
 }
+
+Contact.propTypes = {
+  register: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  errors: PropTypes.object,
+};
 
 export default Contact;

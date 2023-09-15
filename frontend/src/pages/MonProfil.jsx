@@ -1,11 +1,9 @@
-// Importation des bibliothèques et modules nécessaires
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Modal from "react-modal";
 import thepageBackground from "../assets/thepage.jpeg";
 
-// Définition du composant MonProfil
 function MonProfil() {
-  // Initialisation des états pour le formulaire et la photo de profil
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,19 +14,17 @@ function MonProfil() {
   const [profilePhoto, setProfilePhoto] = useState(
     localStorage.getItem("profilePhoto") || null
   );
-  const [showAlert, setShowAlert] = useState(false); // État pour gérer l'affichage de l'alerte
+  const [showAlert, setShowAlert] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Effet pour mettre à jour le stockage local lorsque la photo de profil ou la bio changent
   useEffect(() => {
     localStorage.setItem("profilePhoto", profilePhoto);
     localStorage.setItem("userBio", formData.bio);
   }, [profilePhoto, formData.bio]);
 
-  // Fonction pour gérer les changements dans les champs du formulaire
   const handleInputChange = (event) => {
     const { name, value, type } = event.target;
     if (type === "file") {
-      // Si l'utilisateur a choisi un fichier, lire ce fichier et mettre à jour l'état
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -37,31 +33,26 @@ function MonProfil() {
       };
       reader.readAsDataURL(file);
     } else {
-      // Sinon, mettre à jour l'état avec la nouvelle valeur du champ
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   };
 
-  // Fonction pour sauvegarder les changements
   const handleSaveChanges = () => {
-    setShowAlert(true); // Afficher l'alerte pour indiquer que les changements ont été sauvegardés
-    setTimeout(() => setShowAlert(false), 3000); // Masquer l'alerte après 3 secondes
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000);
   };
 
-  // Fonction pour supprimer le compte
   const handleDeleteAccount = () => {
-    // Demander une confirmation à l'utilisateur
-    const confirmation = window.confirm(
-      "Êtes-vous sûr de vouloir supprimer votre compte ?"
-    );
-    if (confirmation) {
-      // Si confirmé, supprimer les données du stockage local et réinitialiser les états
-      alert("Compte supprimé !");
-      localStorage.removeItem("profilePhoto");
-      localStorage.removeItem("userBio");
-      setProfilePhoto(null);
-      setFormData({ ...formData, bio: "" });
-    }
+    setIsModalOpen(true);
+  };
+
+  const confirmDelete = () => {
+    // Code to delete the account
+    setIsModalOpen(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -106,7 +97,7 @@ function MonProfil() {
             className="block mb-2 text-2xl font-bold"
             style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
           >
-            Change Profile 
+            Change Profile
             <input
               className="hidden"
               id="photo"
@@ -116,6 +107,7 @@ function MonProfil() {
             />
           </label>
           <button
+            type="button"
             className="px-4 py-2 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded focus:outline-none focus:shadow-outline hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
             onClick={() => document.getElementById("photo").click()}
           >
@@ -134,32 +126,49 @@ function MonProfil() {
             name="bio"
             rows="4"
             className="w-full p-2 text-gray-700 border rounded-lg focus:outline-none"
-            placeholder="Écrivez quelque chose sur vous..."
+            placeholder="Write something about yourself..."
             value={formData.bio}
             onChange={handleInputChange}
           />
         </div>
         <div className="flex mt-4 space-x-4">
           <button
+            type="button"
             className="px-4 py-2 font-semibold text-blue-500 bg-transparent border border-blue-500 rounded focus:outline-none hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
             onClick={handleSaveChanges}
           >
             Save changes
           </button>
           <button
+            type="button"
             className="px-4 py-2 font-semibold text-gray-500 bg-transparent border border-gray-500 rounded focus:outline-none hover:bg-gray-500 hover:text-white transition-all duration-300 ease-in-out"
             onClick={() => window.location.reload()}
           >
             Cancel
           </button>
           <button
+            type="button"
             className="px-4 py-2 font-semibold text-purple-500 bg-transparent border border-purple-500 rounded focus:outline-none hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
             onClick={handleDeleteAccount}
           >
-            Delete Account 
+            Delete Account
           </button>
         </div>
       </motion.div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Delete Account Confirmation"
+      >
+        <h2>Are you sure you want to delete your account?</h2>
+        <button type="button" onClick={confirmDelete}>
+          Yes
+        </button>
+        <button type="button" onClick={closeModal}>
+          No
+        </button>
+      </Modal>
     </div>
   );
 }

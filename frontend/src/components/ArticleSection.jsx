@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import galaxyBackground from "../assets/thepage.jpeg"; 
+import galaxyBackground from "../assets/thepage.jpeg";
 
 function ArticleSection({ title, image }) {
   const articleVariants = {

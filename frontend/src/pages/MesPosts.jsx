@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FaThumbsUp, FaTrash, FaSync } from "react-icons/fa";
 import noResultsImage from "../assets/noresults.png";
@@ -22,6 +22,7 @@ const reducer = (state, action) => {
 
 function MesPosts() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [currentComments, setCurrentComments] = useState({});
   const controls = useAnimation();
 
   useEffect(() => {
@@ -55,8 +56,8 @@ function MesPosts() {
     localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
-  const handleComment = async (index) => {
-    const comment = state.currentComments[index];
+  const handleComment = (index) => {
+    const comment = currentComments[index];
     if (comment && comment.trim() !== "") {
       const newPosts = [...state.posts];
       if (!newPosts[index].comments) {
@@ -65,12 +66,7 @@ function MesPosts() {
       newPosts[index].comments.push(comment);
       dispatch({ type: "SET_POSTS", payload: newPosts });
       localStorage.setItem("posts", JSON.stringify(newPosts));
-      dispatch({
-        type: "SET_CURRENT_COMMENTS",
-        payload: { ...state.currentComments, [index]: "" },
-      });
-      await controls.start({ scale: 1.1 });
-      controls.start({ scale: 1 });
+      setCurrentComments({ ...currentComments, [index]: "" });
     }
   };
 
@@ -99,7 +95,7 @@ function MesPosts() {
 
       {state.posts.length === 0 ? (
         <motion.div
-          className="text-2xl font-bold text-gray-700 mb-10 m-4" // Ajout de m-4 ici
+          className="text-2xl font-bold text-gray-700 mb-10 m-4"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -108,13 +104,12 @@ function MesPosts() {
             src={noResultsImage}
             alt="No Results"
             className="mt-4 w-1/2 mx-auto"
-          />{" "}
-          {/* Ajout de l'image */}
+          />
         </motion.div>
       ) : (
         state.posts.map((post, index) => (
           <motion.div
-            key={index}
+            key={`post-${index}`}
             className="w-3/4 mx-auto bg-white shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,16 +123,10 @@ function MesPosts() {
                 {post.post}
               </h2>
               <div className="flex space-x-2">
-                <button
-                  onClick={() => resetPost(index)}
-                  className="text-gray-500 hover:text-gray-700 focus:outline-none"
-                >
+                <button type="button" onClick={() => resetPost(index)}>
                   <FaSync className="text-xl" />
                 </button>
-                <button
-                  onClick={() => deletePost(index)}
-                  className="text-red-500 hover:text-red-700 focus:outline-none"
-                >
+                <button type="button" onClick={() => deletePost(index)}>
                   <FaTrash className="text-xl" />
                 </button>
               </div>
@@ -150,30 +139,25 @@ function MesPosts() {
                 <iframe
                   width="560"
                   height="315"
-                  src={`https://www.youtube.com/embed/${
-                    post.youtubeLink
-                  }`}
+                  src={`https://www.youtube.com/embed/${post.youtubeLink}`}
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 />
               </div>
             )}
             {post.files &&
               post.files.map((file, fileIndex) => (
                 <img
-                  key={fileIndex}
+                  key={`file-${fileIndex}`}
                   src={file.dataUrl}
                   alt={file.name}
                   className="mt-2 h-32 w-auto object-cover rounded-md shadow-md"
                 />
               ))}
             <div className="flex items-center mb-4">
-              <button
-                onClick={() => handleLike(index)}
-                className="focus:outline-none"
-              >
+              <button type="button" onClick={() => handleLike(index)}>
                 <FaThumbsUp
                   className={`mr-2 ${post.liked ? "text-blue-500" : ""}`}
                 />
@@ -185,7 +169,7 @@ function MesPosts() {
               {post.comments && Array.isArray(post.comments)
                 ? post.comments.map((comment, commentIndex) => (
                     <div
-                      key={commentIndex}
+                      key={`comment-${commentIndex}`}
                       className="bg-gray-100 p-2 rounded-md mb-2"
                     >
                       <p className="text-gray-700">{comment}</p>
@@ -199,7 +183,7 @@ function MesPosts() {
                 id={`comment-${index}`}
                 className="w-full p-2 border rounded-md mb-2"
                 placeholder="Write a comment..."
-                value={state.currentComments[index] || ""}
+                value={currentComments[index] || ""}
                 onChange={(e) =>
                   setCurrentComments({
                     ...currentComments,
@@ -208,11 +192,9 @@ function MesPosts() {
                 }
               />
               <motion.button
+                type="button"
                 onClick={() => handleComment(index)}
                 className="px-4 py-2 bg-blue-500 text-white rounded-md"
-                whileHover={{ backgroundColor: "#2563EB" }}
-                whileTap={{ backgroundColor: "#1E40AF" }}
-                animate={controls}
               >
                 Submit
               </motion.button>

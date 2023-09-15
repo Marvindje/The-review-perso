@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 
 function Auth({ onAuthSuccess }) {
@@ -41,18 +42,28 @@ function Auth({ onAuthSuccess }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-600">
+        <label
+          htmlFor="username"
+          className="block text-sm font-medium text-gray-600"
+        >
           UserName
         </label>
         <textarea
+          id="username"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-600">Email</label>
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-600"
+        >
+          Email
+        </label>
         <input
+          id="email"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
           type="email"
           value={email}
@@ -60,10 +71,14 @@ function Auth({ onAuthSuccess }) {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-600">
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-600"
+        >
           Password
         </label>
         <input
+          id="password"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
           type="password"
           value={password}
@@ -82,5 +97,9 @@ function Auth({ onAuthSuccess }) {
     </form>
   );
 }
+
+Auth.propTypes = {
+  onAuthSuccess: PropTypes.func.isRequired,
+};
 
 export default Auth;

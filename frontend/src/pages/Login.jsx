@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Auth from "../components/Auth";
 
 function Login({ onAuthSuccess }) {
@@ -11,5 +12,9 @@ function Login({ onAuthSuccess }) {
     </div>
   );
 }
+
+Login.propTypes = {
+  onAuthSuccess: PropTypes.func.isRequired,
+};
 
 export default Login;

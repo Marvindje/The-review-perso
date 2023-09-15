@@ -1,4 +1,15 @@
+import React from "react";
+
 function LogicielsSection() {
+  const renderSoftwareSubsection = (title, description) => {
+    return (
+      <div className="bg-white p-4">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    );
+  };
+
   return (
     <div className="p-10 bg-gray-100">
       <h2 className="font-bold text-3xl mb-4">Logiciels</h2>
@@ -24,12 +35,4 @@ function LogicielsSection() {
   );
 }
 
-function renderSoftwareSubsection(title, description) {
-  return (
-    <div className="bg-white p-4">
-      <h3>{title}</h3>
-      <p>{description}</p>
-      {/* Ajoutez plus de contenu ici, comme des images, vidéos, liens, etc. */}
-    </div>
-  );
-}
+export default LogicielsSection;

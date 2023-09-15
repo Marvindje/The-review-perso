@@ -26,8 +26,6 @@ class AuthController {
 
     static async login(req, res){
         try {
-            console.log("Requête reçue pour login:", req.body);  // Ajout du console.log ici
-
             const { email, password } = req.body;
     
             if(!email || !password) {

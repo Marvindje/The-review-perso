@@ -1,4 +1,3 @@
-// Importation des bibliothèques et modules nécessaires
 import React, { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
@@ -172,7 +171,7 @@ function CreerPosts() {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             />
           </div>
         )}
@@ -197,12 +196,17 @@ function CreerPosts() {
           className="w-full p-2 border rounded-md mb-4"
         />
         <div className="flex items-center mb-4">
-          <button onClick={handleLike} className="focus:outline-none">
+          <button
+            type="button"
+            onClick={handleLike}
+            className="focus:outline-none"
+          >
             <FaThumbsUp className={`mr-2 ${liked ? "text-blue-500" : ""}`} />
           </button>
           <p className="text-gray-500">{likes} likes</p>
         </div>
         <button
+          type="button"
           onClick={handlePostClick}
           className="px-4 py-2 bg-blue-500 text-white rounded-md"
         >
