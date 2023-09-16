@@ -86,7 +86,7 @@
   height: 254px;
   background: #e0e0e0;
   border-radius: 20px;
-  box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -98,12 +98,13 @@
   padding: 10px;
 }
 
-.neomorph-card h3, .neomorph-card p {
+.neomorph-card h3,
+.neomorph-card p {
   font-size: 1rem;
 }
 
 .neomorph-card:hover {
-  box-shadow:  inset 4px 4px 10px #bebebe, inset -4px -4px 10px #ffffff;
+  box-shadow: inset 4px 4px 10px #bebebe, inset -4px -4px 10px #ffffff;
 }
 
 .neomorph-card--large {
