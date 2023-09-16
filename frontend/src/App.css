@@ -81,3 +81,36 @@
   align-items: center;
   z-index: 9999;
 }
+.neomorph-card {
+  width: 190px;
+  height: 254px;
+  background: #e0e0e0;
+  border-radius: 20px;
+  box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+
+.neomorph-card h3, .neomorph-card p {
+  font-size: 1rem;
+}
+
+.neomorph-card:hover {
+  box-shadow:  inset 4px 4px 10px #bebebe, inset -4px -4px 10px #ffffff;
+}
+
+.neomorph-card--large {
+  width: 400px;
+  height: 500px;
+}
+
+.neomorph-card--large:hover {
+  box-shadow: inset 2px 2px 5px #bebebe, inset -2px -2px 5px #ffffff;
+}
