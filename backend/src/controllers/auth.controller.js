@@ -68,7 +68,7 @@ class AuthController {
         try {
             console.log("Requête reçue pour register:", req.body);  // Ajout du console.log ici
 
-            const { username, email, password, profile_image } = req.body;
+            const { username, email, password, profile_image, birthdate } = req.body;
     
             if(!username || !email || !password) {
                 return res.status(500).send({ error: "username, email or password is not defined !" })
@@ -81,7 +81,8 @@ class AuthController {
                 username, 
                 email, 
                 password: hashPassword,
-                profile_image: profile_image || null
+                profile_image: profile_image || null,
+                birthdate
             })
     
             AuthController.setCookie(user, res)

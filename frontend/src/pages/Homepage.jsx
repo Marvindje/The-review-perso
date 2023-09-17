@@ -30,7 +30,7 @@ function HomePage() {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
-        whileHover={{
+        whilehover={{
           boxShadow: "0 0 20px 5px rgba(255, 255, 255, 0.6)",
         }}
       >
@@ -57,7 +57,7 @@ function HomePage() {
             boxShadow: "0 0 15px 2px rgba(43, 108, 176, 0.4)",
             transition: "all 0.5s ease",
           }}
-          whileHover={{
+          whilehover={{
             scale: 1.05,
             rotate: [0, 5, -5, 5, -5, 0],
             boxShadow: "0 0 20px 5px rgba(43, 108, 176, 0.8)",
@@ -76,7 +76,7 @@ function HomePage() {
       >
         <motion.div
           className="bg-transparent border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl backdrop-blur-md"
-          whileHover={{ boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
+          whilehover={{ boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
           initial={{ rotate: 0 }}
           animate={{ rotate: 0 }}
           transition={{ duration: 0.3 }}
@@ -88,7 +88,7 @@ function HomePage() {
             <p className="text-lg text-white mb-6 opacity-80">
               Join our community and start sharing posts !
             </p>
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <motion.div whilehover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
   <Link
     to="/creer-post"
     className="inline-flex items-center px-6 py-4 shadow-lg rounded-lg font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:-rotate-2"
@@ -110,7 +110,7 @@ function HomePage() {
       >
         <motion.div
           className="bg-transparent border-4 border-indigo-600 shadow-2xl rounded-3xl p-10 mx-2 w-full transition-shadow duration-500 ease-in-out hover:shadow-3xl backdrop-blur-md"
-          whileHover={{ boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
+          whilehover={{ boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
           initial={{ rotate: 0 }}
           animate={{ rotate: 0 }}
           transition={{ duration: 0.5 }}

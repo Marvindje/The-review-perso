@@ -11,12 +11,12 @@ function ArticleSection({ title, image }) {
   };
 
   return (
-    <div className="font-body" style={{ background: "#e0e0e0" }}>
+    <div className="font-body custom-background" style={{ background: "#e0e0e0" }}>
       <motion.div
         className="relative h-auto md:h-96 flex items-center justify-center bg-no-repeat bg-center bg-cover shadow-2xl"
         style={{ backgroundImage: `url(${image})` }}
         initial="rest"
-        whileHover="hover"
+        whilehover="hover"
       >
         <h1
           className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200"

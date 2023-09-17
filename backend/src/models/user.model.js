@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require('../../config/db');
-// TODO : rendre le mail unique
+
 const UserModel = sequelize.define('user', {
   // définition des attributs des modèles
   username: {
@@ -18,9 +18,12 @@ const UserModel = sequelize.define('user', {
   },
   profile_image: {
     type: DataTypes.STRING
+  },
+  birthdate: {  // Ajout du champ birthdate
+    type: DataTypes.DATE,
+    allowNull: false  // Mettez cela à false si vous voulez que ce champ soit obligatoire
   }
 }, {
-
   timestamps: true
 });
 

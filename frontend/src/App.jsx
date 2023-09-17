@@ -64,7 +64,8 @@ function App() {
               )
             }
           />
-          <Route path="/*" element={<AppRoutes />} />
+         <Route path="/*" element={<AppRoutes isAuthenticated={isAuthenticated} onAuthSuccess={handleAuthSuccess} />} />
+
         </Routes>
 
         {/* Render Footer if authenticated */}
