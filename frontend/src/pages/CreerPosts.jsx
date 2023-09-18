@@ -165,6 +165,7 @@ function CreerPosts() {
           </div>
         )}
         <textarea
+        style={{ marginTop: "50px" }} 
           className="w-full p-2 border rounded-md mb-4"
           value={post}
           onChange={(e) => setPost(e.target.value)}
