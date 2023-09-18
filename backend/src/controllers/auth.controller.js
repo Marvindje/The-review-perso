@@ -16,12 +16,10 @@ class AuthController {
         }, jwtSecret, {
             expiresIn: "1d"
         });
-
+console.log(res.cookie)
         res.cookie("token", token, {
-            maxAge: 1000 * 60 * 60 * 24,
-            httpOnly: true
+            maxAge: 1000 * 60 * 60 * 24
         })
-
     }
 
     static async login(req, res){

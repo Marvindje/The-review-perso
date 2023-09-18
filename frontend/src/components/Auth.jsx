@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-function Auth({ onAuthSuccess }) {
+function Auth({ onAuthSuccess, isLogin }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthDate, setBirthDate] = useState(''); // Nouvelle variable d'état pour la date de naissance
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLogin, setIsLogin] = useState(true);
+  const [authType, setAuthType] = useState(!!isLogin);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
+    if (!email || !password) {
       setErrorMessage('Les identifiants sont incomplets.');
       return;
     }
 
-    const endpoint = isLogin ? '/auth/login' : '/auth/register';
+    const endpoint = authType ? '/auth/login' : '/auth/register';
     const payload = {
       username,
       email,
@@ -26,12 +26,13 @@ function Auth({ onAuthSuccess }) {
     };
 
     // Ajoute la date de naissance au payload si l'utilisateur crée un compte
-    if (!isLogin) {
+    if (!authType) {
       payload.birthDate = birthDate;
     }
 
     try {
       const response = await axios.post(`http://localhost:5000${endpoint}`, payload);
+      console.log(response)
       if (response.status === 200) {
         localStorage.setItem('loggedInUsername', username);
         onAuthSuccess();
@@ -44,17 +45,17 @@ function Auth({ onAuthSuccess }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-      <div className="mb-4">
+      {!authType && <div className="mb-4">
         <label htmlFor="username" className="block text-sm font-medium text-gray-600">
           UserName
         </label>
-        <textarea
+        <input
           id="username"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-      </div>
+      </div>}
       <div className="mb-4">
         <label htmlFor="email" className="block text-sm font-medium text-gray-600">
           Email
@@ -81,7 +82,7 @@ function Auth({ onAuthSuccess }) {
       </div>
 
       {/* Champ pour la date de naissance, affiché uniquement lors de la création d'un compte */}
-      {!isLogin && (
+      {!authType && (
         <div className="mb-4">
           <label htmlFor="birthDate" className="block text-sm font-medium text-gray-600">
             Date de naissance
@@ -100,10 +101,10 @@ function Auth({ onAuthSuccess }) {
         className="bg-blue-500 text-white p-2 rounded-md w-full hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200"
         type="submit"
       >
-        {isLogin ? 'Login' : 'Sign in'}
+        {authType ? 'Login' : 'Sign in'}
       </button>
-      <button type="button" onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? 'Sign in ' : 'Connexion'}
+      <button type="button" onClick={() => setAuthType(!authType)}>
+        {authType ? 'Sign in ' : 'Connexion'}
       </button>
     </form>
   );
@@ -111,6 +112,7 @@ function Auth({ onAuthSuccess }) {
 
 Auth.propTypes = {
   onAuthSuccess: PropTypes.func.isRequired,
+  isLogin: PropTypes.bool
 };
 
 export default Auth;

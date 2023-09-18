@@ -11,11 +11,16 @@ import Navbar from "./components/NavBar";
 import Login from "./pages/Login";
 import HomePage from "./pages/Homepage";
 import "./App.css";
+import { CookiesProvider } from 'react-cookie';
+import { useCookies } from 'react-cookie';
+
 
 function App() {
   // State variables
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
+
+
 
   // Handle successful authentication
   const handleAuthSuccess = () => {
@@ -40,38 +45,14 @@ function App() {
   );
 
   return (
-    <Router>
-      <div className="App">
-        {/* Render Navbar if authenticated */}
-        {isAuthenticated && <Navbar />}
-
-        {/* Render spinner */}
-        {renderSpinner}
-
-        <Routes>
-          <Route path="/" element={<Navigate to="/homepage" />} />
-          <Route
-            path="/homepage"
-            element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/login"
-            element={
-              !isAuthenticated ? (
-                <Login onAuthSuccess={handleAuthSuccess} />
-              ) : (
-                <Navigate to="/homepage" />
-              )
-            }
-          />
-         <Route path="/*" element={<AppRoutes isAuthenticated={isAuthenticated} onAuthSuccess={handleAuthSuccess} />} />
-
-        </Routes>
-
-        {/* Render Footer if authenticated */}
-        {isAuthenticated && <Footer />}
-      </div>
-    </Router>
+    <CookiesProvider>
+      <Router>
+        <div className="App">
+          <AppRoutes />
+          {renderSpinner}
+        </div>
+      </Router>
+    </CookiesProvider>
   );
 }
 
