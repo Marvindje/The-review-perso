@@ -46,21 +46,14 @@ function Navbar({ onLogoClick }) {
               />
             </div>
           </div>
-          <div className="flex sm:hidden">
-            <button type="button" onClick={() => setIsOpen(!isOpen)}>
-              <svg
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="menu w-6 h-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2 4.5A1.5 1.5 0 013.5 3h13a1.5 1.5 0 010 3h-13A1.5 1.5 0 012 4.5zm0 5A1.5 1.5 0 013.5 8h13a1.5 1.5 0 010 3h-13A1.5 1.5 0 012 9.5zm1.5 5a1.5 1.5 0 000 3h13a1.5 1.5 0 000-3h-13z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+        <div className="flex sm:hidden">
+  <button type="button" onClick={() => setIsOpen(!isOpen)} className="relative">
+    <div className="w-6 h-0.5 bg-black mb-1.5 rounded-full"></div>
+    <div className="w-6 h-0.5 bg-black mb-1.5 rounded-full"></div>
+    <div className="w-6 h-0.5 bg-black rounded-full"></div>
+  </button>
+</div>
+
           <div
             className={`${
               isOpen ? "flex" : "hidden"
@@ -115,43 +108,8 @@ function Navbar({ onLogoClick }) {
                   </button>
                 </div>
               </div>
-              <div className="relative group flex">
-                <Link
-                  to="/categories"
-                  className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105"
-                >
-                  Categories
-                </Link>
-                <div className="absolute right-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 max-w-full overflow-y-auto border border-gray-200">
-                  <Link
-                    to="/categorie/developpement-web"
-                    className={linkClasses}
-                  >
-                    Web Dev
-                  </Link>
-                  <Link
-                    to="/categorie/intelligence-artificielle"
-                    className={linkClasses}
-                  >
-                    AI
-                  </Link>
-                  <Link to="/categorie/hardware" className={linkClasses}>
-                    Hardware
-                  </Link>
-                  <Link to="/categorie/logiciels" className={linkClasses}>
-                    Software
-                  </Link>
-                  <Link to="/categorie/cybersecurite" className={linkClasses}>
-                    CyberSec
-                  </Link>
-                  <Link
-                    to="/categorie/carrieres-technos"
-                    className={linkClasses}
-                  >
-                    Careers
-                  </Link>
-                </div>
-              </div>
+             
+              
             </div>
           </div>
         </div>

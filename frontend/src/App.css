@@ -115,3 +115,18 @@
 .neomorph-card--large:hover {
   box-shadow: inset 2px 2px 5px #bebebe, inset -2px -2px 5px #ffffff;
 }
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+  z-index: 1;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}

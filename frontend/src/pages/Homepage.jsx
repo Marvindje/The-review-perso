@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Categories from "../components/Categories";
 import heroImage from "../assets/IA-intelligence-artificielle.jpeg";
 import galaxyBackground from "../assets/thepage.jpeg";
 
@@ -81,26 +82,35 @@ function HomePage() {
           animate={{ rotate: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="mx-auto text-center">
-            <h2 className="font-bold text-3xl text-white mb-6">
-              Feel like Sharing ?
-            </h2>
-            <p className="text-lg text-white mb-6 opacity-80">
-              Join our community and start sharing posts !
-            </p>
-            <motion.div whilehover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-  <Link
-    to="/creer-post"
-    className="inline-flex items-center px-6 py-4 shadow-lg rounded-lg font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:-rotate-2"
-  >
-    Create posts
-    <FaArrowRight className="ml-3 text-2xl" />
-  </Link>
+         <div className="mx-auto text-center">
+      <h2 className="font-bold text-3xl text-white mb-6">
+        Feel like Sharing ?
+      </h2>
+      <p className="text-lg text-white mb-6 opacity-80">
+        Join our community and start sharing posts !
+      </p>
+      <motion.div whilehover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <Link
+          to="/creer-post"
+          className="inline-flex items-center px-6 py-4 shadow-lg rounded-lg font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:-rotate-2"
+        >
+          Create posts
+          <FaArrowRight className="ml-3 text-2xl" />
+        </Link>
+      </motion.div>
+      <p className="text-lg text-white mt-6 opacity-80">
+        Explore posts by categories and find what interests you the most!
+      </p>
+    </div>
+    <Categories /> {/* Nouveau composant ajouté */}
+  </motion.div>
 </motion.div>
 
-          </div>
-        </motion.div>
-      </motion.div>
+
+
+
+
+
 
       <motion.div
         className="relative py-3 sm:max-w-xl sm:mx-auto mt-10 mb-20 w-full"
