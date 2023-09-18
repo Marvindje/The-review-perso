@@ -4,16 +4,13 @@ import { FaThumbsUp, FaTrash, FaSync, FaCommentDots } from "react-icons/fa";
 import noResultsImage from "../assets/noresults.png";
 import galaxyBackground from "../assets/thepage.jpeg";
 
-// Définition de l'état initial pour le réducteur. Il contient deux propriétés : 'posts' et 'currentComments'.
 const initialState = {
   posts: [],
   currentComments: {},
 };
 
-// Fonction réducteur qui prend en charge la mise à jour de l'état en fonction des actions reçues.
 const reducer = (state, action) => {
   switch (action.type) {
-    // Si l'action est de type 'SET_POSTS', mettre à jour la propriété 'posts' de l'état avec la nouvelle valeur.
     case "SET_POSTS":
       return { ...state, posts: action.payload };
     default:
@@ -22,12 +19,9 @@ const reducer = (state, action) => {
 };
 
 function MesPosts() {
-  // Utilisation du Hook useReducer pour gérer l'état complexe des posts et des commentaires.
   const [state, dispatch] = useReducer(reducer, initialState);
-  // Utilisation du Hook useState pour gérer l'état des commentaires en cours de rédaction.
   const [currentComments, setCurrentComments] = useState({});
 
-  // Utilisation du Hook useEffect pour charger les posts depuis le localStorage lorsque le composant est monté.
   useEffect(() => {
     const savedPosts = JSON.parse(localStorage.getItem("posts"));
     if (savedPosts) {
@@ -35,7 +29,6 @@ function MesPosts() {
     }
   }, []);
 
-  // Fonction pour gérer les likes. Elle inverse l'état du like et met à jour le nombre de likes.
   const handleLike = (index) => {
     const newPosts = [...state.posts];
     newPosts[index].liked = !newPosts[index].liked;
@@ -44,7 +37,6 @@ function MesPosts() {
     localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
-  // Fonction pour supprimer un post. Elle retire le post de l'array et met à jour l'état et le localStorage.
   const deletePost = (index) => {
     const newPosts = [...state.posts];
     newPosts.splice(index, 1);
@@ -52,7 +44,6 @@ function MesPosts() {
     localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
-  // Fonction pour réinitialiser les likes d'un post. Elle remet le compteur de likes à zéro et met à jour l'état et le localStorage.
   const resetPost = (index) => {
     const newPosts = [...state.posts];
     newPosts[index].likes = 0;
@@ -61,7 +52,6 @@ function MesPosts() {
     localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
-  // Fonction pour ajouter un commentaire à un post. Elle ajoute le commentaire à l'array de commentaires du post concerné.
   const handleComment = (index) => {
     const comment = currentComments[index];
     if (comment && comment.trim() !== "") {
@@ -113,13 +103,15 @@ function MesPosts() {
         </motion.div>
       ) : (
         state.posts.map((post, index) => (
-          <motion.div
-            key={`post-${index}`}
-            className="neomorph-card--large w-3/4 mx-auto bg-white shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+<motion.div
+  key={`post-${index}`}
+  className="neomorph-card--large w-3/4 mx-auto shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
+  style={{ backdropFilter: "blur(10px)", backgroundColor: "rgba(255, 255, 255, 0.5)" }} // Ajout d'un flou en arrière-plan et d'une couleur de fond semi-transparente
+  initial={{ opacity: 0, y: -50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+
             <div className="flex justify-between items-center mb-4">
               <h2
                 className="text-2xl font-bold"
@@ -140,18 +132,19 @@ function MesPosts() {
               <p className="text-gray-700">{post.postContent}</p>
             </div>
             {post.youtubeId && (
-              <div className="mb-4">
-                <iframe
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${post.youtubeId}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            )}
+  <div className="mb-4 flex justify-center"> {/* Ajout de flex et justify-center */}
+    <iframe
+      width="560"
+      height="315"
+      src={`https://www.youtube.com/embed/${post.youtubeId}`}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+)}
+
             {post.files &&
               post.files.map((file, fileIndex) => (
                 <img
@@ -169,41 +162,8 @@ function MesPosts() {
               </button>
               <p className="text-gray-500">{post.likes} likes</p>
             </div>
-            <div className="mb-4">
-              <h3 className="text-lg font-semibold mb-2">Last comments:</h3>
-              {post.comments && Array.isArray(post.comments)
-                ? post.comments.map((comment, commentIndex) => (
-                    <div
-                      key={`comment-${commentIndex}`}
-                      className="bg-gray-100 p-2 rounded-md mb-2"
-                    >
-                      <p className="text-gray-700">{comment}</p>
-                    </div>
-                  ))
-                : null}
-            </div>
-            <div className="mt-4 bg-gray-50 p-4 rounded-md">
-              <h3 className="text-lg font-semibold mb-2">Add a comment:</h3>
-              <textarea
-                id={`comment-${index}`}
-                className="w-full p-2 border rounded-md mb-2"
-                placeholder="Write a comment..."
-                value={currentComments[index] || ""}
-                onChange={(e) =>
-                  setCurrentComments({
-                    ...currentComments,
-                    [index]: e.target.value,
-                  })
-                }
-              />
-             <motion.button
-  type="button"
-  onClick={() => handleComment(index)}
-  className="px-4 py-2 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded focus:outline-none focus:shadow-outline hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
->
-  <FaCommentDots className="inline-block mr-2" /> Submit
-</motion.button>
-            </div>
+          
+           
           </motion.div>
         ))
       )}

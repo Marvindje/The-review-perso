@@ -16,11 +16,17 @@ function CreerPosts() {
   const [files, setFiles] = useState([]);
 
   const onDrop = useCallback((acceptedFiles) => {
-    setFiles(
-      acceptedFiles.map((file) =>
-        Object.assign(file, { preview: URL.createObjectURL(file) })
-      )
-    );
+    acceptedFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = function () {
+        const base64data = reader.result;
+        setFiles((prevFiles) => [
+          ...prevFiles,
+          { name: file.name, dataUrl: base64data },
+        ]);
+      };
+    });
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -33,10 +39,11 @@ function CreerPosts() {
       post,
       likes,
       liked,
-      youtubeLink,
+      youtubeId: renderYoutubePreview(),
       hashtags,
       mention,
       files,
+      comments: [],
     };
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
     posts.push(newPost);
