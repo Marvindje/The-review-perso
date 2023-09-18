@@ -52,19 +52,7 @@ function MesPosts() {
     localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
-  const handleComment = (index) => {
-    const comment = currentComments[index];
-    if (comment && comment.trim() !== "") {
-      const newPosts = [...state.posts];
-      if (!newPosts[index].comments) {
-        newPosts[index].comments = [];
-      }
-      newPosts[index].comments.push(comment);
-      dispatch({ type: "SET_POSTS", payload: newPosts });
-      localStorage.setItem("posts", JSON.stringify(newPosts));
-      setCurrentComments({ ...currentComments, [index]: "" });
-    }
-  };
+ 
 
   return (
     <motion.div
@@ -79,15 +67,15 @@ function MesPosts() {
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
-      <motion.h1
-        className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
-        style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
-        initial={{ x: "-100vw" }}
-        animate={{ x: 0 }}
-        transition={{ duration: 1 }}
-      >
-        My Posts
-      </motion.h1>
+  <motion.h1
+  className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md text-center" // Ajout de text-center
+  style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
+  initial={{ x: "-100vw" }}
+  animate={{ x: 0 }}
+  transition={{ duration: 1 }}
+>
+  My Posts
+</motion.h1>
       {state.posts.length === 0 ? (
         <motion.div
           className="text-2xl font-bold text-gray-700 mb-10 m-4"
