@@ -11,7 +11,10 @@ function ArticleSection({ title, image }) {
   };
 
   return (
-    <div className="font-body custom-background" style={{ background: "#e0e0e0" }}>
+    <div
+      className="font-body custom-background"
+      style={{ background: "#e0e0e0" }}
+    >
       <motion.div
         className="relative h-auto md:h-96 flex items-center justify-center bg-no-repeat bg-center bg-cover shadow-2xl"
         style={{ backgroundImage: `url(${image})` }}
@@ -29,9 +32,9 @@ function ArticleSection({ title, image }) {
         </h1>
       </motion.div>
 
-      <div className="flex justify-center items-center mt-64 mb-0">
-        <div className="grid grid-cols-2 gap-8">
-          {[...Array(4)].map((_, i) => (
+      <div className="flex justify-center items-center  py-4 px-8">
+        <div className="grid grid-cols-4 gap-8 mt-2">  {/* 4 colonnes */}
+          {[...Array(16)].map((_, i) => (  // 16 articles
             <motion.div
               key={i}
               className="neomorph-card"

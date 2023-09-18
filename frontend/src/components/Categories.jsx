@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Categories() {
   const categories = [
-    { name: 'Web Dev', path: '/categorie/developpement-web' },
-    { name: 'AI', path: '/categorie/intelligence-artificielle' },
-    { name: 'Hardware', path: '/categorie/hardware' },
-    { name: 'Software', path: '/categorie/logiciels' },
-    { name: 'CyberSec', path: '/categorie/cybersecurite' },
-    { name: 'Careers', path: '/categorie/carrieres-technos' },
+    { name: "Web Dev", path: "/categorie/developpement-web" },
+    { name: "AI", path: "/categorie/intelligence-artificielle" },
+    { name: "Hardware", path: "/categorie/hardware" },
+    { name: "Software", path: "/categorie/logiciels" },
+    { name: "CyberSec", path: "/categorie/cybersecurite" },
+    { name: "Careers", path: "/categorie/carrieres-technos" },
   ];
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import Homepage from "../pages/Homepage";
@@ -16,18 +17,16 @@ import Login from "../pages/Login";
 import Logiciels from "../pages/Logiciels";
 import CyberSecurite from "../pages/CyberSecurite";
 import CarrieresTechnos from "../pages/CarrieresTechnos";
-import { useCookies } from 'react-cookie';
 
 function AppRoutes() {
-  const [cookies, setCookie] = useCookies(['token']);
-  console.log({cookies})
+  const [cookies, setCookie] = useCookies(["token"]);
+  console.log({ cookies });
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [showSpinner, setShowSpinner] = useState(false);
 
   const handleAuthSuccess = async () => {
     setShowSpinner(true);
   };
-
 
   useEffect(() => {
     if (showSpinner) {
@@ -44,17 +43,12 @@ function AppRoutes() {
   );
 
   // Vous pouvez utiliser isAuthenticated et onAuthSuccess ici si nécessaire
-  return !isAuthenticated 
-  ? (
+  return !isAuthenticated ? (
     <Routes>
-      <Route
-        path="/"
-        element={<Login onAuthSuccess={handleAuthSuccess} />}
-      />
+      <Route path="/" element={<Login onAuthSuccess={handleAuthSuccess} />} />
       <Route path="/*" element={<>404</>} />
     </Routes>
-  ) 
-  : ( 
+  ) : (
     <>
       <Navbar />
       <Routes>

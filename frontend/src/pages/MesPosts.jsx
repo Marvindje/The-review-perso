@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { motion } from "framer-motion";
-import { FaThumbsUp, FaTrash, FaSync, FaCommentDots } from "react-icons/fa";
+import { FaThumbsUp, FaTrash, FaSync } from "react-icons/fa";
 import noResultsImage from "../assets/noresults.png";
 import galaxyBackground from "../assets/thepage.jpeg";
 
@@ -20,7 +20,6 @@ const reducer = (state, action) => {
 
 function MesPosts() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [currentComments, setCurrentComments] = useState({});
 
   useEffect(() => {
     const savedPosts = JSON.parse(localStorage.getItem("posts"));
@@ -52,8 +51,6 @@ function MesPosts() {
     localStorage.setItem("posts", JSON.stringify(newPosts));
   };
 
- 
-
   return (
     <motion.div
       style={{
@@ -67,15 +64,15 @@ function MesPosts() {
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
-  <motion.h1
-  className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md text-center" // Ajout de text-center
-  style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
-  initial={{ x: "-100vw" }}
-  animate={{ x: 0 }}
-  transition={{ duration: 1 }}
->
-  My Posts
-</motion.h1>
+      <motion.h1
+        className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md text-center" // Ajout de text-center
+        style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
+        initial={{ x: "-100vw" }}
+        animate={{ x: 0 }}
+        transition={{ duration: 1 }}
+      >
+        My Posts
+      </motion.h1>
       {state.posts.length === 0 ? (
         <motion.div
           className="text-2xl font-bold text-gray-700 mb-10 m-4"
@@ -91,15 +88,17 @@ function MesPosts() {
         </motion.div>
       ) : (
         state.posts.map((post, index) => (
-<motion.div
-  key={`post-${index}`}
-  className="neomorph-card--large w-3/4 mx-auto shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
-  style={{ backdropFilter: "blur(10px)", backgroundColor: "rgba(255, 255, 255, 0.5)" }} // Ajout d'un flou en arrière-plan et d'une couleur de fond semi-transparente
-  initial={{ opacity: 0, y: -50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
->
-
+          <motion.div
+           key={post.id} 
+            className="neomorph-card--large w-3/4 mx-auto shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
+            style={{
+              backdropFilter: "blur(10px)",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+            }} // Ajout d'un flou en arrière-plan et d'une couleur de fond semi-transparente
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="flex justify-between items-center mb-4">
               <h2
                 className="text-2xl font-bold"
@@ -120,18 +119,20 @@ function MesPosts() {
               <p className="text-gray-700">{post.postContent}</p>
             </div>
             {post.youtubeId && (
-  <div className="mb-4 flex justify-center"> {/* Ajout de flex et justify-center */}
-    <iframe
-      width="560"
-      height="315"
-      src={`https://www.youtube.com/embed/${post.youtubeId}`}
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    />
-  </div>
-)}
+              <div className="mb-4 flex justify-center">
+                {" "}
+                {/* Ajout de flex et justify-center */}
+                <iframe
+                  width="560"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${post.youtubeId}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
 
             {post.files &&
               post.files.map((file, fileIndex) => (
@@ -150,8 +151,6 @@ function MesPosts() {
               </button>
               <p className="text-gray-500">{post.likes} likes</p>
             </div>
-          
-           
           </motion.div>
         ))
       )}

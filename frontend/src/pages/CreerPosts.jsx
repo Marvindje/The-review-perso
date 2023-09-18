@@ -99,14 +99,18 @@ function CreerPosts() {
     >
       <ToastContainer />
       <motion.h1
-  className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
-  style={{ fontFamily: "Georgia, serif", color: "#FFFFFF", textAlign: "center" }} // Ajout de textAlign: "center"
-  initial={{ x: "-100vw" }}
-  animate={{ x: 0 }}
-  transition={{ duration: 1 }}
->
-  Share your thoughts with the world !
-</motion.h1>
+        className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
+        style={{
+          fontFamily: "Georgia, serif",
+          color: "#FFFFFF",
+          textAlign: "center",
+        }} // Ajout de textAlign: "center"
+        initial={{ x: "-100vw" }}
+        animate={{ x: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Share your thoughts with the world !
+      </motion.h1>
 
       <motion.div
         className="w-full max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-12 mt-4 flex flex-col items-start justify-center border-2 border-blue-500 rounded-md bg-opacity-50 backdrop-blur"
@@ -165,23 +169,20 @@ function CreerPosts() {
           </div>
         )}
         <textarea
-        style={{ marginTop: "50px" }} 
+          style={{ marginTop: "50px" }}
           className="w-full p-2 border rounded-md mb-4"
           value={post}
           onChange={(e) => setPost(e.target.value)}
           placeholder="Write something ..."
         />
-      
-     
-    
-      <button
-  type="button"
-  onClick={handlePostClick}
-  className="px-4 py-2 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded focus:outline-none focus:shadow-outline hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
->
-  Post
-</button>
 
+        <button
+          type="button"
+          onClick={handlePostClick}
+          className="px-4 py-2 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded focus:outline-none focus:shadow-outline hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
+        >
+          Post
+        </button>
       </motion.div>
     </motion.div>
   );

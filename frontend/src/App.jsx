@@ -11,16 +11,12 @@ import Navbar from "./components/NavBar";
 import Login from "./pages/Login";
 import HomePage from "./pages/Homepage";
 import "./App.css";
-import { CookiesProvider } from 'react-cookie';
-import { useCookies } from 'react-cookie';
-
+import { CookiesProvider, useCookies } from "react-cookie";
 
 function App() {
   // State variables
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
-
-
 
   // Handle successful authentication
   const handleAuthSuccess = () => {

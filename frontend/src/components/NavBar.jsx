@@ -46,13 +46,17 @@ function Navbar({ onLogoClick }) {
               />
             </div>
           </div>
-        <div className="flex sm:hidden">
-  <button type="button" onClick={() => setIsOpen(!isOpen)} className="relative">
-    <div className="w-6 h-0.5 bg-black mb-1.5 rounded-full"></div>
-    <div className="w-6 h-0.5 bg-black mb-1.5 rounded-full"></div>
-    <div className="w-6 h-0.5 bg-black rounded-full"></div>
-  </button>
-</div>
+          <div className="flex sm:hidden">
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative"
+            >
+              <div className="w-6 h-0.5 bg-black mb-1.5 rounded-full" />
+              <div className="w-6 h-0.5 bg-black mb-1.5 rounded-full" />
+              <div className="w-6 h-0.5 bg-black rounded-full" />
+            </button>
+          </div>
 
           <div
             className={`${
@@ -108,8 +112,6 @@ function Navbar({ onLogoClick }) {
                   </button>
                 </div>
               </div>
-             
-              
             </div>
           </div>
         </div>
