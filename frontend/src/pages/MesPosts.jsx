@@ -89,7 +89,7 @@ function MesPosts() {
       ) : (
         state.posts.map((post, index) => (
           <motion.div
-           key={post.id} 
+            key={post.id}
             className="neomorph-card--large w-3/4 mx-auto shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
             style={{
               backdropFilter: "blur(10px)",
@@ -135,9 +135,9 @@ function MesPosts() {
             )}
 
             {post.files &&
-              post.files.map((file, fileIndex) => (
+              post.files.map((file) => (
                 <img
-                  key={`file-${fileIndex}`}
+                  key={`file id : ${file.name}`}
                   src={file.dataUrl}
                   alt={file.name}
                   className="mt-2 h-32 w-auto object-cover rounded-md shadow-md"

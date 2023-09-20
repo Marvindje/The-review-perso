@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
-import { FaThumbsUp, FaFile, FaYoutube } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import galaxyBackground from "../assets/thepage.jpeg";
@@ -56,11 +55,6 @@ function CreerPosts() {
     setHashtags("");
     setMention("");
     setFiles([]);
-  };
-
-  const handleLike = () => {
-    setLiked(!liked);
-    setLikes(liked ? likes - 1 : likes + 1);
   };
 
   const handlePostClick = () => {

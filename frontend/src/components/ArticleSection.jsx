@@ -33,26 +33,32 @@ function ArticleSection({ title, image }) {
       </motion.div>
 
       <div className="flex justify-center items-center  py-4 px-8">
-        <div className="grid grid-cols-4 gap-8 mt-2">  {/* 4 colonnes */}
-          {[...Array(16)].map((_, i) => (  // 16 articles
-            <motion.div
-              key={i}
-              className="neomorph-card"
-              variants={articleVariants}
-              initial="hidden"
-              animate="visible"
-              onClick={() => console.log(`Article ${i + 1} clicked`)}
-            >
-              <h3 className="text-2xl font-header mb-2">Article {i + 1}</h3>
-              <p className="text-black text-sm">Description de l'article...</p>
-              <Link
-                to={`/article${i + 1}`}
-                className="text-black text-sm mt-4 block hover:text-black"
+        <div className="grid grid-cols-4 gap-8 mt-2">
+          {[...Array(16)].map(
+            (
+              i // 16 articles
+            ) => (
+              <motion.div
+                key={i}
+                className="neomorph-card"
+                variants={articleVariants}
+                initial="hidden"
+                animate="visible"
+                onClick={() => console.info(`Article ${i + 1} clicked`)} // Utilisation de console.info ici
               >
-                Lire l'article
-              </Link>
-            </motion.div>
-          ))}
+                <h3 className="text-2xl font-header mb-2">Article {i + 1}</h3>
+                <p className="text-black text-sm">
+                  Description de l'article...
+                </p>
+                <Link
+                  to={`/article${i + 1}`}
+                  className="text-black text-sm mt-4 block hover:text-black"
+                >
+                  Lire l'article
+                </Link>
+              </motion.div>
+            )
+          )}
         </div>
       </div>
     </div>

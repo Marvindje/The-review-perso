@@ -21,7 +21,7 @@ import CarrieresTechnos from "../pages/CarrieresTechnos";
 function AppRoutes() {
   const [cookies, setCookie] = useCookies(["token"]);
   console.log({ cookies });
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
 
   const handleAuthSuccess = async () => {

@@ -5,18 +5,21 @@ import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaPen } from "react-icons/fa";
 import galaxyBackground from "../assets/thepage.jpeg";
 
-// Composant pour les champs de formulaire
 function InputField({ register, name, type, placeholder, icon: Icon, errors }) {
+  const registerProps = register(name, { required: true });
   return (
     <div className="mb-4 flex items-center">
       <Icon className="text-blue-500 mr-2" />
       <input
-        {...register(name, { required: true })}
+        name={registerProps.name}
+        ref={registerProps.ref}
+        onChange={registerProps.onChange}
+        onBlur={registerProps.onBlur}
+        type={type}
+        placeholder={placeholder}
         className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
           errors[name] ? "border-red-500" : ""
         }`}
-        type={type}
-        placeholder={placeholder}
       />
       {errors[name] && <p className="text-red-500">This field is required</p>}
     </div>
@@ -29,7 +32,7 @@ InputField.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   icon: PropTypes.elementType.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.shape({}).isRequired,
 };
 
 function Contact() {
@@ -40,8 +43,10 @@ function Contact() {
   } = useForm();
   const [submitted, setSubmitted] = useState(false);
 
+  const messageProps = register("message", { required: true });
+
   const onSubmit = (data) => {
-    console.log(data);
+    console.info(data);
     setSubmitted(true);
   };
 
@@ -88,7 +93,10 @@ function Contact() {
             <div className="mb-4 flex items-start">
               <FaPen className="text-blue-500 mr-2 mt-2" />
               <textarea
-                {...register("message", { required: true })}
+                name={messageProps.name}
+                ref={messageProps.ref}
+                onChange={messageProps.onChange}
+                onBlur={messageProps.onBlur}
                 className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                   errors.message ? "border-red-500" : ""
                 }`}
@@ -114,7 +122,13 @@ function Contact() {
 Contact.propTypes = {
   register: PropTypes.func,
   handleSubmit: PropTypes.func,
-  errors: PropTypes.object,
+  errors: PropTypes.shape({}),
+};
+
+Contact.defaultProps = {
+  register: () => {},
+  handleSubmit: () => {},
+  errors: {},
 };
 
 export default Contact;

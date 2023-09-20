@@ -21,8 +21,11 @@ function CommentSection({ comments, onSubmit }) {
       </form>
 
       <ul className="space-y-2">
-        {comments.map((comment, index) => (
-          <li key={index} className="p-2 border rounded ">
+        {comments.map((comment) => (
+          <li
+            key={`comment id : ${comment?.id}`}
+            className="p-2 border rounded "
+          >
             {comment}
           </li>
         ))}
