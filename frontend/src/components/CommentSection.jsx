@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function CommentSection({ comments, onSubmit }) {
   return (
@@ -33,5 +34,10 @@ function CommentSection({ comments, onSubmit }) {
     </div>
   );
 }
+
+CommentSection.propTypes = {
+  comments: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired, // Si onSubmit est également une prop
+};
 
 export default CommentSection;

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useUserContext } from "../context/userContext";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import Homepage from "../pages/Homepage";
@@ -19,9 +20,8 @@ import CyberSecurite from "../pages/CyberSecurite";
 import CarrieresTechnos from "../pages/CarrieresTechnos";
 
 function AppRoutes() {
-  const [cookies, setCookie] = useCookies(["token"]);
-  console.log({ cookies });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isLoged } = useUserContext();
+
   const [showSpinner, setShowSpinner] = useState(false);
 
   const handleAuthSuccess = async () => {
@@ -42,14 +42,14 @@ function AppRoutes() {
     </div>
   );
 
-  // Vous pouvez utiliser isAuthenticated et onAuthSuccess ici si nécessaire
-  return !isAuthenticated ? (
+  return !isLoged ? (
     <Routes>
       <Route path="/" element={<Login onAuthSuccess={handleAuthSuccess} />} />
       <Route path="/*" element={<>404</>} />
     </Routes>
   ) : (
     <>
+      {renderSpinner}
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -78,10 +78,5 @@ function AppRoutes() {
     </>
   );
 }
-
-AppRoutes.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  onAuthSuccess: PropTypes.func.isRequired,
-};
 
 export default AppRoutes;

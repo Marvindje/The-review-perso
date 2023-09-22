@@ -14,6 +14,7 @@ class AuthController {
       {
         userId: user.id,
         email: user.email,
+        username: user.username,
       },
       jwtSecret,
       {

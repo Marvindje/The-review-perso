@@ -12,6 +12,7 @@
     "@vitejs/plugin-react": "^3.0.1",
     "axios": "^1.5.0",
     "framer-motion": "^10.15.0",
+    "jwt-decode": "^3.1.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,6 +27,8 @@
     "vite": "^4.0.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.32.0",
     "eslint-config-airbnb": "^19.0.4",

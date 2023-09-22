@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { useUserContext } from "../context/userContext";
 
 function Auth({ onAuthSuccess, isLogin }) {
+  const { onChangeUser } = useUserContext();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [birthDate, setBirthDate] = useState(""); // Nouvelle variable d'état pour la date de naissance
+  const [birthDate, setBirthDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [authType, setAuthType] = useState(!!isLogin);
 
@@ -20,22 +23,26 @@ function Auth({ onAuthSuccess, isLogin }) {
 
     const endpoint = authType ? "/auth/login" : "/auth/register";
     const payload = {
-      username,
       email,
       password,
     };
 
-    // Ajoute la date de naissance au payload si l'utilisateur crée un compte
     if (!authType) {
-      payload.birthDate = birthDate;
+      payload.birthdate = birthDate;
+      payload.username = username;
     }
 
     try {
       const response = await axios.post(
         `http://localhost:5000${endpoint}`,
-        payload
+        payload,
+        {
+          withCredentials: true,
+        }
       );
-      console.log(response);
+
+      onChangeUser(response.data);
+
       if (response.status === 200) {
         localStorage.setItem("loggedInUsername", username);
         onAuthSuccess();
@@ -49,28 +56,18 @@ function Auth({ onAuthSuccess, isLogin }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       {!authType && (
-        <div className="mb-4">
-          <label
-            htmlFor="username"
-            className="block text-sm font-medium text-gray-600"
-          >
-            UserName
-          </label>
+        <label className="block text-sm font-medium text-gray-600">
+          UserName
           <input
             id="username"
             className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-      )}
-      <div className="mb-4">
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-600"
-        >
-          Email
         </label>
+      )}
+      <label className="block text-sm font-medium text-gray-600">
+        Email
         <input
           id="email"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
@@ -78,14 +75,9 @@ function Auth({ onAuthSuccess, isLogin }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium text-gray-600"
-        >
-          Password
-        </label>
+      </label>
+      <label className="block text-sm font-medium text-gray-600">
+        Password
         <input
           id="password"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
@@ -93,17 +85,10 @@ function Auth({ onAuthSuccess, isLogin }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </div>
-
-      {/* Champ pour la date de naissance, affiché uniquement lors de la création d'un compte */}
+      </label>
       {!authType && (
-        <div className="mb-4">
-          <label
-            htmlFor="birthDate"
-            className="block text-sm font-medium text-gray-600"
-          >
-            Date de naissance
-          </label>
+        <label className="block text-sm font-medium text-gray-600">
+          Date de naissance
           <input
             id="birthDate"
             className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
@@ -111,9 +96,8 @@ function Auth({ onAuthSuccess, isLogin }) {
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
           />
-        </div>
+        </label>
       )}
-
       <button
         className="bg-blue-500 text-white p-2 rounded-md w-full hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200"
         type="submit"

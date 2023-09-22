@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Post({ onSubmit, value, onChange }) {
   return (
@@ -20,5 +21,11 @@ function Post({ onSubmit, value, onChange }) {
     </div>
   );
 }
+
+Post.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Post;

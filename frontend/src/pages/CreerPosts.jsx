@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { FaFile, FaYoutube } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useDropzone } from "react-dropzone";
 import { ToastContainer, toast } from "react-toastify";
@@ -18,7 +19,7 @@ function CreerPosts() {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onloadend = function () {
+      reader.onloadend = function onLoadEnd() {
         const base64data = reader.result;
         setFiles((prevFiles) => [
           ...prevFiles,

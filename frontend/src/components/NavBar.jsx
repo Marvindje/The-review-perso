@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useCookies } from "react-cookie";
+import { useUserContext } from "../context/userContext";
 import { FaSearch, FaUser } from "react-icons/fa";
 import logo from "../assets/the-review-low-resolution-logo-color-on-transparent-background.png";
 
 function Navbar({ onLogoClick }) {
+  const { onLogout } = useUserContext();
+
   const [isOpen, setIsOpen] = useState(false);
   const profilePhoto = localStorage.getItem("profilePhoto");
   const linkClasses =
     "block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-400 hover:text-white transition-all duration-300 ease-in-out transform hover:translate-x-2";
-
-  const handleLogout = () => {
-    localStorage.removeItem("profilePhoto");
-    window.location.href = "/login";
-  };
 
   return (
     <nav className="bg-gradient-to-r from-purple-500 via-blue-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full">
@@ -101,13 +100,13 @@ function Navbar({ onLogoClick }) {
               </div>
               <div className="relative group flex">
                 <Link
-                  to="/login"
+                  to="/"
                   className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105"
                 >
                   Login
                 </Link>
                 <div className="absolute right-0 w-38 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block z-10 overflow-hidden">
-                  <button onClick={handleLogout} className={linkClasses}>
+                  <button onClick={onLogout} className={linkClasses}>
                     Logout
                   </button>
                 </div>

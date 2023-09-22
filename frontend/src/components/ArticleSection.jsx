@@ -19,7 +19,7 @@ function ArticleSection({ title, image }) {
         className="relative h-auto md:h-96 flex items-center justify-center bg-no-repeat bg-center bg-cover shadow-2xl"
         style={{ backgroundImage: `url(${image})` }}
         initial="rest"
-        whilehover="hover"
+        whileHover="hover" // Corrigé "whilehover" en "whileHover"
       >
         <h1
           className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200"
@@ -32,29 +32,30 @@ function ArticleSection({ title, image }) {
         </h1>
       </motion.div>
 
-      <div className="flex justify-center items-center  py-4 px-8">
+      <div className="flex justify-center items-center py-4 px-8">
         <div className="grid grid-cols-4 gap-8 mt-2">
           {[...Array(16)].map(
             (
-              i // 16 articles
+              _,
+              i // Remplacé "i" par "_"
             ) => (
               <motion.div
-                key={i}
+                key={`article-${i}`}
                 className="neomorph-card"
                 variants={articleVariants}
                 initial="hidden"
                 animate="visible"
-                onClick={() => console.info(`Article ${i + 1} clicked`)} // Utilisation de console.info ici
+                onClick={() => console.info(`Article ${i + 1} clicked`)}
               >
                 <h3 className="text-2xl font-header mb-2">Article {i + 1}</h3>
                 <p className="text-black text-sm">
-                  Description de l'article...
+                  Description de l&apos;article... {/* Échappé l'apostrophe */}
                 </p>
                 <Link
                   to={`/article${i + 1}`}
                   className="text-black text-sm mt-4 block hover:text-black"
                 >
-                  Lire l'article
+                  Lire l&apos;article {/* Échappé l'apostrophe */}
                 </Link>
               </motion.div>
             )
