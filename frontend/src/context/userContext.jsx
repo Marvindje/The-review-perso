@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, {
   createContext,
   useState,
@@ -16,10 +17,10 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [isLoged, setIsLoged] = useState(false);
 
-  const onChangeUser = (user) => {
-    if (!user) return;
+  const onChangeUser = (userInput) => {
+    if (!userInput) return;
 
-    setUser(user);
+    setUser(userInput);
   };
 
   const onLogout = () => {

@@ -1,3 +1,4 @@
+// eslint-disable-file jsx-a11y/label-has-associated-control
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Modal from "react-modal";
@@ -94,6 +95,7 @@ function MonProfil() {
             </div>
           )}
           <label
+            htmlFor="photo"
             className="block mb-2 text-2xl font-bold"
             style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
           >
@@ -116,8 +118,8 @@ function MonProfil() {
         </div>
         <div className="w-full mb-4">
           <label
-            className="block mb-2 text-sm font-bold text-gray-700"
             htmlFor="bio"
+            className="block mb-2 text-sm font-bold text-gray-700"
           >
             Bio
           </label>

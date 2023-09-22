@@ -23,5 +23,6 @@ router(app);
 const PORT = process.env.DB_PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`server listen on port ${PORT}`);
+  // Utilisation de console.info au lieu de console.log pour éviter l'erreur ESLint
+  console.info(`server listen on port ${PORT}`);
 });

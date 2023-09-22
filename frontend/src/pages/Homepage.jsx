@@ -125,13 +125,13 @@ function HomePage() {
             </h2>
             <p className="text-lg text-white mb-6 opacity-80">
               Our blog is dedicated to technology and innovation. We explore the
-              latest trends, discoveries, and ideas that shape the future of the
-              tech industry. Whether you're a seasoned professional or a curious
-              beginner, our content is designed to inspire and inform you. We
-              cover a range of topics, including web development, artificial
-              intelligence, hardware, software, cybersecurity, and much more.
-              Join our community and explore the exciting world of technology
-              with us !
+              latest trends&lsquo; discoveries, and ideas that shape the future
+              of the tech industry. Whether you're a seasoned professional or a
+              curious beginner&lsquo; our content is designed to inspire and
+              inform you. We cover a range of topics&lsquo; including web
+              development&lsquo; artificial intelligence, hardware&lsquo;
+              software, cybersecurity, and much more. Join our community and
+              explore the exciting world of technology with us !
             </p>
           </div>
         </motion.div>

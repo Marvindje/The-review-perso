@@ -1,13 +1,14 @@
-const { CommentModel } = require('../models/comment.model');
-const { CommentLikeModel } = require('../models/commentLike.model');
+const { CommentModel } = require("../models/comment.model");
+const { CommentLikeModel } = require("../models/commentLike.model");
+
 class CommentController {
   static async findAll(req, res) {
     try {
       const comments = await CommentModel.findAll();
-      res.status(200).send(comments);
+      return res.status(200).send(comments);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -21,10 +22,10 @@ class CommentController {
         return res.status(404).send(`Comment (${commentId}) not found!`);
       }
 
-      res.status(200).send(comment);
+      return res.status(200).send(comment);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -33,17 +34,15 @@ class CommentController {
       const { content, postId } = req.body;
       const { userId } = req.user;
 
-      // Validation des données
       if (!content || !postId) {
         return res.status(400).send({ error: "content or postId is missing" });
       }
 
       const comment = await CommentModel.create({ content, userId, postId });
-
-      res.status(200).send(comment);
+      return res.status(200).send(comment);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -52,18 +51,21 @@ class CommentController {
       const { commentId } = req.params;
       const { content } = req.body;
 
-      const commentUpdated = await CommentModel.update({ 
-        ...(content ? { content } : {})
-       }, {
-        where: {
-          id: commentId
+      const commentUpdated = await CommentModel.update(
+        {
+          ...(content ? { content } : {}),
         },
-      });
+        {
+          where: {
+            id: commentId,
+          },
+        }
+      );
 
-      res.status(200).send(commentUpdated);
-    } catch(err) {
+      return res.status(200).send(commentUpdated);
+    } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -74,8 +76,8 @@ class CommentController {
       await CommentLikeModel.destroy({
         where: {
           comment_id: commentId,
-        }
-      })
+        },
+      });
 
       const isDestroyed = await CommentModel.destroy({
         where: {
@@ -87,10 +89,10 @@ class CommentController {
         return res.status(404).send(`Comment (${commentId}) not found!`);
       }
 
-      res.status(204).send();
+      return res.status(204).send();
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 }

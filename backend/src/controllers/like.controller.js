@@ -1,4 +1,4 @@
-const { LikeModel } = require('../models/like.model');
+const { LikeModel } = require("../models/like.model");
 
 class LikeController {
   static async create(req, res) {
@@ -11,10 +11,10 @@ class LikeController {
       }
 
       const like = await LikeModel.create({ userId, postId });
-      res.status(200).send(like);
+      return res.status(200).send(like);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -31,20 +31,20 @@ class LikeController {
         return res.status(404).send(`Like (${likeId}) not found!`);
       }
 
-      res.status(204).send();
+      return res.status(204).send();
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
   static async findAll(req, res) {
     try {
       const likes = await LikeModel.findAll();
-      res.status(200).send(likes);
+      return res.status(200).send(likes);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -55,10 +55,10 @@ class LikeController {
       if (!like) {
         return res.status(404).send(`Like (${likeId}) not found!`);
       }
-      res.status(200).send(like);
+      return res.status(200).send(like);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -66,10 +66,10 @@ class LikeController {
     try {
       const { userId } = req.params;
       const likes = await LikeModel.findAll({ where: { userId } });
-      res.status(200).send(likes);
+      return res.status(200).send(likes);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 
@@ -77,10 +77,10 @@ class LikeController {
     try {
       const { postId } = req.params;
       const likes = await LikeModel.findAll({ where: { postId } });
-      res.status(200).send(likes);
+      return res.status(200).send(likes);
     } catch (err) {
       console.error(err);
-      res.status(500).send({ error: err.message });
+      return res.status(500).send({ error: err.message });
     }
   }
 }

@@ -5,7 +5,7 @@ function CommentSection({ comments, onSubmit }) {
   return (
     <div className="space-y-4">
       <form onSubmit={onSubmit} className="flex flex-col">
-        <label className="text-lg">
+        <label htmlFor="comment" className="text-lg">
           New Comment:
           <input
             name="comment"
@@ -36,7 +36,7 @@ function CommentSection({ comments, onSubmit }) {
 }
 
 CommentSection.propTypes = {
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({ comment: PropTypes.string })),
   onSubmit: PropTypes.func.isRequired, // Si onSubmit est également une prop
 };
 

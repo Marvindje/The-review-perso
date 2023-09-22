@@ -56,30 +56,42 @@ function Auth({ onAuthSuccess, isLogin }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       {!authType && (
-        <label className="block text-sm font-medium text-gray-600">
+        <label
+          htmlFor="username"
+          className="block text-sm font-medium text-gray-600"
+        >
           UserName
           <input
             id="username"
+            name="username"
             className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
       )}
-      <label className="block text-sm font-medium text-gray-600">
+      <label
+        htmlFor="email"
+        className="block text-sm font-medium text-gray-600"
+      >
         Email
         <input
           id="email"
+          name="email"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
-      <label className="block text-sm font-medium text-gray-600">
+      <label
+        htmlFor="password"
+        className="block text-sm font-medium text-gray-600"
+      >
         Password
         <input
           id="password"
+          name="password"
           className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
           type="password"
           value={password}
@@ -87,10 +99,14 @@ function Auth({ onAuthSuccess, isLogin }) {
         />
       </label>
       {!authType && (
-        <label className="block text-sm font-medium text-gray-600">
+        <label
+          htmlFor="Date de naissance"
+          className="block text-sm font-medium text-gray-600"
+        >
           Date de naissance
           <input
             id="birthDate"
+            name="Date de naissance"
             className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
             type="date"
             value={birthDate}

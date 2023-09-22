@@ -1,7 +1,7 @@
 // src/utils/mailer.js (ou src/services/mailer.js)
 
-require('dotenv').config();
-const nodemailer = require('nodemailer');
+require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
