@@ -1,4 +1,4 @@
-// eslint-disable-file jsx-a11y/label-has-associated-control
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Modal from "react-modal";
@@ -176,3 +176,4 @@ function MonProfil() {
 }
 
 export default MonProfil;
+  
