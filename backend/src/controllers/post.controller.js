@@ -27,6 +27,17 @@ class PostController {
     }
   }
 
+  static async findAllByCategory(req, res) {
+    try {
+      const { categoryId } = req.params;
+      const posts = await PostModel.findAll({ where: { categoryId } });
+      return res.status(200).send(posts);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send({ error: err.message });
+    }
+  }
+
   static async create(req, res) {
     try {
       const { title, content, categoryId } = req.body;

@@ -6,6 +6,11 @@ const postRoutes = express.Router();
 
 postRoutes
   .get("/", IsConnectedMiddleware.execute, PostController.findAll)
+  .get(
+    "/category/:categoryId",
+    IsConnectedMiddleware.execute,
+    PostController.findAllByCategory
+  )
   .post("/", IsConnectedMiddleware.execute, PostController.create);
 
 module.exports = { postRoutes };
