@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useSpring, animated } from "react-spring";
 import Auth from "../components/Auth";
+import "../App.css"; // Importez vos styles depuis App.css
 
 function Login({ onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -9,18 +10,23 @@ function Login({ onAuthSuccess }) {
     setIsLogin(!isLogin);
   };
 
+  const springProps = useSpring({
+    opacity: isLogin ? 1 : 1,
+    transform: isLogin ? "scale(1)" : "scale(0.95)",
+  });
+
   return (
-    <div className="bg-gradient-to-r from-purple-500 via-blue-500 to-transparent shadow-md transition-all duration-500 ease-in-out hover:shadow-lg max-w-full h-screen flex justify-center items-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-      {isLogin ? <h1 className="text-2xl mb-4">Connexion</h1> : <h1 className="text-2xl mb-4">Create Account</h1>}
+    <div className="login-container">
+      <animated.div style={springProps} className="login-box">
+        {isLogin ? (
+          <h1 className="login-title">Connexion</h1>
+        ) : (
+          <h1 className="login-title">Create Account</h1>
+        )}
         <Auth onAuthSuccess={onAuthSuccess} isLogin={isLogin} toggleAuthType={toggleAuthType} />
-      </div>
+      </animated.div>
     </div>
   );
 }
-
-Login.propTypes = {
-  onAuthSuccess: PropTypes.func.isRequired,
-};
 
 export default Login;

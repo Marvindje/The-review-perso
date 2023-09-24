@@ -130,3 +130,58 @@
 .dropdown-menu.show {
   display: flex;
 }
+
+/* Fond de la page */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f2f2;
+}
+
+/* Conteneur de connexion */
+.login-container {
+  background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Boîtes de connexion et d'inscription */
+.login-box, .register-box {
+  background: rgba(255, 255, 255, 0.9); /* Légère transparence */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px -5px 30px 0px rgb(186, 66, 255),
+              0px 5px 30px 0px rgb(0, 225, 255);
+  width: 400px;
+  text-align: center;
+}
+
+/* Titre de la boîte */
+.login-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons */
+button {
+  background-color: rgb(186, 66, 255);
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(0, 225, 255);
+}
+
