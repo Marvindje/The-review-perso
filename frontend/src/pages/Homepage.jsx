@@ -90,13 +90,17 @@ function HomePage() {
               Join our community and start sharing posts !
             </p>
             <motion.div whilehover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link
-                to="/creer-post"
-                className="inline-flex items-center px-6 py-4 shadow-lg rounded-lg font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:-rotate-2"
-              >
-                Create posts
-                <FaArrowRight className="ml-3 text-2xl" />
-              </Link>
+            <Link
+    to="/creer-post"
+    className="submit-button inline-flex items-center px-6 py-4 shadow-lg rounded-lg font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:-rotate-2"
+  >
+    <div className="button-top">
+      Create posts
+      <FaArrowRight className="ml-3 text-2xl" />
+    </div>
+    <div className="button-bottom"></div>
+    <div className="button-base"></div>
+  </Link>
             </motion.div>
             <p className="text-lg text-white mt-6 opacity-80">
               Explore posts by categories and find what interests you the most!

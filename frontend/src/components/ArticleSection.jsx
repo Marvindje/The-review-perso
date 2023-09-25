@@ -6,6 +6,7 @@ import axios from 'axios';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import '../App.css';
 
+// Main Article Section
 function ArticleSection({ title, image }) {
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState({});
@@ -76,11 +77,7 @@ function ArticleSection({ title, image }) {
         initial="rest"
         whileHover="hover"
       >
-        <h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded hover:text-blue-500 transition-colors duration-200"
-          style={{
-            textShadow: "0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de",
-          }}
-        >
+        <h1 className="text-4xl text-white font-mono text-center py-2 px-4 rounded custom-title">
           {title}
         </h1>
       </motion.div>
@@ -107,7 +104,7 @@ function ArticleSection({ title, image }) {
                   className="border rounded-md p-2 w-full"
                 />
                 <button 
-                  className="relative py-1 px-3 rounded-md text-white cursor-pointer bg-purple-600 transition-all ease-in-out duration-200"
+                  className="button2"
                   onClick={() => handleComment(post.id)}
                 >
                   Submit
@@ -126,7 +123,7 @@ function ArticleSection({ title, image }) {
                   ))}
                 </div>
               </div>
-              <Link to={`/mes-posts/${post.id}`} className="text-black text-sm mt-4 block hover:text-black">
+              <Link to={`/mes-posts/${post.id}`} className="button2">
                 Read article
               </Link>
             </motion.div>

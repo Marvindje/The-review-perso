@@ -57,63 +57,67 @@ function Auth({ onAuthSuccess, isLogin, toggleAuthType }) { // Ajouté toggleAut
     <form onSubmit={handleSubmit} className="space-y-4">
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       {!authType && (
-        <label
-          htmlFor="username"
-          className="block text-sm font-medium text-gray-600"
-        >
-          UserName
+        <div className="wave-group">
+          <label htmlFor="username" className="label">
+            <span className="label-char">UserName</span>
+          </label>
           <input
             id="username"
             name="username"
-            className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
+            className="input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
-        </label>
+          <span className="bar"></span>
+        </div>
       )}
-      <label
-        htmlFor="email"
-        className="block text-sm font-medium text-gray-600"
-      >
-        Email
+      <div className="wave-group">
+        <label htmlFor="email" className="label">
+          <span className="label-char">Email</span>
+        </label>
         <input
           id="email"
           name="email"
-          className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
+          className="input"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
-      </label>
-      <label
-        htmlFor="password"
-        className="block text-sm font-medium text-gray-600"
-      >
-        Password
+        <span className="bar"></span>
+      </div>
+      <div className="wave-group">
+        <label htmlFor="password" className="label">
+          <span className="label-char">Password</span>
+        </label>
         <input
           id="password"
           name="password"
-          className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
+          className="input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-      </label>
+        <span className="bar"></span>
+      </div>
       {!authType && (
-        <label
-          htmlFor="Date de naissance"
-          className="block text-sm font-medium text-gray-600"
-        >
-          Date de naissance
+        <div className="wave-group">
+          <label htmlFor="birthDate" className="label">
+            <span className="label-char">Date de naissance</span>
+          </label>
           <input
             id="birthDate"
-            name="Date de naissance"
-            className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:ring focus:ring-opacity-50"
+            name="birthDate"
+            className="input"
             type="date"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
+            required
           />
-        </label>
+          <span className="bar"></span>
+        </div>
       )}
       <button
         className="bg-blue-500 text-white p-2 rounded-md w-full hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200"
@@ -123,7 +127,7 @@ function Auth({ onAuthSuccess, isLogin, toggleAuthType }) { // Ajouté toggleAut
       </button>
       <button type="button" onClick={() => {
         setAuthType(!authType);
-        toggleAuthType(); // Ajouté cette ligne
+        toggleAuthType();
       }}>
         {authType ? "Create Account" : "Login"}
       </button>
@@ -134,7 +138,7 @@ function Auth({ onAuthSuccess, isLogin, toggleAuthType }) { // Ajouté toggleAut
 Auth.propTypes = {
   onAuthSuccess: PropTypes.func.isRequired,
   isLogin: PropTypes.bool,
-  toggleAuthType: PropTypes.func.isRequired, // Ajouté cette ligne
+  toggleAuthType: PropTypes.func.isRequired,
 };
 
 export default Auth;
