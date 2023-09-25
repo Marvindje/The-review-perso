@@ -50,21 +50,18 @@ function ArticleSection({ title, image }) {
   };
 
   const handleDeleteComment = (postId, commentIndex) => {
-    // Supposons que commentId est l'ID réel du commentaire dans la base de données
     const commentId = comments[postId][commentIndex].id;
 
     axios.delete(`http://localhost:5000/comments/${commentId}`, {
       withCredentials: true,
     })
     .then((response) => {
-      if (Array.isArray(comments[postId])) {
-        const updatedComments = [...comments[postId]];
-        updatedComments.splice(commentIndex, 1);
-        setComments({
-          ...comments,
-          [postId]: updatedComments,
-        });
-      }
+      const updatedComments = [...comments[postId]];
+      updatedComments.splice(commentIndex, 1);
+      setComments({
+        ...comments,
+        [postId]: updatedComments,
+      });
     })
     .catch((error) => {
       console.error('Erreur lors de la suppression du commentaire:', error);
@@ -101,19 +98,30 @@ function ArticleSection({ title, image }) {
               <div onClick={() => handleLike(post.id)} className="text-4xl">
                 {likedPosts[post.id] ? <FaHeart color="red" /> : <FaRegHeart />}
               </div>
-              <div className="comment-section">
+              <div className="comment-section flex flex-col items-start space-y-2">
                 <input
                   type="text"
                   placeholder="Add comment..."
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
+                  className="border rounded-md p-2 w-full"
                 />
-                <button className="comment-button" onClick={() => handleComment(post.id)}>Submit</button>
-                <div>
+                <button 
+                  className="relative py-1 px-3 rounded-md text-white cursor-pointer bg-purple-600 transition-all ease-in-out duration-200"
+                  onClick={() => handleComment(post.id)}
+                >
+                  Submit
+                </button>
+                <div className="w-full">
                   {comments[post.id]?.map((comment, index) => (
-                    <div className="comment-box" key={index}>
-                      <p>{comment}</p>
-                      <button onClick={() => handleDeleteComment(post.id, index)}>Supprimer</button>
+                    <div className="comment-box flex justify-between items-center border-b py-1" key={index}>
+                      <p className="text-sm">{comment}</p>
+                      <button 
+                        className="text-xs text-red-500"
+                        onClick={() => handleDeleteComment(post.id, index)}
+                      >
+                        Supprimer
+                      </button>
                     </div>
                   ))}
                 </div>
