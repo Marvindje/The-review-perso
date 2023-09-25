@@ -51,14 +51,6 @@
     0px 5px 20px 0px rgb(0, 225, 255);
 }
 
-.spinner1 {
-  background-color: rgb(36, 36, 36);
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  filter: blur(10px);
-}
-
 @keyframes spinning82341 {
   to {
     transform: rotate(360deg);
@@ -81,9 +73,10 @@
   align-items: center;
   z-index: 9999;
 }
+
 .neomorph-card {
-  width: 190px;
-  height: 254px;
+  width: 300px;
+  height: 400px;
   background: #e0e0e0;
   border-radius: 20px;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
@@ -96,92 +89,62 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px;
+  margin: 10px; 
 }
 
 .neomorph-card h3,
 .neomorph-card p {
-  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .neomorph-card:hover {
   box-shadow: inset 4px 4px 10px #bebebe, inset -4px -4px 10px #ffffff;
 }
 
-.neomorph-card--large {
-  width: 400px;
-  height: 500px;
+.like-button,
+.button-improved,
+.comment-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.neomorph-card--large:hover {
-  box-shadow: inset 2px 2px 5px #bebebe, inset -2px -2px 5px #ffffff;
-}
-.dropdown-menu {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  width: 100%;
-  z-index: 1;
+
+.comment-box {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.dropdown-menu.show {
-  display: flex;
+.comment-box:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Fond de la page */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f2f2f2;
-}
-
-/* Conteneur de connexion */
-.login-container {
-  background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-/* Boîtes de connexion et d'inscription */
-.login-box, .register-box {
-  background: rgba(255, 255, 255, 0.9); /* Légère transparence */
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0px -5px 30px 0px rgb(186, 66, 255),
-              0px 5px 30px 0px rgb(0, 225, 255);
-  width: 400px;
-  text-align: center;
-}
-
-/* Titre de la boîte */
-.login-title {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #333;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Boutons */
-button {
-  background-color: rgb(186, 66, 255);
+.submit-button {
+  background-color: #007bff; 
   color: white;
-  padding: 15px 30px;
+  padding: 10px 20px;
+  margin-top: 10px;
   border: none;
-  border-radius: 50px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: rgb(0, 225, 255);
+.submit-button:hover {
+  background-color: #0056b3; 
 }
+
+
+
+
+
+
+
+
+
+
 

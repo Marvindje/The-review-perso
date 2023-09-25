@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import '../App.css';
 
 function ArticleSection({ title, image }) {
   const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState({});
+  const [comments, setComments] = useState({});
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
-    // Remplacez cette URL par l'URL de votre API backend
     axios.get('http://localhost:5000/posts', {
       withCredentials: true,
     })
@@ -22,33 +25,28 @@ function ArticleSection({ title, image }) {
   }, []);
 
   const handleLike = (postId) => {
-    // Faire une requête API pour liker le post
-    // Remplacez cette URL par l'URL de votre API backend
     axios.post(`http://localhost:5000/likes`, {
       postId
     }, {
       withCredentials: true,
     })
       .then((response) => {
-        // Mettre à jour l'état local ou refaire une requête pour obtenir les nouveaux "likes"
+        setLikedPosts({
+          ...likedPosts,
+          [postId]: !likedPosts[postId],
+        });
       })
       .catch((error) => {
         console.error('Erreur lors du like:', error);
       });
   };
 
-  const handleComment = (postId, comment) => {
-    // Faire une requête API pour commenter le post
-    // Remplacez cette URL par l'URL de votre API backend
-    axios.post(`http://localhost:5000/comments`, { content: comment, postId }, {
-      withCredentials: true,
-    })
-      .then((response) => {
-        // Mettre à jour l'état local ou refaire une requête pour obtenir les nouveaux commentaires
-      })
-      .catch((error) => {
-        console.error('Erreur lors du commentaire:', error);
-      });
+  const handleComment = (postId) => {
+    setComments({
+      ...comments,
+      [postId]: [...(comments[postId] || []), newComment],
+    });
+    setNewComment("");
   };
 
   return (
@@ -78,10 +76,27 @@ function ArticleSection({ title, image }) {
             >
               <h3 className="text-2xl font-header mb-2">{post.title}</h3>
               <p className="text-black text-sm">{post.content}</p>
-              <button onClick={() => handleLike(post.id)}>Like</button>
-              <button onClick={() => handleComment(post.id, 'Votre commentaire ici')}>Comment</button>
+              <div onClick={() => handleLike(post.id)} className="text-4xl">
+                {likedPosts[post.id] ? <FaHeart color="red" /> : <FaRegHeart />}
+              </div>
+              <div className="comment-section">
+                <input
+                  type="text"
+                  placeholder="Add comment..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                />
+                <button className="submit-button" onClick={() => handleComment(post.id)}>Submit</button>
+                <div>
+                  {comments[post.id]?.map((comment, index) => (
+                    <div className="comment-box" key={index}>
+                      <p>{comment}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <Link to={`/mes-posts/${post.id}`} className="text-black text-sm mt-4 block hover:text-black">
-                Lire l'article
+                Read article
               </Link>
             </motion.div>
           ))}
