@@ -73,12 +73,12 @@ class CommentController {
     try {
       const { commentId } = req.params;
 
-      await CommentLikeModel.destroy({
+      /* await CommentLikeModel.destroy({
         where: {
           comment_id: commentId,
         },
       });
-
+*/
       const isDestroyed = await CommentModel.destroy({
         where: {
           id: commentId,

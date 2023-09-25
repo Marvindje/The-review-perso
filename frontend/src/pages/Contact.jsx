@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaPen } from "react-icons/fa";
-import galaxyBackground from "../assets/thepage.jpeg";
-import Navbar from "../components/NavBar"; // Import du composant Navbar
-import Footer from "../components/Footer"; // Import du composant Footer
+import galaxyBackground from "../assets/thepage.jpeg"; 
+
 
 function InputField({ register, name, type, placeholder, icon: Icon, errors }) {
   const registerProps = register(name, { required: true });
@@ -47,7 +46,7 @@ function Contact() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar /> {/* Utilisation du composant Navbar */}
+     
       <div className="flex-grow flex flex-col items-center justify-center min-h-screen py-6 bg-cover bg-center"
         style={{ backgroundImage: `url(${galaxyBackground})` }}>
         <motion.h1
@@ -113,7 +112,7 @@ function Contact() {
           )}
         </motion.div>
       </div>
-      <Footer /> {/* Utilisation du composant Footer */}
+      {/* Utilisation du composant Footer */}
     </div>
   );
 }

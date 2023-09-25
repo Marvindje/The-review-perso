@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import '../App.css'; // Assurez-vous que les styles du bouton sont dans ce fichier
+import '../App.css';
 
 function ArticleSection({ title, image }) {
   const [posts, setPosts] = useState([]);
@@ -49,6 +49,28 @@ function ArticleSection({ title, image }) {
     setNewComment("");
   };
 
+  const handleDeleteComment = (postId, commentIndex) => {
+    // Supposons que commentId est l'ID réel du commentaire dans la base de données
+    const commentId = comments[postId][commentIndex].id;
+
+    axios.delete(`http://localhost:5000/comments/${commentId}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      if (Array.isArray(comments[postId])) {
+        const updatedComments = [...comments[postId]];
+        updatedComments.splice(commentIndex, 1);
+        setComments({
+          ...comments,
+          [postId]: updatedComments,
+        });
+      }
+    })
+    .catch((error) => {
+      console.error('Erreur lors de la suppression du commentaire:', error);
+    });
+  };
+
   return (
     <div className="font-body custom-background" style={{ background: '#e0e0e0' }}>
       <motion.div
@@ -86,11 +108,12 @@ function ArticleSection({ title, image }) {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                 />
-                <button className="button" onClick={() => handleComment(post.id)}>Submit</button>
+                <button className="comment-button" onClick={() => handleComment(post.id)}>Submit</button>
                 <div>
                   {comments[post.id]?.map((comment, index) => (
                     <div className="comment-box" key={index}>
                       <p>{comment}</p>
+                      <button onClick={() => handleDeleteComment(post.id, index)}>Supprimer</button>
                     </div>
                   ))}
                 </div>
