@@ -18,6 +18,7 @@ import Login from "../pages/Login";
 import Logiciels from "../pages/Logiciels";
 import CyberSecurite from "../pages/CyberSecurite";
 import CarrieresTechnos from "../pages/CarrieresTechnos";
+import PostPage from "../pages/Post";
 
 function AppRoutes() {
   const { isLoged } = useUserContext();
@@ -56,6 +57,7 @@ function AppRoutes() {
         <Route path="/mon-profil" element={<MonProfil />} />
         <Route path="/creer-post" element={<CreerArticles />} />
         <Route path="/mes-posts" element={<MesPosts />} />
+        <Route path="/mes-posts/:postId" element={<PostPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route
           path="/categorie/developpement-web"

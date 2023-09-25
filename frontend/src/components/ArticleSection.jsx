@@ -10,7 +10,9 @@ function ArticleSection({ title, image }) {
 
   useEffect(() => {
     // Remplacez cette URL par l'URL de votre API backend
-    axios.get('http://localhost:3000/api/posts')
+    axios.get('http://localhost:5000/posts', {
+      withCredentials: true,
+    })
       .then((response) => {
         setPosts(response.data);
       })
@@ -22,7 +24,11 @@ function ArticleSection({ title, image }) {
   const handleLike = (postId) => {
     // Faire une requête API pour liker le post
     // Remplacez cette URL par l'URL de votre API backend
-    axios.post(`http://localhost:3000/api/posts/${postId}/like`)
+    axios.post(`http://localhost:5000/likes`, {
+      postId
+    }, {
+      withCredentials: true,
+    })
       .then((response) => {
         // Mettre à jour l'état local ou refaire une requête pour obtenir les nouveaux "likes"
       })
@@ -34,7 +40,9 @@ function ArticleSection({ title, image }) {
   const handleComment = (postId, comment) => {
     // Faire une requête API pour commenter le post
     // Remplacez cette URL par l'URL de votre API backend
-    axios.post(`http://localhost:3000/api/posts/${postId}/comment`, { comment })
+    axios.post(`http://localhost:5000/comments`, { content: comment, postId }, {
+      withCredentials: true,
+    })
       .then((response) => {
         // Mettre à jour l'état local ou refaire une requête pour obtenir les nouveaux commentaires
       })
@@ -69,10 +77,10 @@ function ArticleSection({ title, image }) {
               animate="visible"
             >
               <h3 className="text-2xl font-header mb-2">{post.title}</h3>
-              <p className="text-black text-sm">{post.description}</p>
+              <p className="text-black text-sm">{post.content}</p>
               <button onClick={() => handleLike(post.id)}>Like</button>
               <button onClick={() => handleComment(post.id, 'Votre commentaire ici')}>Comment</button>
-              <Link to={`/article${post.id}`} className="text-black text-sm mt-4 block hover:text-black">
+              <Link to={`/mes-posts/${post.id}`} className="text-black text-sm mt-4 block hover:text-black">
                 Lire l'article
               </Link>
             </motion.div>

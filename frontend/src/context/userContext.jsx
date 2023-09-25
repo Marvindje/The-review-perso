@@ -8,10 +8,12 @@ import React, {
 } from "react";
 import { useCookies } from "react-cookie";
 import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
+
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const [user, setUser] = useState({});
@@ -27,6 +29,7 @@ export function UserContextProvider({ children }) {
     removeCookie("token");
     setUser({});
     setIsLoged(false);
+    useNavigate('/')
   };
 
   useEffect(() => {
