@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import '../App.css';
+import '../App.css'; // Assurez-vous que les styles du bouton sont dans ce fichier
 
 function ArticleSection({ title, image }) {
   const [posts, setPosts] = useState([]);
@@ -86,7 +86,7 @@ function ArticleSection({ title, image }) {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                 />
-                <button className="submit-button" onClick={() => handleComment(post.id)}>Submit</button>
+                <button className="button" onClick={() => handleComment(post.id)}>Submit</button>
                 <div>
                   {comments[post.id]?.map((comment, index) => (
                     <div className="comment-box" key={index}>

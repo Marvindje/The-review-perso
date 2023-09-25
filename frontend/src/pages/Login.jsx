@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import Auth from "../components/Auth";
-import "../App.css"; // Importez vos styles depuis App.css
+ // Importez vos styles depuis App.css
 
 function Login({ onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true);

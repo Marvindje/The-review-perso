@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { useUserContext } from "../context/userContext";
 
+
 function Auth({ onAuthSuccess, isLogin, toggleAuthType }) { // Ajouté toggleAuthType
   const { onChangeUser } = useUserContext();
 

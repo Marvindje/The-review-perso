@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom';
 const PostPage = () => {
     const { postId } = useParams();
     return (
-        <>
-            POST_ID: {postId} 
-        </>
+        <div className="neomorph-page">
+            <h1>POST_ID: {postId}</h1>
+            {/* contenu ici */}
+        </div>
     )
 }
 

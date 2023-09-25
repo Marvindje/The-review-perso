@@ -73,7 +73,42 @@
   align-items: center;
   z-index: 9999;
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f2f2;
+}
 
+/* Conteneur de connexion */
+.login-container {
+  background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Boîtes de connexion et d'inscription */
+.login-box, .register-box {
+  background: rgba(255, 255, 255, 0.9); /* Légère transparence */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px -5px 30px 0px rgb(186, 66, 255),
+              0px 5px 30px 0px rgb(0, 225, 255);
+  width: 400px;
+  text-align: center;
+}
+
+/* Titre de la boîte */
+.login-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
 .neomorph-card {
   width: 300px;
   height: 400px;
@@ -124,27 +159,91 @@
 }
 
 .submit-button {
-  background-color: #007bff; 
-  color: white;
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  border-width: 0;
+  padding: 0 8px 12px;
+  min-width: 10em;
+  box-sizing: border-box;
+  background: transparent;
+  font: inherit;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.submit-button:hover {
-  background-color: #0056b3; 
+.submit-button .button-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+  padding: 6px 12px; /* Ajustement de la taille du padding */
+  transform: translateY(0);
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 -1px rgba(0, 0, 0, .25);
+  background-image: radial-gradient(rgb(0, 140, 255), lightblue); /* Couleur bleue claire */
+  transition-property: transform;
+  transition-duration: .2s;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
+.submit-button:active .button-top {
+  transform: translateY(6px);
+}
 
+.submit-button .button-top::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 6px 12px; /* Ajustement de la taille du padding */
+  background-image: linear-gradient(rgb(0, 140, 255), lightblue); /* Couleur bleue claire */
+  box-sizing: content-box;
+  text-align: center;
+  color: #fff;
+  box-shadow: inset 0 0 0px 1px rgba(255, 255, 255, .2), 0 1px 2px 1px rgba(255, 255, 255, .2);
+  transition-property: border-radius, padding, width, transform;
+  transition-duration: .2s;
+}
 
+.submit-button:active .button-top::after {
+  border-radius: 6px;
+  padding: 0 2px;
+}
 
+.submit-button .button-bottom {
+  position: absolute;
+  z-index: -1;
+  bottom: 4px;
+  left: 4px;
+  border-radius: 8px / 16px 16px 8px 8px;
+  padding-top: 6px;
+  width: calc(100% - 8px);
+  height: calc(100% - 10px);
+  box-sizing: content-box;
+  background-color: lightblue; /* Couleur bleue claire */
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5), inset 0 -1px 3px 3px rgba(0, 0, 0, .4);
+  transition-property: border-radius, padding-top;
+  transition-duration: .2s;
+}
 
+.submit-button:active .button-bottom {
+  border-radius: 10px 10px 8px 8px / 8px;
+  padding-top: 0;
+}
 
-
-
-
-
-
+.submit-button .button-base {
+  position: absolute;
+  z-index: -2;
+  top: 4px;
+  left: 0;
+  border-radius: 12px;
+  width: 100%;
+  height: calc(100% - 4px);
+  background-color: rgba(0, 0, 0, .15);
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, .75), inset 0 2px 2px rgba(0, 0, 0, .25);
+}

@@ -172,11 +172,12 @@ function CreerPosts() {
         />
 
         <button
-          type="button"
           onClick={handlePostClick}
-          className="px-4 py-2 font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded focus:outline-none focus:shadow-outline hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out opacity-90 hover:opacity-100"
+          className="submit-button"
         >
-          Post
+          <div className="button-top">Post</div>
+          <div className="button-bottom"></div>
+          <div className="button-base"></div>
         </button>
       </motion.div>
     </motion.div>
