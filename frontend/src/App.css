@@ -63,11 +63,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-    circle at center,
-    rgb(186, 66, 255),
-    rgb(0, 225, 255)
-  );
+  background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
   display: flex;
   justify-content: center;
   align-items: center;
