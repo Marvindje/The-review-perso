@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Modal from "react-modal";
 import thepageBackground from "../assets/thepage.jpeg";
 
 function MonProfil() {
@@ -15,7 +14,6 @@ function MonProfil() {
     localStorage.getItem("profilePhoto") || null
   );
   const [showAlert, setShowAlert] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("profilePhoto", profilePhoto);
@@ -40,19 +38,6 @@ function MonProfil() {
   const handleSaveChanges = () => {
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
-  };
-
-  const handleDeleteAccount = () => {
-    setIsModalOpen(true);
-  };
-
-  const confirmDelete = () => {
-    // Code to delete the account
-    setIsModalOpen(false);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -94,16 +79,16 @@ function MonProfil() {
                 No photo
               </div>
             )}
-            <div
-              className="hover:bg-gray-700 rounded p-2 cursor-pointer transition duration-300 ease-in-out"
+            <label
+              htmlFor="photo"
+              className="text-2xl font-bold cursor-pointer"
+              style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
             >
-              <label
-                htmlFor="photo"
-                className="text-2xl font-bold"
-                style={{ fontFamily: "Georgia, serif", color: "#FFFFFF" }}
-              >
-                Change Profile
-              </label>
+              <div className="submit-button w-1/5">
+                <div className="button-top">Select</div>
+                <div className="button-bottom"></div>
+                <div className="button-base"></div>
+              </div>
               <input
                 className="hidden"
                 id="photo"
@@ -111,17 +96,9 @@ function MonProfil() {
                 name="photo"
                 onChange={handleInputChange}
               />
-            </div>
+            </label>
           </div>
           <div className="flex flex-col items-center">
-            <button
-              type="submit"
-              className="submit-button w-1/5"
-            >
-              <div className="button-top">Select</div>
-              <div className="button-bottom"></div>
-              <div className="button-base"></div>
-            </button>
             <textarea
               id="bio"
               name="bio"
@@ -133,11 +110,7 @@ function MonProfil() {
             />
           </div>
         </div>
-        <div className="flex mt-6 justify-center space-x-4">
-          {/* Your buttons here */}
-        </div>
       </motion.div>
-      {/* Your Modal here */}
     </div>
   );
 }
