@@ -21,7 +21,7 @@ function Navbar({ onLogoClick }) {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center align-center max-w-full">
             <Link
-              to="/homepage"
+              to="/"
               onClick={onLogoClick}
               className="hidden sm:block"
             >
