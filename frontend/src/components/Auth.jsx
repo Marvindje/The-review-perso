@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { baseUrl } from "../config/url";
 import { useUserContext } from "../context/userContext";
 
 
@@ -35,7 +36,7 @@ function Auth({ onAuthSuccess, isLogin, toggleAuthType }) { // Ajouté toggleAut
 
     try {
       const response = await axios.post(
-        `http://localhost:5000${endpoint}`,
+        `${baseUrl}${endpoint}`,
         payload,
         {
           withCredentials: true,

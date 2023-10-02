@@ -21,10 +21,10 @@ class IsConnectedMiddleware {
 
       req.user = jwt.verify(token, jwtSecret);
 
-      return next(); // Ajout d'un 'return' ici
+      return next(); 
     } catch (err) {
       console.error(err);
-      return res.status(401).send({ error: err.message }); // Ajout d'un 'return' ici aussi pour la cohérence
+      return res.status(401).send({ error: err.message }); 
     }
   }
 }

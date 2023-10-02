@@ -24,6 +24,7 @@ function AppRoutes() {
   const { isLoged } = useUserContext();
 
   const [showSpinner, setShowSpinner] = useState(false);
+  const [delayCompleted, setDelayCompleted] = useState(false)
 
   const handleAuthSuccess = async () => {
     setShowSpinner(true);
@@ -37,11 +38,24 @@ function AppRoutes() {
     }
   }, [showSpinner]);
 
+  useEffect(() => {
+    ;(async () => {
+        setShowSpinner(true)
+        await new Promise(resolve => setTimeout(resolve, 200));
+        setDelayCompleted(true)
+        setShowSpinner(false)
+    })();
+}, [])
+
   const renderSpinner = showSpinner && (
     <div className="spinner-container">
       <div className="spinner" />
     </div>
   );
+
+  if(!delayCompleted) {
+    return <>{renderSpinner}</>
+  }
 
   return !isLoged ? (
     <Routes>
