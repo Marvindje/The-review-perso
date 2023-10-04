@@ -5,6 +5,7 @@ const IsConnectedMiddleware = require("../middlewares/isConnected.middleware");
 const postRoutes = express.Router();
 
 postRoutes
+  .get("/user", IsConnectedMiddleware.execute, PostController.findAllByUser)
   .get("/", IsConnectedMiddleware.execute, PostController.findAll)
   .get(
     "/category/:categoryId",

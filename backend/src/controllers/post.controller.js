@@ -1,6 +1,19 @@
 const { PostModel } = require("../models/post.model");
 
 class PostController {
+  static async findAllByUser(req, res) {
+    try {
+      const { userId } = req.user;
+
+      const posts = await PostModel.findAll({ userId });
+      
+      return res.status(200).send(posts);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send({ error: err.message });
+    }
+  }
+
   static async findAll(req, res) {
     try {
       const posts = await PostModel.findAll();

@@ -1,13 +1,11 @@
-import React, { useState, useCallback, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
 import axios from "axios";
-
+import { usePostDispatch } from '../context/PostContext';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { baseUrl } from "../config/url";
 import galaxyBackground from "../assets/thepage.jpeg";
+import { baseUrl } from "../config/url";
 
 const TITLE_STRING = 'title';
 const CONTENT_STRING = 'content';
@@ -22,29 +20,26 @@ const defaultPostData = {
 }
 
 function CreerPosts() {
-  const [post, setPost] = useState("");
-  const [postData, setPostData] = useState(defaultPostData)
-
+  const [postData, setPostData] = useState({
+    title: '',
+    content: '',
+    categoryId: ''
+  });
   const [categories, setCategories] = useState([]);
 
-  const [likes, setLikes] = useState(0);
-  const [liked, setLiked] = useState(false);
-
+  
   const onChangePostData = (key, value) => {
     setPostData((prev) => ({
       ...prev,
       [key]: value
     }))
   }
-
+  
   const handlePostSubmit = async () => {
     try {
-      const title = postData[TITLE_STRING];
-      const content = postData[CONTENT_STRING];
-      const categoryId = postData[CATEGORY_ID_STRING];
-
-      if(!title || !content){
-        return console.log("valeurs manquantes")
+      const { title, content, categoryId } = postData;
+      if (!title || !content) {
+        return console.log("Missing values");
       }
 
       await axios.post(`${baseUrl}/posts`, {
@@ -53,42 +48,34 @@ function CreerPosts() {
         categoryId
       }, {
         withCredentials: true,
-      })
+      });
 
-      setPostData(defaultPostData)
+      setPostData({ title: '', content: '', categoryId: '' });
+      toast.success("Your post has been submitted!");
 
-      console.log('OK')
-    } catch(err) {
-      console.error(err)
-    }
-  };
-
-  const handlePostClick = () => {
-    if (post.trim() !== "") {
-      handlePostSubmit();
-      toast.success("Votre post a été soumis !");
-    } else {
-      toast.error("Veuillez écrire quelque chose avant de soumettre.");
+    } catch (err) {
+      console.error(err);
+      toast.error("An error occurred while submitting your post.");
     }
   };
 
   useEffect(() => {
     ;(async () => {
-      try{
+      try {
         const result = await axios.get(`${baseUrl}/categories`, {
           withCredentials: true,
-        })
+        });
   
         setCategories(result?.data || [])
   
         const firstCategory = result?.data?.[0]?.id
-  
+  console.log(result)
         onChangePostData(CATEGORY_ID_STRING, firstCategory)
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
     })();
-  }, [])
+  }, []);
 
   return (
     <motion.div
@@ -129,19 +116,22 @@ function CreerPosts() {
         transition={{ duration: 0.5 }}
       >
         <div className={fieldFormCSS}>
-          <label for="categories" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an category</label>
+          <label for="categories" className="block mb-4 text-base font-semibold text-gray-800 dark:text-gray-100"
+>Select an category</label>
           <select 
-          id="categories" 
-          value={postData[CATEGORY_ID_STRING]}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={(e) => onChangePostData(CATEGORY_ID_STRING, e.target.value)}
-          >
-            {
-              categories.map((category, index) => {
-                return <option key={`${category.id}-${index}`} value={category.id}>{category.name}</option>
-              })
-            }
-          </select>
+  id="categories" 
+  value={postData[CATEGORY_ID_STRING]}
+  className="w-full p-4 bg-gray-50 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-4 focus:ring-blue-300"
+
+  onChange={(e) => onChangePostData(CATEGORY_ID_STRING, e.target.value)}
+>
+  {
+    categories.map((category, index) => {
+      return <option key={`${category.id}-${index}`} value={category.id}>{category.name}</option>
+    })
+  }
+</select>
+
         </div>
         <div className={fieldFormCSS}>
           <label for="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter a title</label>

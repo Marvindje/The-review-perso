@@ -34,8 +34,8 @@ class CategoryController {
 
   static async create(req, res) {
     try {
-      const { name } = req.body;
-      const category = await CategoryModel.create({ name });
+      const { name, image } = req.body;
+      const category = await CategoryModel.create({ name, image });
 
       return res.status(200).send(category);
     } catch (err) {
@@ -47,11 +47,12 @@ class CategoryController {
   static async updateById(req, res) {
     try {
       const { categoryId } = req.params;
-      const { name } = req.body;
+      const { name, image } = req.body;
 
       const isUpdated = await CategoryModel.update(
         {
           ...(name ? { name } : {}),
+          ...(image ? { image } : {}),
         },
         {
           where: {

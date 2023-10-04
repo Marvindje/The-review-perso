@@ -1,55 +1,33 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { FaThumbsUp, FaTrash, FaSync } from "react-icons/fa";
 import noResultsImage from "../assets/noresults.png";
 import galaxyBackground from "../assets/thepage.jpeg";
-
-const initialState = {
-  posts: [],
-  currentComments: {},
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "SET_POSTS":
-      return { ...state, posts: action.payload };
-    default:
-      return state;
-  }
-};
+import { baseUrl } from "../config/url";
 
 function MesPosts() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const savedPosts = JSON.parse(localStorage.getItem("posts"));
-    if (savedPosts) {
-      dispatch({ type: "SET_POSTS", payload: savedPosts });
-    }
+    ;(async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/posts/user`, {
+          withCredentials: true
+        }); 
+        console.log(response)
+        setPosts(response?.data || [])
+      } catch (error) {
+        console.error("An error occurred while fetching data: ", error);
+      }
+    })();
   }, []);
 
-  const handleLike = (index) => {
-    const newPosts = [...state.posts];
-    newPosts[index].liked = !newPosts[index].liked;
-    newPosts[index].likes += newPosts[index].liked ? 1 : -1;
-    dispatch({ type: "SET_POSTS", payload: newPosts });
-    localStorage.setItem("posts", JSON.stringify(newPosts));
-  };
+  const handleLike = (index) => {};
 
-  const deletePost = (index) => {
-    const newPosts = [...state.posts];
-    newPosts.splice(index, 1);
-    dispatch({ type: "SET_POSTS", payload: newPosts });
-    localStorage.setItem("posts", JSON.stringify(newPosts));
-  };
+  const deletePost = (index) => {};
 
-  const resetPost = (index) => {
-    const newPosts = [...state.posts];
-    newPosts[index].likes = 0;
-    newPosts[index].liked = false;
-    dispatch({ type: "SET_POSTS", payload: newPosts });
-    localStorage.setItem("posts", JSON.stringify(newPosts));
-  };
+  const resetPost = (index) => {};
 
   return (
     <motion.div
@@ -73,7 +51,7 @@ function MesPosts() {
       >
         My Posts
       </motion.h1>
-      {state.posts.length === 0 ? (
+      {posts.length === 0 ? (
         <motion.div
           className="text-2xl font-bold text-gray-700 mb-10 m-4"
           initial={{ opacity: 0, y: -50 }}
@@ -87,7 +65,7 @@ function MesPosts() {
           />
         </motion.div>
       ) : (
-        state.posts.map((post, index) => (
+        posts.map((post, index) => (
           <motion.div
             key={post.id}
             className="neomorph-card--large w-3/4 mx-auto shadow-lg rounded-3xl p-10 m-4 relative border border-gray-300 hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105"
@@ -104,7 +82,7 @@ function MesPosts() {
                 className="text-2xl font-bold"
                 style={{ fontFamily: "Georgia, serif", color: "#4a5568" }}
               >
-                {post.post}
+                {post.title}
               </h2>
               <div className="flex space-x-2">
                 <button type="button" onClick={() => resetPost(index)}>
@@ -116,33 +94,8 @@ function MesPosts() {
               </div>
             </div>
             <div className="rounded-md bg-gray-100 p-4 mb-4">
-              <p className="text-gray-700">{post.postContent}</p>
+              <p className="text-gray-700">{post.content}</p>
             </div>
-            {post.youtubeId && (
-              <div className="mb-4 flex justify-center">
-                {" "}
-                {/* Ajout de flex et justify-center */}
-                <iframe
-                  width="560"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${post.youtubeId}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            )}
-
-            {post.files &&
-              post.files.map((file) => (
-                <img
-                  key={`file id : ${file.name}`}
-                  src={file.dataUrl}
-                  alt={file.name}
-                  className="mt-2 h-32 w-auto object-cover rounded-md shadow-md"
-                />
-              ))}
             <div className="flex items-center mb-4">
               <button type="button" onClick={() => handleLike(index)}>
                 <FaThumbsUp
@@ -156,6 +109,6 @@ function MesPosts() {
       )}
     </motion.div>
   );
-}
+              }
 
 export default MesPosts;
