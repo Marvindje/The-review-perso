@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { useUserContext } from '../context/userContext'
 import { baseUrl } from '../config/url';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import '../App.css';
@@ -9,7 +10,8 @@ import '../App.css';
 // Main Article Section
 function ArticleSection() {
   const { categoryId } = useParams();
-  
+  const { user } = useUserContext()
+
   const [category, setCategory] = useState({});
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState({});
@@ -33,32 +35,62 @@ function ArticleSection() {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/posts', {
-      withCredentials: true,
-    })
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch((error) => {
-        console.error('Erreur lors de la récupération des articles:', error);
-      });
+    ;(async () => {
+      try{
+        const postsResult = await axios.get(`${baseUrl}/posts/categories/${categoryId}`, {
+          withCredentials: true
+        })
+
+        const likesResult = await axios.get(`${baseUrl}/likes`, {
+          withCredentials: true
+        })
+
+        setLikedPosts(likesResult.data)
+        setPosts(postsResult.data);
+      } catch (err) {
+        console.error(err)
+      }
+    })();
   }, []);
 
-  const handleLike = (postId) => {
-    axios.post(`http://localhost:5000/likes`, {
-      postId
-    }, {
-      withCredentials: true,
-    })
-      .then((response) => {
-        setLikedPosts({
-          ...likedPosts,
-          [postId]: !likedPosts[postId],
-        });
-      })
-      .catch((error) => {
-        console.error('Erreur lors du like:', error);
+  const onIsLiked = (postId) => {
+    return likedPosts.some((likePost) => 
+      likePost.postId === postId && likePost.userId === user?.userId
+    )
+  }
+
+  const handleLike = async (postId) => {
+    try{
+      let result;
+      const isDeleteLike = onIsLiked(postId)
+      
+      if(isDeleteLike) {
+        await axios.delete(`${baseUrl}/likes/posts/${postId}`, {
+          withCredentials: true
+        })
+      } else {
+        result = await axios.post(`${baseUrl}/likes`, {
+          postId
+        }, {
+          withCredentials: true
+        })
+      }
+
+      setLikedPosts((prev) => {
+        const likesPostsCopy = [...prev];
+        
+        if(isDeleteLike){
+          return likesPostsCopy.filter((likePost) => likePost.postId !== postId);
+        }
+
+        return [
+          ...prev,
+          result?.data,
+        ]
       });
+    } catch (err) {
+      console.error('Erreur lors du like:', err);
+    }
   };
 
   const handleComment = (postId) => {
@@ -112,7 +144,7 @@ function ArticleSection() {
               <h3 className="text-2xl font-header mb-2">{post.title}</h3>
               <p className="text-black text-sm">{post.content}</p>
               <div onClick={() => handleLike(post.id)} className="text-4xl">
-                {likedPosts[post.id] ? <FaHeart color="red" /> : <FaRegHeart />}
+                {onIsLiked(post.id) ? <FaHeart color="red" /> : <FaRegHeart />}
               </div>
               <div className="comment-section flex flex-col items-start space-y-2">
                 <input

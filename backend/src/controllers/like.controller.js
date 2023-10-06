@@ -38,9 +38,39 @@ class LikeController {
     }
   }
 
+  static async deleteByPostId(req, res) {
+    try {
+      const { postId } = req.params;
+      const { userId } = req.user;
+
+      const isDestroyed = await LikeModel.destroy({
+        where: {
+          postId,
+          userId
+        },
+      });
+
+      if (!isDestroyed) {
+        return res.status(404).send(`Like (${likeId}) not found!`);
+      }
+
+      return res.status(204).send();
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send({ error: err.message });
+    }
+  }
+
   static async findAll(req, res) {
     try {
-      const likes = await LikeModel.findAll();
+      const { userId } = req.user;
+
+      const likes = await LikeModel.findAll({
+        where: {
+          userId
+        }
+      });
+
       return res.status(200).send(likes);
     } catch (err) {
       console.error(err);

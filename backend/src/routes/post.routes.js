@@ -8,7 +8,7 @@ postRoutes
   .get("/user", IsConnectedMiddleware.execute, PostController.findAllByUser)
   .get("/", IsConnectedMiddleware.execute, PostController.findAll)
   .get(
-    "/category/:categoryId",
+    "/categories/:categoryId",
     IsConnectedMiddleware.execute,
     PostController.findAllByCategory
   )
