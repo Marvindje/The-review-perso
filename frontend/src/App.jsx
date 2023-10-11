@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { UserContextProvider } from "./context/userContext";
+import { PostContextProvider } from "./context/PostContext";
 import AppRoutes from "./components/AppRoutes";
-import Footer from "./components/Footer";
-import Navbar from "./components/NavBar";
-import Login from "./pages/Login";
-import HomePage from "./pages/Homepage";
 import "./App.css";
 
 function App() {
@@ -44,12 +36,14 @@ function App() {
   return (
     <CookiesProvider>
       <UserContextProvider>
-        <Router>
-          <div className="App">
-            <AppRoutes />
-            {renderSpinner}
-          </div>
-        </Router>
+        <PostContextProvider>
+          <Router>
+            <div className="App">
+              <AppRoutes />
+              {renderSpinner}
+            </div>
+          </Router>
+        </PostContextProvider>
       </UserContextProvider>
     </CookiesProvider>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { useUserContext } from '../context/userContext'
+import { usePostContext } from '../context/PostContext';
 import { baseUrl } from '../config/url';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import '../App.css';
@@ -10,29 +10,10 @@ import '../App.css';
 // Main Article Section
 function ArticleSection() {
   const { categoryId } = useParams();
-  const { user } = useUserContext()
+  const { handleLike, onIsLiked } = usePostContext();
 
   const [category, setCategory] = useState({});
   const [posts, setPosts] = useState([]);
-  const [likedPosts, setLikedPosts] = useState({});
-  const [comments, setComments] = useState({});
-  const [newComment, setNewComment] = useState("");
-
-
-  useEffect(() => {
-    ;(async () => {
-      try {
-          const result = await axios.get(`${baseUrl}/categories/${categoryId}`, {
-              withCredentials: true
-          });
-          console.log(result?.data)
-          
-          setCategory(result?.data || [])
-      } catch(err) {
-        console.error(err)
-      }
-  })();
-  }, []);
 
   useEffect(() => {
     ;(async () => {
@@ -41,11 +22,6 @@ function ArticleSection() {
           withCredentials: true
         })
 
-        const likesResult = await axios.get(`${baseUrl}/likes`, {
-          withCredentials: true
-        })
-
-        setLikedPosts(likesResult.data)
         setPosts(postsResult.data);
       } catch (err) {
         console.error(err)
@@ -53,72 +29,21 @@ function ArticleSection() {
     })();
   }, []);
 
-  const onIsLiked = (postId) => {
-    return likedPosts.some((likePost) => 
-      likePost.postId === postId && likePost.userId === user?.userId
-    )
-  }
 
-  const handleLike = async (postId) => {
-    try{
-      let result;
-      const isDeleteLike = onIsLiked(postId)
-      
-      if(isDeleteLike) {
-        await axios.delete(`${baseUrl}/likes/posts/${postId}`, {
-          withCredentials: true
-        })
-      } else {
-        result = await axios.post(`${baseUrl}/likes`, {
-          postId
-        }, {
-          withCredentials: true
-        })
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+          const result = await axios.get(`${baseUrl}/categories/${categoryId}`, {
+              withCredentials: true
+          });
+          
+          setCategory(result?.data || [])
+      } catch(err) {
+        console.error(err)
       }
-
-      setLikedPosts((prev) => {
-        const likesPostsCopy = [...prev];
-        
-        if(isDeleteLike){
-          return likesPostsCopy.filter((likePost) => likePost.postId !== postId);
-        }
-
-        return [
-          ...prev,
-          result?.data,
-        ]
-      });
-    } catch (err) {
-      console.error('Erreur lors du like:', err);
-    }
-  };
-
-  const handleComment = (postId) => {
-    setComments({
-      ...comments,
-      [postId]: [...(comments[postId] || []), newComment],
-    });
-    setNewComment("");
-  };
-
-  const handleDeleteComment = (postId, commentIndex) => {
-    const commentId = comments[postId][commentIndex].id;
-
-    axios.delete(`http://localhost:5000/comments/${commentId}`, {
-      withCredentials: true,
-    })
-    .then((response) => {
-      const updatedComments = [...comments[postId]];
-      updatedComments.splice(commentIndex, 1);
-      setComments({
-        ...comments,
-        [postId]: updatedComments,
-      });
-    })
-    .catch((error) => {
-      console.error('Erreur lors de la suppression du commentaire:', error);
-    });
-  };
+  })();
+  }, []);
 
   return (
     <div className="font-body custom-background" style={{ background: '#e0e0e0' }}>
@@ -146,17 +71,17 @@ function ArticleSection() {
               <div onClick={() => handleLike(post.id)} className="text-4xl">
                 {onIsLiked(post.id) ? <FaHeart color="red" /> : <FaRegHeart />}
               </div>
-              <div className="comment-section flex flex-col items-start space-y-2">
+              {/* <div className="comment-section flex flex-col items-start space-y-2">
                 <input
                   type="text"
                   placeholder="Add comment..."
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
+                  value={commentsValue[post.id] || ''}
+                  onChange={(e) => onChangeComment(post.id, e.target.value)}
                   className="border rounded-md p-2 w-full"
                 />
                 <button 
                   className="button2"
-                  onClick={() => handleComment(post.id)}
+                  onClick={async () => onSaveComment(post.id)}
                 >
                   Submit
                 </button>
@@ -173,7 +98,7 @@ function ArticleSection() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
               <Link to={`/mes-posts/${post.id}`} className="button2">
                 Read article
               </Link>

@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
-
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const [user, setUser] = useState({});

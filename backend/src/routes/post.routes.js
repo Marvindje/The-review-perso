@@ -7,6 +7,7 @@ const postRoutes = express.Router();
 postRoutes
   .get("/user", IsConnectedMiddleware.execute, PostController.findAllByUser)
   .get("/", IsConnectedMiddleware.execute, PostController.findAll)
+  .get("/:postId", IsConnectedMiddleware.execute, PostController.findOneById)
   .get(
     "/categories/:categoryId",
     IsConnectedMiddleware.execute,

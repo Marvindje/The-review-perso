@@ -1,41 +1,120 @@
-import React, { createContext, useReducer, useContext } from 'react';
+/* eslint react/prop-types: 0 */
+import React, {
+  createContext,
+  useState,
+  useMemo,
+  useContext,
+  useEffect,
+} from "react";
+import axios from 'axios';
+import { useUserContext } from "./userContext";
+import { baseUrl } from "../config/url";
 
-const PostStateContext = createContext();
-const PostDispatchContext = createContext();
+export const PostContext = createContext();
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_POSTS':
-      return { ...state, posts: action.payload };
-    default:
-      return state;
+export function PostContextProvider({ children }) {
+  const { user } = useUserContext();
+
+  const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
+  const [comments, setComments] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      try{
+        const postsResult = await axios.get(`${baseUrl}/posts`, {
+          withCredentials: true
+        })
+console.log(postsResult.data);
+        const likesResult = await axios.get(`${baseUrl}/likes`, {
+          withCredentials: true
+        })
+
+        const commentsResult = await axios.get(`${baseUrl}/comments`, {
+          withCredentials: true
+        })
+
+        setLikedPosts(likesResult.data)
+        setComments(commentsResult);
+        setPosts(postsResult.data);
+      } catch (err) {
+        console.error(err)
+      }
+    })();
+  }, []);
+
+  const onIsLiked = (postId) => {
+    return likedPosts.some((likePost) => 
+      likePost.postId === postId && likePost.userId === user?.userId
+    )
   }
-};
 
-export const PostProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, { posts: [] });
+  const handleLike = async (postId) => {
+    try{
+      let result;
+      const isDeleteLike = onIsLiked(postId)
+      
+      if(isDeleteLike) {
+        await axios.delete(`${baseUrl}/likes/posts/${postId}`, {
+          withCredentials: true
+        })
+      } else {
+        result = await axios.post(`${baseUrl}/likes`, {
+          postId
+        }, {
+          withCredentials: true
+        })
+      }
 
-  return (
-    <PostStateContext.Provider value={state}>
-      <PostDispatchContext.Provider value={dispatch}>
-        {children}
-      </PostDispatchContext.Provider>
-    </PostStateContext.Provider>
+      setLikedPosts((prev) => {
+        const likesPostsCopy = [...prev];
+        
+        if(isDeleteLike){
+          return likesPostsCopy.filter((likePost) => likePost.postId !== postId);
+        }
+
+        return [
+          ...prev,
+          result?.data,
+        ]
+      });
+    } catch (err) {
+      console.error('Erreur lors du like:', err);
+    }
+  };
+
+  const onSaveComment = async (postId, value) => {
+    try {
+      const result = await axios.post(`${baseUrl}/comments`, {
+        content: value,
+        postId
+      }, {
+        withCredentials: true
+      })
+
+      setComments((prev) => [
+        ...prev,
+        result.data
+      ])
+    } catch (err) {
+      console.error(err)
+    }
+  };
+
+  const value = useMemo(
+    () => ({
+      posts,
+      likedPosts,
+      onIsLiked,
+      handleLike,
+      onSaveComment,
+    }),
+    [posts, likedPosts]
   );
-};
 
-export const usePostState = () => {
-  const context = useContext(PostStateContext);
-  if (!context) {
-    throw new Error('usePostState must be used within a PostProvider');
-  }
-  return context;
-};
+  return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
+}
 
-export const usePostDispatch = () => {
-  const context = useContext(PostDispatchContext);
-  if (!context) {
-    throw new Error('usePostDispatch must be used within a PostProvider');
-  }
-  return context;
+export const usePostContext = () => {
+  return useContext(PostContext);
 };
