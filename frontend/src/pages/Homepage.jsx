@@ -42,12 +42,10 @@ function HomePage() {
               "0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de",
           }}
         >
-          Welcome to our Tech Blog!
+          The Review
         </h1>
 
-        <p className="text-lg text-white mb-16 opacity-100">
-          Find out the latest news regarding technology.
-        </p>
+      
         <a
           href="/blog"
           className="self-stretch mt-16 px-5 py-3 shadow-lg rounded-lg text-white bg-gradient-to-r from-blue-500-opacity-50 to-indigo-500-opacity-150 transform transition-transform duration-500 ease-in-out hover:shadow-2xl active:scale-90 flex items-center opacity-90"
