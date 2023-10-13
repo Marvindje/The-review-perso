@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import galaxyBackground from "../assets/thepage.jpeg";
 import { baseUrl } from "../config/url";
+import "../styles/App.css";
 
 const TITLE_STRING = 'title';
 const CONTENT_STRING = 'content';
@@ -22,7 +23,8 @@ function CreerPosts() {
   const [postData, setPostData] = useState({
     title: '',
     content: '',
-    categoryId: ''
+    categoryId: '',
+    imageUrl: ''
   });
   const [categories, setCategories] = useState([]);
 
@@ -36,7 +38,7 @@ function CreerPosts() {
   
   const handlePostSubmit = async () => {
     try {
-      const { title, content, categoryId } = postData;
+      const { title, content, categoryId, imageUrl } = postData;
       if (!title || !content) {
         return console.log("Missing values");
       }
@@ -44,12 +46,13 @@ function CreerPosts() {
       await axios.post(`${baseUrl}/posts`, {
         title,
         content,
-        categoryId
+        categoryId,
+        imageUrl 
       }, {
         withCredentials: true,
       });
 
-      setPostData({ title: '', content: '', categoryId: '' });
+      setPostData({ title: '', content: '', categoryId: '', imageUrl: ''});
       toast.success("Your post has been submitted!");
 
     } catch (err) {
@@ -102,6 +105,7 @@ function CreerPosts() {
       >
         Share your thoughts with the world !
       </motion.h1>
+  
 
       <motion.div
         style={{
@@ -114,6 +118,17 @@ function CreerPosts() {
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
       >
+           <div className={fieldFormCSS}>
+        <label for="imageUrl" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter an Image URL</label>
+        <input
+          type="text"
+          id="imageUrl"
+          value={postData.imageUrl}
+          onChange={(e) => onChangePostData('imageUrl', e.target.value)}
+          placeholder="Enter image URL ..."
+          className="w-full p-2 border rounded-md mb-4"
+        />
+      </div>
         <div className={fieldFormCSS}>
           <label for="categories" className="block mb-4 text-base font-semibold text-gray-800 dark:text-gray-100"
 >Select an category</label>

@@ -59,6 +59,7 @@ class PostController {
       const post = await PostModel.create({
         title,
         content,
+        imageUrl,
         userId,
         categoryId,
       });

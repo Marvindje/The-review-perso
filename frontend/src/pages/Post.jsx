@@ -24,11 +24,11 @@ const PostPage = () => {
 
     console.log(post)
     return (
-        <div className="neomorph-page">
-            <h1>{post.title}</h1>
-            {post.content}
-        </div>
-    )
-}
-
-export default PostPage;
+      <div className="neomorph-page">
+        <h1>{post.title}</h1>
+        <img src={post.imageUrl} alt={post.title} /> 
+        {post.content}
+      </div>
+    );
+  };
+  export default PostPage;

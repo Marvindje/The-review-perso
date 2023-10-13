@@ -5,7 +5,7 @@ import axios from 'axios';
 import { usePostContext } from '../context/PostContext';
 import { baseUrl } from '../config/url';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import '../App.css';
+import '../styles/App.css';
 
 // Main Article Section
 function ArticleSection() {

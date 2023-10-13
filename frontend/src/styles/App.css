@@ -414,5 +414,15 @@ body {
   background-image: radial-gradient(#c18bd9, lightblue);
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  @apply text-gray-400;
+}
 
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  @apply text-gray-400;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  @apply text-gray-400;
+}
 

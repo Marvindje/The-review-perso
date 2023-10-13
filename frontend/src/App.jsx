@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { UserContextProvider } from "./context/userContext";
 import { PostContextProvider } from "./context/PostContext";
 import AppRoutes from "./components/AppRoutes";
-import "./App.css";
+import "../src/styles/App.css";
 
 function App() {
   // State variables
