@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import { useUserContext } from "../context/userContext";
 import { FaSearch, FaUser } from "react-icons/fa";
 import logo from "../assets/the-review-low-resolution-logo-color-on-transparent-background.png";
+import { useMediaQuery } from "react-responsive";
 
 function Navbar({ onLogoClick }) {
   const { onLogout } = useUserContext();
@@ -36,15 +37,7 @@ function Navbar({ onLogoClick }) {
             </Link>
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-center">
-            <div className="relative">
-              <FaSearch className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
-              <motion.input
-                type="text"
-                placeholder="Search..."
-                className="pl-10 pr-3 py-2 rounded-md text-sm font-medium"
-                whileFocus={{ scale: 1.1 }}
-              />
-            </div>
+       
           </div>
           <div className="flex sm:hidden">
             <button

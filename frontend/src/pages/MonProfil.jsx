@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import thepageBackground from "../assets/thepage.jpeg";
+import { useUserContext } from "../context/userContext";
 
 function MonProfil() {
+  const { user } = useUserContext()
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -98,6 +101,8 @@ function MonProfil() {
               />
             </label>
           </div>
+          username : {user?.username}<br/>
+          email : {user?.email}
           <div className="flex flex-col items-center">
             <textarea
               id="bio"

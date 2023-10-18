@@ -84,6 +84,7 @@ function MesPosts() {
               >
                 {post.title}
               </h2>
+              <img src={post.imageUrl} id="imagePreview" alt="Image Preview" className="max-w-full max-h-40 rounded-md" />
               <div className="flex space-x-2">
                 <button type="button" onClick={() => resetPost(index)}>
                   <FaSync className="text-xl" />

@@ -12,16 +12,23 @@ import Login from "../pages/Login";
 import PostPage from "../pages/Post";
 import ArticleSection from "../components/ArticleSection"
 
+// Composant principal pour gérer les routes de l'application
 function AppRoutes() {
+  // Utilise le contexte utilisateur pour vérifier si l'utilisateur est connecté
   const { isLoged } = useUserContext();
 
+  // État pour afficher ou masquer le spinner de chargement
   const [showSpinner, setShowSpinner] = useState(false);
+  // État pour vérifier si un délai spécifique est terminé
   const [delayCompleted, setDelayCompleted] = useState(false)
 
+  // Fonction appelée lorsque l'authentification réussit
   const handleAuthSuccess = async () => {
+    // Affiche le spinner
     setShowSpinner(true);
   };
 
+  // Effet pour masquer le spinner après 3 secondes
   useEffect(() => {
     if (showSpinner) {
       setTimeout(() => {
@@ -30,28 +37,38 @@ function AppRoutes() {
     }
   }, [showSpinner]);
 
+  // Effet pour gérer un délai initial
   useEffect(() => {
     ;(async () => {
+        // Affiche le spinner
         setShowSpinner(true)
+        // Attend 200 ms
         await new Promise(resolve => setTimeout(resolve, 200));
+        // Met à jour l'état pour indiquer que le délai est terminé
         setDelayCompleted(true)
+        // Masque le spinner
         setShowSpinner(false)
     })();
-}, [])
+  }, [])
 
+  // Rendu conditionnel du spinner
   const renderSpinner = showSpinner && (
     <div className="spinner-container">
       <div className="spinner" />
     </div>
   );
 
+  // Si le délai n'est pas terminé, affiche le spinner
   if(!delayCompleted) {
     return <>{renderSpinner}</>
   }
 
+  // Rendu des routes en fonction de l'état de connexion de l'utilisateur
   return !isLoged ? (
     <Routes>
+     
       <Route path="/" element={<Login onAuthSuccess={handleAuthSuccess} />} />
+     
       <Route path="/*" element={<>404</>} />
     </Routes>
   ) : (

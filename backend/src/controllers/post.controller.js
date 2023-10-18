@@ -53,7 +53,7 @@ class PostController {
 
   static async create(req, res) {
     try {
-      const { title, content, categoryId } = req.body;
+      const { title, content, categoryId, imageUrl  } = req.body;
       const { userId } = req.user;
 
       const post = await PostModel.create({

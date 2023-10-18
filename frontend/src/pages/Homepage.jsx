@@ -47,7 +47,7 @@ function HomePage() {
 
       
         <a
-          href="/blog"
+          href="/categories/1"
           className="self-stretch mt-16 px-5 py-3 shadow-lg rounded-lg text-white bg-gradient-to-r from-blue-500-opacity-50 to-indigo-500-opacity-150 transform transition-transform duration-500 ease-in-out hover:shadow-2xl active:scale-90 flex items-center opacity-90"
           style={{
             fontSize: "1.5rem",

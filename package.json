@@ -33,6 +33,7 @@
     "husky": "^8.0.3"
   },
   "dependencies": {
-    "react-cookie": "^6.1.1"
+    "react-cookie": "^6.1.1",
+    "react-responsive": "^9.0.2"
   }
 }
