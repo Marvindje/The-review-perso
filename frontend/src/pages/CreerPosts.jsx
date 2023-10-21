@@ -96,44 +96,30 @@ function CreerPosts() {
 
   return (
     <motion.div
-      className="min-h-screen py-6 flex flex-col justify-center sm:py-12"
-      style={{
-        backgroundImage: `url(${galaxyBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="min-h-screen flex flex-col justify-center bg-cover bg-center py-6 sm:py-12"
+      style={{ backgroundImage: `url(${galaxyBackground})` }}
       initial={{ x: "-100vw" }}
       animate={{ x: 0 }}
       transition={{ duration: 1 }}
     >
       <ToastContainer />
       <motion.h1
-        className="w-3/4 mx-auto text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md bg-transparent border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
-        style={{
-          fontFamily: "Georgia, serif",
-          color: "#FFFFFF",
-          textAlign: "center",
-        }} 
+        className="mx-auto w-3/4 text-4xl font-semibold text-white mb-6 p-5 rounded-lg shadow-md border border-blue-500 hover:shadow-lg transition-shadow duration-300 ease-in-out backdrop-blur-md"
+        style={{ fontFamily: "Georgia, serif", textAlign: "center" }}
         initial={{ x: "-100vw" }}
         animate={{ x: 0 }}
         transition={{ duration: 1 }}
       >
-        Share your thoughts !
+        Share your thoughts!
       </motion.h1>
-  
 
       <motion.div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          rowGap: '50px',
-        }}
-        className="w-full max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-12 mt-4 flex flex-col gap-10 items-start justify-center border-2 border-blue-500 rounded-md bg-opacity-50 backdrop-blur"
+        className="mx-auto w-full max-w-6xl p-12 mt-4 bg-white bg-opacity-50 rounded-lg shadow-lg flex flex-col gap-10 items-start justify-center border-2 border-blue-500 backdrop-blur-md"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-                 <div className="flex flex-col w-full space-y-4">
+        <div className="flex flex-col w-full space-y-4">
           <label className="text-sm font-medium text-gray-900">Enter an Image URL</label>
           <input
             type="text"
@@ -153,16 +139,14 @@ function CreerPosts() {
           </div>
         </div>
 
-        <div className={fieldFormCSS}>
-          <label htmlFor="categories" className="block mb-4 text-base font-semibold text-gray-800 dark:text-gray-100"
->Select an category</label>
+        <div className="flex flex-col w-full space-y-4">
+          <label htmlFor="categories" className="mb-4 text-base font-semibold text-gray-800">Select categories</label>
           <select 
-  id="categories" 
-  value={postData[CATEGORY_ID_STRING]}
-  className="w-full p-4 bg-gray-50 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-4 focus:ring-blue-300"
-
-  onChange={(e) => onChangePostData(CATEGORY_ID_STRING, e.target.value)}
->
+            id="categories" 
+            value={postData[CATEGORY_ID_STRING]}
+            className="w-full p-4 bg-gray-50 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-4 focus:ring-blue-300"
+            onChange={(e) => onChangePostData(CATEGORY_ID_STRING, e.target.value)}
+          >
   {
     categories.map((category, index) => {
       return <option key={`${category.id}-${index}`} value={category.id}>{category.name}</option>

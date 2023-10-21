@@ -13,6 +13,7 @@ postRoutes
     IsConnectedMiddleware.execute,
     PostController.findAllByCategory
   )
-  .post("/", IsConnectedMiddleware.execute, PostController.create);
+  .post("/", IsConnectedMiddleware.execute, PostController.create)
+  .delete("/:postId", IsConnectedMiddleware.execute, PostController.deleteById); // Ligne ajoutée
 
 module.exports = { postRoutes };
